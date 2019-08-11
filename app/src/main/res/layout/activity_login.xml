@@ -68,7 +68,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign In"/>
+                android:text="Sign In"
+                android:id="@+id/regbut"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
