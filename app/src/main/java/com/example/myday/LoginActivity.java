@@ -15,14 +15,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginActivity extends AppCompatActivity {
     private TextView para;
     private Button regbut;
+    FirebaseAuth mFirebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //para = findViewById(R.id.regtext);
         TextView textView = findViewById(R.id.regtext);
         String text = "New User?  Register";
         SpannableString ss = new SpannableString(text);
