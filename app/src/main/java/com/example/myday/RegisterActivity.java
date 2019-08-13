@@ -29,8 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 en=findViewById(R.id.fullname);
-                eu=findViewById(R.id.username);
-                ep=findViewById(R.id.password);
+                eu=findViewById(R.id.reguser);
+                ep=findViewById(R.id.regpass);
                 n=en.getText().toString();
                 u=eu.getText().toString();
                 p=ep.getText().toString();
@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), s.substring(0, s.length() - 1), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),s.substring(0,s.length()-1),Toast.LENGTH_LONG).show();
                 }
             }
         });
