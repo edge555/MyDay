@@ -1,5 +1,6 @@
 package com.example.myday;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,10 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterActivity extends AppCompatActivity {
     private Button rb;
     String n,u,p;
     EditText en,eu,ep;
+   // FirebaseAuth mFirebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String s="";
                 if(!chk.name(n))
                     s+="Invalid name\n";
-                if(!chk.username(u))
-                    s+="Invalid username\n";
                 if(!chk.pass(p))
                     s+="Invalid password\n";
                 if(s.isEmpty()){
@@ -40,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-
                     Toast.makeText(getApplicationContext(), s.substring(0, s.length() - 1), Toast.LENGTH_LONG).show();
                 }
             }

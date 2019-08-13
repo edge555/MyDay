@@ -1,5 +1,6 @@
 package com.example.myday;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -13,18 +14,32 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView para;
     private Button regbut;
-    FirebaseAuth mFirebaseAuth;
+    private EditText eu,ep;
+    String u,p;
+    //FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Spannable text
+        eu = findViewById(R.id.loguser);
+        ep = findViewById(R.id.logpass);
+        u = eu.getText().toString();
+        p = ep.getText().toString();
         TextView textView = findViewById(R.id.regtext);
         String text = "New User?  Register";
         SpannableString ss = new SpannableString(text);
@@ -43,14 +58,19 @@ public class LoginActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
+
             }
         });
+
+
+
     }
     @Override
     public void onBackPressed() {
@@ -72,4 +92,5 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
     }
+
 }
