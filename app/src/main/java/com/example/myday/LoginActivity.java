@@ -29,8 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button regbut;
     private EditText eu,ep;
     String u,p;
-    FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,23 +38,12 @@ public class LoginActivity extends AppCompatActivity {
         u = eu.getText().toString();
         p = ep.getText().toString();
 
-
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -80,21 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFireBaseuUser = mFirebaseAuth.getCurrentUser();
-                if(mFireBaseuUser!=null){
-                    Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
-                }
-            }
-        };
+
     }
     @Override
     public void onBackPressed() {
@@ -117,9 +90,5 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
+
 }

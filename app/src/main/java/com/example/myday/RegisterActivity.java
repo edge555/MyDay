@@ -21,12 +21,11 @@ public class RegisterActivity extends AppCompatActivity {
     private Button rb;
     String n,u,p;
     EditText en,eu,ep;
-    FirebaseAuth mFirebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
         rb = findViewById(R.id.regbut);
         rb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,19 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if(!chk.pass(p))
                     s+="Invalid password\n";
                 if(s.isEmpty()){
-                    mFirebaseAuth.createUserWithEmailAndPassword(u,p).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-
+                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),s.substring(0,s.length()-1),Toast.LENGTH_LONG).show();
