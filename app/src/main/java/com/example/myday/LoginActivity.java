@@ -45,8 +45,19 @@ public class LoginActivity extends AppCompatActivity {
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
+                mFirebaseAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
             }
         });
         // Spannable text
@@ -69,6 +80,21 @@ public class LoginActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFireBaseuUser = mFirebaseAuth.getCurrentUser();
+                if(mFireBaseuUser!=null){
+                    Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+                }
+            }
+        };
     }
     @Override
     public void onBackPressed() {
@@ -91,5 +117,9 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
 }

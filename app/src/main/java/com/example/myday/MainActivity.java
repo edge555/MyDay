@@ -9,12 +9,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
-    private Button taskbut;
+    private Button taskbut,logbut;
+    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        logbut = findViewById(R.id.mainlog);
+        logbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         taskbut=findViewById(R.id.taskbut);
         taskbut.setOnClickListener(new View.OnClickListener() {
             @Override

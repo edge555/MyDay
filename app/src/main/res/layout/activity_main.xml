@@ -29,7 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:background="#E23F3F">
+        android:background="#E23F3F"
+        android:gravity="center">
+        <Button
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:id="@+id/mainlog"
+            android:text="Log Out"/>
 
     </LinearLayout>
 
