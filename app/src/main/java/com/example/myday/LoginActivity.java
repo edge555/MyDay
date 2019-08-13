@@ -29,17 +29,27 @@ public class LoginActivity extends AppCompatActivity {
     private Button regbut;
     private EditText eu,ep;
     String u,p;
-    //FirebaseAuth mFirebaseAuth;
+    FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Spannable text
         eu = findViewById(R.id.loguser);
         ep = findViewById(R.id.logpass);
         u = eu.getText().toString();
         p = ep.getText().toString();
+
+
+        regbut=findViewById(R.id.regbut);
+        regbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        // Spannable text
         TextView textView = findViewById(R.id.regtext);
         String text = "New User?  Register";
         SpannableString ss = new SpannableString(text);
@@ -59,18 +69,6 @@ public class LoginActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
-        regbut=findViewById(R.id.regbut);
-        regbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-
     }
     @Override
     public void onBackPressed() {
@@ -92,5 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
     }
+
 
 }
