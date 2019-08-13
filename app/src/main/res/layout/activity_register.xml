@@ -39,6 +39,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/fullname"
                     />
             </LinearLayout>
             <LinearLayout
@@ -55,6 +56,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/username"
                     />
 
             </LinearLayout>
@@ -78,7 +80,9 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/password"
                     />
+
 
             </LinearLayout>
             <LinearLayout
