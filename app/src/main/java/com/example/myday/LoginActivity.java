@@ -33,18 +33,20 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        eu = findViewById(R.id.loguser);
-        ep = findViewById(R.id.logpass);
-        u = eu.getText().toString();
-        p = ep.getText().toString();
+
 
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                eu = findViewById(R.id.loguser);
+                ep = findViewById(R.id.logpass);
+                u = eu.getText().toString();
+                p = ep.getText().toString();
+                Toast.makeText(getApplicationContext(),u+"\n",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),p+"\n",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
-
             }
         });
         // Spannable text
