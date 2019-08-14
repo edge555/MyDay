@@ -29,13 +29,25 @@ public class LoginActivity extends AppCompatActivity {
     private Button regbut;
     private EditText eu,ep;
     FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthSt;
     String u,p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
+        mAuth = FirebaseAuth.getInstance();
+        //Check if already logged in
+        mAuthSt = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser FUser = mAuth.getCurrentUser();
+                if(FUser!=null){
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+        //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,5 +112,11 @@ public class LoginActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthSt);
     }
 }
