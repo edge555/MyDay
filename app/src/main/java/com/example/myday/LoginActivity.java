@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else{
-                            Toast.makeText(getApplicationContext(),"ERROR2",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
-
     }
     @Override
     public void onBackPressed() {
@@ -102,6 +101,4 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
     }
-
-
 }
