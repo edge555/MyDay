@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView para;
     private Button regbut;
     private EditText eu,ep;
+    FirebaseAuth mAuth;
     String u,p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,24 @@ public class LoginActivity extends AppCompatActivity {
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth = FirebaseAuth.getInstance();
                 eu = findViewById(R.id.loguser);
                 ep = findViewById(R.id.logpass);
                 u = eu.getText().toString();
                 p = ep.getText().toString();
-                Toast.makeText(getApplicationContext(),u+"\n",Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),p+"\n",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
+                mAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"ERROR2",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
             }
         });
         // Spannable text

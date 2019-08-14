@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button rb;
     String n,u,p;
     EditText en,eu,ep;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +63,25 @@ public class RegisterActivity extends AppCompatActivity {
                 u=eu.getText().toString();
                 p=ep.getText().toString();
                 Checker chk = new Checker();
+                mAuth = FirebaseAuth.getInstance();
                 String s="";
                 if(!chk.name(n))
                     s+="Invalid name\n";
                 if(!chk.pass(p))
                     s+="Invalid password\n";
                 if(s.isEmpty()){
-                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                    startActivity(intent);
+                    mAuth.createUserWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
                 }
                 else{
                     Toast.makeText(getApplicationContext(),s.substring(0,s.length()-1),Toast.LENGTH_LONG).show();
