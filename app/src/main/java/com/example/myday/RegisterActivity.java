@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,11 +66,31 @@ public class RegisterActivity extends AppCompatActivity {
                 Checker chk = new Checker();
                 mAuth = FirebaseAuth.getInstance();
                 String s="";
-                if(!chk.name(n))
-                    s+="Invalid name\n";
-                if(!chk.pass(p))
-                    s+="Invalid password\n";
-                if(s.isEmpty()){
+                if(!chk.name(n)) {
+                    en.setError("Enter a valid name");
+                    en.requestFocus();
+                }
+                if(u.isEmpty()){
+                    eu.setError("Enter an e-mail address");
+                    eu.requestFocus();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(u).matches()) {
+                    eu.setError("Enter a valid e-mail address");
+                    eu.requestFocus();
+                }
+                else if(p.isEmpty()){
+                    ep.setError("Enter a password");
+                    ep.requestFocus();
+                }
+                else if(p.length()<6){
+                    ep.setError("Password must be minumum of 6 characters");
+                    ep.requestFocus();
+                }
+                else if(!chk.pass(p)){
+                    ep.setError("Password should not contain any spaces");
+                    ep.requestFocus();
+                }
+                else{
                     mAuth.createUserWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,10 +102,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),s.substring(0,s.length()-1),Toast.LENGTH_LONG).show();
                 }
             }
         });

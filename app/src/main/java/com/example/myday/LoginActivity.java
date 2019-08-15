@@ -12,6 +12,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,19 +58,36 @@ public class LoginActivity extends AppCompatActivity {
                 ep = findViewById(R.id.logpass);
                 u = eu.getText().toString();
                 p = ep.getText().toString();
-                mAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
+                if(u.isEmpty()){
+                    eu.setError("Enter an e-mail address");
+                    eu.requestFocus();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(u).matches()) {
+                    eu.setError("Enter a valid e-mail address");
+                    eu.requestFocus();
+                }
+                else if(p.isEmpty()){
+                    ep.setError("Enter a password");
+                    ep.requestFocus();
+                }
+                else if(p.length()<6){
+                    ep.setError("Password must be minumum of 6 characters");
+                    ep.requestFocus();
+                }
+                else{
+                    mAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                startActivity(intent);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+                            }
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
+                    });
+                }
             }
         });
         // Spannable text
