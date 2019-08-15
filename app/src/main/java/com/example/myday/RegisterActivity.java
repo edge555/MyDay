@@ -28,7 +28,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class RegisterActivity extends AppCompatActivity {
     private Button rb;
     String n,u,p;
-    EditText en,eu,ep;
+    EditText efn,esn,eu,ep;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +58,21 @@ public class RegisterActivity extends AppCompatActivity {
         rb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                en=findViewById(R.id.fullname);
-                eu=findViewById(R.id.reguser);
+                efn=findViewById(R.id.regfn);
+                esn=findViewById(R.id.regsn);
+                eu=findViewById(R.id.regemail);
                 ep=findViewById(R.id.regpass);
-                n=en.getText().toString();
+                n=efn+" "+esn;
                 u=eu.getText().toString();
                 p=ep.getText().toString();
                 Checker chk = new Checker();
                 mAuth = FirebaseAuth.getInstance();
                 String s="";
                 if(!chk.name(n)) {
-                    en.setError("Enter a valid name");
-                    en.requestFocus();
+                    efn.setError("Enter a valid name");
+                    efn.requestFocus();
+                    esn.setError("Enter a valid name");
+                    esn.requestFocus();
                 }
                 if(u.isEmpty()){
                     eu.setError("Enter an e-mail address");
