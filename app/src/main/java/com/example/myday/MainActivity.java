@@ -109,7 +109,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
+            mAuth.getInstance().signOut();
+            finish();
+            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(intent);
 
         }
 
