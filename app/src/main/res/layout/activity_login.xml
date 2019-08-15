@@ -39,7 +39,7 @@
                 <EditText
                     android:layout_width="174dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/loguser"/>
+                    android:id="@+id/logemail"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

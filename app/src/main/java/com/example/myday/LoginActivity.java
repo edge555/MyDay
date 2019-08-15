@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth = FirebaseAuth.getInstance();
-                eu = findViewById(R.id.loguser);
+                eu = findViewById(R.id.logemail);
                 ep = findViewById(R.id.logpass);
                 u = eu.getText().toString();
                 p = ep.getText().toString();
