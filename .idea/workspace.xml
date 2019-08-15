@@ -45,6 +45,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of fecb381... Added
             <state relative-caret-position="76">
@@ -65,6 +66,10 @@
 >>>>>>> parent of 629099b... Added Navigation Drawer
 =======
 >>>>>>> parent of fecb381... Added
+=======
+            <state relative-caret-position="323">
+              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+>>>>>>> parent of 629099b... Added Navigation Drawer
             </state>
           </provider>
         </entry>
@@ -160,6 +165,7 @@
       <pane id="Scope" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of fb12545... Updated
 =======
@@ -201,6 +207,9 @@
           <select />
         </subPane>
       </pane>
+=======
+      <pane id="AndroidView" />
+>>>>>>> parent of 629099b... Added Navigation Drawer
 =======
       <pane id="AndroidView" />
 >>>>>>> parent of 629099b... Added Navigation Drawer
@@ -393,11 +402,31 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+>>>>>>> parent of 629099b... Added Navigation Drawer
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myday/LoginActivity.java">
 >>>>>>> parent of 629099b... Added Navigation Drawer
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -429,6 +458,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 >>>>>>> parent of fb12545... Updated
 =======
       <provider editor-type-id="android-designer2" />
@@ -502,6 +532,12 @@
 >>>>>>> parent of 629099b... Added Navigation Drawer
 =======
 >>>>>>> parent of fecb381... Added
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myday/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+>>>>>>> parent of 629099b... Added Navigation Drawer
         </state>
       </provider>
     </entry>
