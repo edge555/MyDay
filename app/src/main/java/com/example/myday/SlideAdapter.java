@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,9 @@ public class SlideAdapter extends PagerAdapter {
         View view = linf.inflate(R.layout.slidelayout,container,false);
         TextView tv = view.findViewById(R.id.slideheading);
         tv.setText(heading[position]);
+        Button gobut = view.findViewById(R.id.gobut);
+        if(position!=getCount()-1)
+            gobut.setVisibility(Button.INVISIBLE);
         container.addView(view);
         return view;
     }
