@@ -32,6 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:id="@+id/mainll"
+        android:orientation="vertical"
         android:background="#E23F3F"
         >
     </LinearLayout>

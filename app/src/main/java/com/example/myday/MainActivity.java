@@ -23,15 +23,20 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Button taskbut,logbut;
+    private LinearLayout ll;
+    private CheckBox cb;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("MY DAY");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,6 +64,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -99,8 +106,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
+        if (id == R.id.nav_prof) {
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
