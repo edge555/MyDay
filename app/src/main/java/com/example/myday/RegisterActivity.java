@@ -39,6 +39,20 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        regpasschk = findViewById(R.id.regpasschk);
+        regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                ep = findViewById(R.id.regpass);
+                p = ep.getText().toString();
+                if(b){
+                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
         //Spannable text
         TextView textView = findViewById(R.id.logtext);
         String text = "Already a user?  Sign In";
@@ -59,20 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
-        regpasschk = findViewById(R.id.regpasschk);
-        regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                ep = findViewById(R.id.regpass);
-                p = ep.getText().toString();
-                if(b){
-                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
-                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-            }
-        });
+
         //
         rb = findViewById(R.id.regbut);
         rb.setOnClickListener(new View.OnClickListener() {
