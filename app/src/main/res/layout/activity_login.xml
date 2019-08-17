@@ -73,8 +73,13 @@
         android:textAllCaps="true"
         android:textColor="#000000"
         />
-
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text=""
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:id="@+id/forpass"/>
 </LinearLayout>
 

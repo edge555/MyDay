@@ -32,7 +32,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextView para;
     private Button regbut;
     private EditText eu,ep;
     private CheckBox logpasschk;
@@ -121,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        // Spannable text
+        // Spannable text 1
         TextView textView = findViewById(R.id.regtext);
         String text = "New User?  Register";
         SpannableString ss = new SpannableString(text);
@@ -140,6 +139,26 @@ public class LoginActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        //
+        //
+        TextView textView2 = findViewById(R.id.forpass);
+        String text2 = "Forgot Password? Click here";
+        SpannableString ss2 = new SpannableString(text2);
+        ClickableSpan clickableSpan2 = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+        ss2.setSpan(clickableSpan2,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView2.setText(ss2);
+        textView2.setMovementMethod(LinkMovementMethod.getInstance());
         //
     }
     @Override
