@@ -25,12 +25,15 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Button taskbut,logbut;
     private LinearLayout ll;
     private CheckBox cb;
+    private TextView tv;
+    String date="";
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
@@ -38,6 +41,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
+        Bundle b = getIntent().getExtras();
+        if(b!=null){
+            date = b.getString("value");
+        }
+
+        tv = findViewById(R.id.maintv);
+        tv.setText(date);
+        //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);

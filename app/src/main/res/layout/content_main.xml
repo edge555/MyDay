@@ -34,8 +34,14 @@
         android:layout_weight="8"
         android:id="@+id/mainll"
         android:orientation="vertical"
+        android:gravity="center"
         android:background="#E23F3F"
         >
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="#448FC9"
+            android:id="@+id/maintv"/>
     </LinearLayout>
 
 
