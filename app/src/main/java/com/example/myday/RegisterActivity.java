@@ -12,6 +12,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button rb;
-    String n,u,p;
+    String n,fn,sn,u,p;
     EditText efn,esn,eu,ep;
     CheckBox regpasschk;
     FirebaseAuth mAuth;
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        // Password hiding
         regpasschk = findViewById(R.id.regpasschk);
         regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -53,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        //
         //Spannable text
         TextView textView = findViewById(R.id.logtext);
         String text = "Already a user?  Sign In";
@@ -83,17 +86,23 @@ public class RegisterActivity extends AppCompatActivity {
                 esn=findViewById(R.id.regsn);
                 eu=findViewById(R.id.regemail);
                 ep=findViewById(R.id.regpass);
-                n=efn+" "+esn;
+                fn=efn.getText().toString();
+                sn=esn.getText().toString();
+                n=fn+" "+sn;
                 u=eu.getText().toString();
                 p=ep.getText().toString();
                 Checker chk = new Checker();
                 mAuth = FirebaseAuth.getInstance();
                 String s="";
                 if(!chk.name(n)) {
-                    efn.setError("Enter a valid name");
-                    efn.requestFocus();
-                    esn.setError("Enter a valid name");
-                    esn.requestFocus();
+                    if(!chk.name(fn)){
+                        efn.setError("Enter a valid name");
+                        efn.requestFocus();
+                    }
+                    else if(!chk.name(sn)){
+                        esn.setError("Enter a valid name");
+                        esn.requestFocus();
+                    }
                 }
                 if(u.isEmpty()){
                     eu.setError("Enter an e-mail address");
@@ -120,11 +129,20 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_LONG).show();
-                                finish();
-                                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();
+                                            finish();
+                                            Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(intent);
+                                        }
+
+                                    }
+                                });
+
                             }else{
                                 if(task.getException() instanceof FirebaseAuthUserCollisionException){
                                     Toast.makeText(getApplicationContext(),"Email is already in use",Toast.LENGTH_LONG).show();

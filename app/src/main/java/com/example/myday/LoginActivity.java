@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        //Check if already logged in
+        // Check if already logged in
         mAuthSt = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         //
-
+        // Password hiding
         logpasschk = findViewById(R.id.logpasschk);
         logpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
         //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +102,16 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                finish();
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                if(mAuth.getCurrentUser().isEmailVerified()){
+                                    finish();
+                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),"Please verify your email",Toast.LENGTH_LONG).show();
+                                }
+
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
@@ -129,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
+                ds.setUnderlineText(false);
             }
         };
         ss.setSpan(clickableSpan1,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
