@@ -40,8 +40,15 @@
         android:hint="Password"
         android:id="@+id/logpass"
         android:textStyle="bold"
+        android:inputType="textPassword"
         android:textColor="#000000"
         />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Show Password"
+        android:id="@+id/logpasschk"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

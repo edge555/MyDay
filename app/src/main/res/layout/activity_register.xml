@@ -63,10 +63,16 @@
         android:layout_height="wrap_content"
         android:hint="               Password               "
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:textSize="22sp"
         android:id="@+id/regpass"
         />
-
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Show Password"
+        android:id="@+id/regpasschk"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

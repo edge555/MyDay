@@ -11,12 +11,16 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView para;
     private Button regbut;
     private EditText eu,ep;
+    private CheckBox logpasschk;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthSt;
     String u,p;
@@ -50,6 +55,23 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+        //
+
+        logpasschk = findViewById(R.id.logpasschk);
+        logpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                ep = findViewById(R.id.logpass);
+                p = ep.getText().toString();
+                if(b){
+                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
         //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {

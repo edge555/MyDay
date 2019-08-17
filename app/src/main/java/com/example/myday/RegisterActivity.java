@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button rb;
     String n,u,p;
     EditText efn,esn,eu,ep;
+    CheckBox regpasschk;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,21 @@ public class RegisterActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1,17,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        //
+        regpasschk = findViewById(R.id.regpasschk);
+        regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                ep = findViewById(R.id.regpass);
+                p = ep.getText().toString();
+                if(b){
+                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
         //
         rb = findViewById(R.id.regbut);
         rb.setOnClickListener(new View.OnClickListener() {
