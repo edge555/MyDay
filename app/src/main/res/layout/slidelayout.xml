@@ -5,6 +5,19 @@
     android:gravity="center"
     >
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="415dp"
+        android:src="@drawable/gift"
+        android:id="@+id/slideimage"/>
     <TextView
         android:id="@+id/slideheading"
         android:layout_width="243dp"

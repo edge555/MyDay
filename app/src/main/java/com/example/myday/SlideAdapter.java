@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,7 +22,12 @@ public class SlideAdapter extends PagerAdapter {
         this.context=context;
 
     }
-    public String[] heading ={
+    public int[] slideimage = {
+        R.drawable.gift,
+        R.drawable.exam,
+        R.drawable.health
+    };
+    public String[] heading = {
             first,second,third
     };
     @Override
@@ -38,7 +44,9 @@ public class SlideAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         linf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = linf.inflate(R.layout.slidelayout,container,false);
+        ImageView imageView = view.findViewById(R.id.slideimage);
         TextView tv = view.findViewById(R.id.slideheading);
+        imageView.setImageResource(slideimage[position]);
         tv.setText(heading[position]);
         Button gobut = view.findViewById(R.id.gobut);
         if(position!=getCount()-1)
