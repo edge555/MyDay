@@ -7,12 +7,16 @@
     tools:context=".SlideActivity"
     android:background="@drawable/mainbg"
     android:orientation="vertical">
+
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/slidevp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/slidevp">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp">
 
     </androidx.viewpager.widget.ViewPager>
+
 
 
 </RelativeLayout>
