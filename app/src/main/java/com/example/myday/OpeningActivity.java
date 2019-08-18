@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class OpeningActivity extends AppCompatActivity {
     private ProgressBar pgbar;
@@ -20,8 +21,17 @@ public class OpeningActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                dowork();
-                startapp();
+
+                Boolean isFirstRun = getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
+                if(isFirstRun){
+                    startActivity(new Intent(OpeningActivity.this,SlideActivity.class));
+                }
+                else {
+                    dowork();
+                    startapp();
+                }
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                        .putBoolean("isFirstRun", false).commit();
             }
         });
         thread.start();
