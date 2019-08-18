@@ -56,20 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         };
         //
         // Password hiding
-        logpasschk = findViewById(R.id.logpasschk);
-        logpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                ep = findViewById(R.id.logpass);
-                p = ep.getText().toString();
-                if(b){
-                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
-                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-            }
-        });
+        hidepass();
         //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +167,22 @@ public class LoginActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
+    }
+    public void hidepass(){
+        logpasschk = findViewById(R.id.logpasschk);
+        logpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                ep = findViewById(R.id.logpass);
+                p = ep.getText().toString();
+                if(b){
+                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
     }
     @Override
     protected void onStart() {
