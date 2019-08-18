@@ -27,6 +27,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.TreeMap;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Button taskbut,logbut;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
         Bundle b = getIntent().getExtras();
@@ -47,6 +50,18 @@ public class MainActivity extends AppCompatActivity
         }
         tv = findViewById(R.id.maintv);
         tv.setText(date);
+        //////////////
+
+
+
+
+
+
+
+
+
+
+
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

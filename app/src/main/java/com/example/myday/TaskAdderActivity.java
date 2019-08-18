@@ -16,6 +16,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
@@ -98,7 +99,9 @@ public class TaskAdderActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
         }
         else{
-            String fin=curdate+curtime+task;
+            Random rand = new Random();
+            int rNum = 100 + rand.nextInt((999 - 100) + 1);
+            String fin=curdate+curtime+Integer.toString(rNum)+task;
             Bundle bundle = new Bundle();
             bundle.putString("value",fin);
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
