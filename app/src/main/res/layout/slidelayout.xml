@@ -7,17 +7,17 @@
 
     <TextView
         android:id="@+id/slideheading"
-        android:gravity="center"
-        android:layout_width="52dp"
-        android:layout_height="wrap_content"
+        android:layout_width="243dp"
+        android:layout_height="85dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="185dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="359dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginBottom="353dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="287dp"
+        android:gravity="center"
         android:text="First" />
 
     <Button

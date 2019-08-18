@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
         if(b!=null){
             date = b.getString("value");
         }
-
         tv = findViewById(R.id.maintv);
         tv.setText(date);
         //////////////
@@ -76,9 +75,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

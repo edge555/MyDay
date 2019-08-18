@@ -14,12 +14,15 @@ import androidx.viewpager.widget.PagerAdapter;
 public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater linf;
+    String first = "In our daily busy life we often forget special days or events by mistake. But now save the date and voilà this app will give you an alert !!";
+    String second = "Exams, quiz, assignments are parts of student life. Middle of many works we might mix up the schedules. But not anymore when this app is here !";
+    String third = "What can be more important than your health. So forgetting to take medicines or other health tasks can become risky.";
     public SlideAdapter(Context context){
         this.context=context;
 
     }
     public String[] heading ={
-            "First","Second","Third"
+            first,second,third
     };
     @Override
     public int getCount() {
