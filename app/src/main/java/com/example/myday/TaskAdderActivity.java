@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import java.util.Calendar;
 
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
-    private TextView addertask;
+    private EditText addername;
     private String curdate="",curtime="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,6 @@ public class TaskAdderActivity extends AppCompatActivity {
                 if(d.length()!=2)
                     m+="0";
                 curdate=y+m+d;
-                //Log.d("nowdate",curdate);
             }
         },year,month,date);
         datePickerDialog.show();
@@ -84,20 +84,23 @@ public class TaskAdderActivity extends AppCompatActivity {
                     s+="0";
                 s+=m;
                 curtime = s;
-                //Log.d("nowtime",s);
             }
         },hour,min,true);
         timePickerDialog.show();
     }
     public void settask(){
+        addername = findViewById(R.id.addername);
+        String task = addername.getText().toString();
         if(curdate.isEmpty() || curtime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
         }
+        else if(task.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
+        }
         else{
-            String fin=curdate+curtime;
+            String fin=curdate+curtime+task;
             Bundle bundle = new Bundle();
             bundle.putString("value",fin);
-            //Log.d("finaltime",fin);
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
