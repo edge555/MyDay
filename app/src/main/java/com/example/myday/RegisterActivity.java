@@ -40,44 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        // Password hiding
-        regpasschk = findViewById(R.id.regpasschk);
-        regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                ep = findViewById(R.id.regpass);
-                p = ep.getText().toString();
-                if(b){
-                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
-                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-            }
-        });
-        //
-        //Spannable text
-        TextView textView = findViewById(R.id.logtext);
-        String text = "Already a user?  Sign In";
-        SpannableString ss = new SpannableString(text);
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                startActivity(intent);
-            }
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setUnderlineText(false);
-            }
-        };
-        ss.setSpan(clickableSpan1,17,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView.setText(ss);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        //
-
-        //
+        hidepass(); // Password hiding
+        spannable1();// Spannable text
         rb = findViewById(R.id.regbut);
         rb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,5 +120,41 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void hidepass(){
+        regpasschk = findViewById(R.id.regpasschk);
+        regpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                ep = findViewById(R.id.regpass);
+                p = ep.getText().toString();
+                if(b){
+                    ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+    }
+    public void spannable1(){
+        TextView textView = findViewById(R.id.logtext);
+        String text = "Already a user?  Sign In";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+        ss.setSpan(clickableSpan1,17,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }
