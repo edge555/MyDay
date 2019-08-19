@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.TreeMap;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,18 +52,17 @@ public class MainActivity extends AppCompatActivity
         }
         tv = findViewById(R.id.maintv);
         tv.setText(date);
+        Log.d("data",date);
         //////////////
-
-
-
-
-
-
-
-
-
-
-
+        
+        Extracter ex= new Extracter();
+        Vector<Integer>vec = null;
+        if(vec!=null)
+            vec.clear();
+        vec=ex.getdatetime(date);
+        for(int i=0;i<vec.size();i++){
+            Log.d("vec", String.valueOf(vec.get(i)));
+        }
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
     }
     @Override
     public void onBackPressed() {
