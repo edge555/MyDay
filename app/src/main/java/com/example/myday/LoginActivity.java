@@ -48,15 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser FUser = mAuth.getCurrentUser();
-                if(FUser!=null){
+                if(FUser!=null && mAuth.getCurrentUser().isEmailVerified()){
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
             }
         };
-        //
-        // Password hiding
-        hidepass();
+        hidepass(); // Password hiding
         //
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
@@ -95,12 +93,11 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                                 else{
-                                    Toast.makeText(getApplicationContext(),"Please verify your email",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(),"Verify your mail",Toast.LENGTH_LONG).show();
                                 }
-
                             }
                             else{
-                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -134,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this,ForgetPassAcitivity.class);
                 startActivity(intent);
             }
             @Override
