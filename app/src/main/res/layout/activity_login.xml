@@ -80,6 +80,6 @@
         android:text=""
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:id="@+id/forpass"/>
+        android:id="@+id/logintrouble"/>
 </LinearLayout>
 

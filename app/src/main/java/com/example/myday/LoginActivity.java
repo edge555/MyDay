@@ -96,9 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"Verify your mail",Toast.LENGTH_LONG).show();
                                 }
                             }
-                            else{
-                                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
-                            }
                         }
                     });
                 }
@@ -125,13 +122,13 @@ public class LoginActivity extends AppCompatActivity {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
         //
-        TextView textView2 = findViewById(R.id.forpass);
-        String text2 = "Forgot Password? Click here";
+        TextView textView2 = findViewById(R.id.logintrouble);
+        String text2 = "Trouble singing in? Click here";
         SpannableString ss2 = new SpannableString(text2);
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,ForgetPassAcitivity.class);
+                Intent intent = new Intent(LoginActivity.this,TroubleActivity.class);
                 startActivity(intent);
             }
             @Override
@@ -140,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 ds.setUnderlineText(false);
             }
         };
-        ss2.setSpan(clickableSpan2,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss2.setSpan(clickableSpan2,20,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView2.setText(ss2);
         textView2.setMovementMethod(LinkMovementMethod.getInstance());
         //

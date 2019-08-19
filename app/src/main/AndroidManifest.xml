@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TaskAdderActivity"></activity>
+        <activity android:name=".ResendMailActivity"></activity>
+        <activity android:name=".TroubleActivity" />
+        <activity android:name=".TaskAdderActivity" />
         <activity android:name=".ForgetPassAcitivity" />
-        <activity android:name=".SlideActivity" >
-
-        </activity>
-
+        <activity android:name=".SlideActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
