@@ -28,6 +28,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -52,16 +53,26 @@ public class MainActivity extends AppCompatActivity
         }
         tv = findViewById(R.id.maintv);
         tv.setText(date);
-        Log.d("data",date);
+
         //////////////
-        
+
         Extracter ex= new Extracter();
+        String task = ex.getname(date);
+        String datepart = ex.getdatepart(date);
         Vector<Integer>vec = null;
         if(vec!=null)
             vec.clear();
         vec=ex.getdatetime(date);
-        for(int i=0;i<vec.size();i++){
-            Log.d("vec", String.valueOf(vec.get(i)));
+        int y=vec.get(0),m=vec.get(1),d=vec.get(2);
+        int h=vec.get(3),min=vec.get(4),rand=vec.get(5);
+        //////////////
+        long n = ex.getlong(datepart);
+        TreeMap<Long,String> map=new TreeMap<Long,String>();
+        map.put(n,task);
+        Log.d("maptest", String.valueOf(map.size()));
+        for(Map.Entry mp:map.entrySet())
+        {
+            Log.d("maptest",mp.getKey()+" "+mp.getValue());
         }
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);

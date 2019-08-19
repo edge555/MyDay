@@ -45,9 +45,27 @@ public class Extracter {
         }
         return task;
     }
-    private int getint(String a){
-        int i,n=0;
-        for(i=0;i<a.length();i++){
+    public int getint(String a){
+        int n=0;
+        for(int i=0;i<a.length();i++){
+            n*=10;
+            n+=Character.getNumericValue(a.charAt(i));
+        }
+        Log.d("Long", String.valueOf(n));
+        return n;
+    }
+    public String getdatepart(String a){
+        String part = "";
+        for(int i=0;i<a.length();i++){
+            if(i<15) {
+                part += a.charAt(i);
+            }
+        }
+        return part;
+    }
+    public long getlong(String a){
+        long n=0;
+        for(int i=0;i<a.length();i++){
             n*=10;
             n+=Character.getNumericValue(a.charAt(i));
         }
