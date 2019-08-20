@@ -28,7 +28,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button rb;
@@ -36,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText efn,esn,eu,ep;
     CheckBox regpasschk;
     FirebaseAuth mAuth;
+    private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +103,14 @@ public class RegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
+                                            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                                            String uid  = curuser.getUid();
+                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                                            TreeMap<String,String>info= new TreeMap<String, String>();
+                                            if(n!=null) {
+                                                info.put("0",n);
+                                            }
+                                            db.setValue(info);
                                             Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();
                                             finish();
                                             Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
