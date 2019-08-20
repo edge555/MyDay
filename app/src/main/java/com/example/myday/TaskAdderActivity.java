@@ -1,5 +1,7 @@
 package com.example.myday;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,13 +18,26 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
     private EditText addername;
     private String curdate="",curtime="";
+    FirebaseAuth mAuth;
+    private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +107,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     }
     public void settask(){
         addername = findViewById(R.id.addername);
-        String task = addername.getText().toString();
+        final String task = addername.getText().toString();
         if(curdate.isEmpty() || curtime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
         }
@@ -101,11 +117,16 @@ public class TaskAdderActivity extends AppCompatActivity {
         else{
             Random rand = new Random();
             int rNum = 100 + rand.nextInt((999 - 100) + 1);
-            String fin=curdate+curtime+Integer.toString(rNum)+task;
-            Bundle bundle = new Bundle();
-            bundle.putString("value",fin);
+            String fin=curdate+curtime+Integer.toString(rNum);
+            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+            if(curuser!=null){
+                String uid = curuser.getUid();
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                Map<String,Object>val = new TreeMap<>();
+                val.put(fin,task);
+                db.updateChildren(val);
+            }
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
-            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
