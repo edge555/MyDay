@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
 
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
+
+
         //////////////
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
@@ -66,7 +68,15 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
+                        //String a = new String(childsnap.getKey());
+                        if(childsnap.getKey().equals("0")){
+                            if(childsnap.getValue()!=null) {
+                                tv = findViewById(R.id.navname);
+                                tv.setText((CharSequence) childsnap.getValue());
+                            }
+                            //Log.d("mpvalue", (String) childsnap.getValue());
+                        }
+                        //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
                 }
 
@@ -76,6 +86,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
+
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
