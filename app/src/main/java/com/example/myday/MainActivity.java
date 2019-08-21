@@ -9,6 +9,8 @@ import com.google.android.material.snackbar.Snackbar;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -16,6 +18,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,38 +50,31 @@ public class MainActivity extends AppCompatActivity
     String date="";
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
-        Bundle b = getIntent().getExtras();
-        if(b!=null){
-            date = b.getString("value");
-        }
-        tv = findViewById(R.id.maintv);
-        tv.setText(date);
-
         //////////////
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        if(curuser!=null){
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                        Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
+                    }
+                }
 
-        Extracter ex= new Extracter();
-        String task = ex.getname(date);
-        String datepart = ex.getdatepart(date);
-        Vector<Integer>vec = null;
-        if(vec!=null)
-            vec.clear();
-        vec=ex.getdatetime(date);
-        int y=vec.get(0),m=vec.get(1),d=vec.get(2);
-        int h=vec.get(3),min=vec.get(4),rand=vec.get(5);
-        //////////////
-        long n = ex.getlong(datepart);
-        TreeMap<Long,String> map=new TreeMap<Long,String>();
-        map.put(n,task);
-        Log.d("maptest", String.valueOf(map.size()));
-        for(Map.Entry mp:map.entrySet())
-        {
-            Log.d("maptest",mp.getKey()+" "+mp.getValue());
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
