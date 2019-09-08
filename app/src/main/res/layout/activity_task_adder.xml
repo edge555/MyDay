@@ -4,55 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskAdderActivity"
+    android:orientation="vertical"
     android:gravity="center"
-    android:background="#EB5D26"
-    android:orientation="vertical">
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:hint="Task Name"
-        android:gravity="center"
-        android:id="@+id/addername"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Type"/>
+    tools:context=".TaskAdderActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Add Reminder"
+            android:layout_margin="10dp"
+            android:textSize="26sp"
+            android:textColor="#59a4f0"
+            android:textStyle="bold"
+            android:id="@+id/addReminder"/>
+
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Task Name"
+            android:textSize="22sp"
+            android:id="@+id/addername"
+            android:layout_margin="10dp"
+            android:textColorHint="#91c1f2"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Date :"
+            android:textSize="20sp"
+            android:textColor="#59a4f0"
+            android:textStyle="bold"
+            android:id="@+id/selectDate"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Date"
-            android:id="@+id/adderdate"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
+            android:text="     Select Date     "
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/adderdate"
+            android:background="#FFF"
+            android:textColor="#91c1f2"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Time :"
+            android:textSize="20sp"
+            android:textColor="#59a4f0"
+            android:textStyle="bold"
+            android:id="@+id/selectTime"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time"
-            android:layout_weight="1"
-            android:id="@+id/addertime"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></View>
+            android:text="       Select Time       "
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#FFF"
+            android:id="@+id/addertime"
+            android:textColor="#91c1f2"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remind Me"
+            android:id="@+id/adderset"
+            android:background="#FFF"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+        </Button>
+
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set"
-        android:id="@+id/adderset"/>
-
-
 </LinearLayout>
+
+
