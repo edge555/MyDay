@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".SettingActivity"></activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".Settings" />
         <activity android:name=".ResendMailActivity" />
