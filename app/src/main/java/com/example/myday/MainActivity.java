@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout ll,lltoday,lltom,llnext;
     private CheckBox cb;
     private TextView tv;
+    private int cnttoday,cnttom,cntnext;
     String date="";
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -108,8 +109,21 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
+        cnttoday=1;
+        cnttom=0;
+        cntnext=0;
+        todaybut=findViewById(R.id.mainbttoday);
+        todaybut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cnttoday^=1;
+                lltoday=findViewById(R.id.maintoday);
+                if(cnttoday==0)
+                    lltoday.setVisibility(View.INVISIBLE);
+                else
+                    lltoday.setVisibility(View.VISIBLE);
+            }
+        });
 
 
 
@@ -141,9 +155,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

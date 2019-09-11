@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:id="@+id/mainbttoday"
                 android:background="#e2eef2"
                 android:src="@drawable/taskbutton" />
 
@@ -46,6 +47,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:orientation="vertical"
+            android:id="@+id/maintoday"
             android:background="#31DA38">
 
         </LinearLayout>
@@ -70,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:id="@+id/mainbttom"
                 android:background="#e2eef2"
                 android:src="@drawable/taskbutton" />
 
@@ -78,6 +82,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:id="@+id/maintom"
             android:background="#CE2E1E">
 
         </LinearLayout>
@@ -102,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:id="@+id/mainbtnext"
                 android:background="#e2eef2"
                 android:src="@drawable/taskbutton" />
 
@@ -110,6 +116,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:id="@+id/mainnext"
             android:background="#2DCCE0">
 
         </LinearLayout>
