@@ -38,7 +38,7 @@ public class OpeningActivity extends AppCompatActivity {
     }
 
     private void dowork() {
-        for (prg = 20; prg <= 100; prg += 20) {
+        for (prg = 20; prg <= 100; prg += 100) {
             try {
                 Thread.sleep(500);
                 pgbar.setProgress(prg);

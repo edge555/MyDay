@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#e2eef2"
     android:orientation="vertical"
-    android:weightSum="8"
+    android:weightSum="9"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="7"
         android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -32,23 +35,20 @@
             <ImageButton
 
                 android:layout_width="0dp"
-                android:id="@+id/mainbttoday"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#e2eef2"
                 android:src="@drawable/taskbutton" />
 
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/maintoday"
-            android:background="#CF3F35"
-            android:orientation="vertical">
+            android:layout_height="70dp"
+            android:background="#31DA38">
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +68,6 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/mainbttom"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#e2eef2"
@@ -78,10 +77,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/maintom"
-            android:background="#F5E240"
-            android:orientation="vertical">
+            android:layout_height="70dp"
+            android:background="#CE2E1E">
 
         </LinearLayout>
 
@@ -103,7 +100,6 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/mainbtnext"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#e2eef2"
@@ -113,10 +109,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/mainnext"
-            android:background="#93E43E"
-            android:orientation="vertical">
+            android:layout_height="70dp"
+            android:background="#2DCCE0">
 
         </LinearLayout>
     </LinearLayout>
@@ -124,7 +118,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#FFF"
         android:orientation="horizontal">
 

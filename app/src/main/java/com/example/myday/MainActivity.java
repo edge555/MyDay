@@ -109,23 +109,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        todaybut=findViewById(R.id.mainbttoday);
-        todaybut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //lltoday=findViewById(R.id.maintoday);
-                //lltoday.setVisibility(LinearLayout.GONE);
-            }
-        });
 
-        tombut=findViewById(R.id.mainbttom);
-        tombut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lltom=findViewById(R.id.maintom);
-                lltom.setVisibility(LinearLayout.GONE);
-            }
-        });
+
+
 
         taskbut=findViewById(R.id.taskbut);
         taskbut.setOnClickListener(new View.OnClickListener() {
