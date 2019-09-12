@@ -38,6 +38,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity
     private CheckBox cb;
     private TextView tv;
     private int cnttoday,cnttom,cntnext;
+    public int idcount;
+    public List<CheckBox> items=new ArrayList<CheckBox>();
     String date="";
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -61,15 +65,16 @@ public class MainActivity extends AppCompatActivity
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
 
-
         //////////////
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+            idcount=0;
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    lltoday=findViewById(R.id.maintoday);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         //String a = new String(childsnap.getKey());
                         if(childsnap.getKey().equals("0")){
@@ -78,6 +83,16 @@ public class MainActivity extends AppCompatActivity
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
                             //Log.d("mpvalue", (String) childsnap.getValue());
+                        }
+                        else{
+                            String date=childsnap.getKey();
+                            String task= (String) childsnap.getValue();
+                            CheckBox cb=new CheckBox(getApplicationContext());
+                            cb.setText(task);
+                            items.add(cb);
+                            lltoday.addView(cb);
+
+
                         }
                         //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
@@ -88,6 +103,7 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
+
         }
 
         //////////////
@@ -109,24 +125,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        cnttoday=1;
-        cnttom=0;
-        cntnext=0;
-        todaybut=findViewById(R.id.mainbttoday);
-        todaybut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cnttoday^=1;
-                lltoday=findViewById(R.id.maintoday);
-                if(cnttoday==0)
-                    lltoday.setVisibility(View.INVISIBLE);
-                else
-                    lltoday.setVisibility(View.VISIBLE);
-            }
-        });
-
-
-
+        
         taskbut=findViewById(R.id.taskbut);
         taskbut.setOnClickListener(new View.OnClickListener() {
             @Override
