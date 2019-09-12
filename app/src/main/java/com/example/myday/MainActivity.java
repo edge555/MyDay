@@ -105,9 +105,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setVisibility(View.GONE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int cnt=0;
+                for(CheckBox item : items){
+                    if(item.isChecked()){
+                        cnt++;
+                    }
+                }
+                if(cnt>0) {
+                    lltoday.removeAllViews();
+                }
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                 if(curuser!=null){
                     int i=0;
