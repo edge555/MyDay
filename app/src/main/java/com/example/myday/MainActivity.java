@@ -37,10 +37,15 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.nio.charset.CharacterCodingException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.TreeMap;
 import java.util.Vector;
 
@@ -48,41 +53,34 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Button logbut;
     private ImageButton taskbut,todaybut,tombut,nextbut;
-    private LinearLayout ll,lltoday,lltom,llnext;
-    private CheckBox cb;
+    private LinearLayout lltoday,lltom,llnext;
     private TextView tv;
-    private int cnttoday,cnttom,cntnext;
-    public int idcount;
-    public List<CheckBox> items=new ArrayList<CheckBox>();
-    String date="";
+    private List<CheckBox>items=new ArrayList<CheckBox>();
+    private List<String>ids=new ArrayList<String>();
+    Queue<String>delids=new LinkedList<>();
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
-
-        //////////////
+        ///////
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-            idcount=0;
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     lltoday=findViewById(R.id.maintoday);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        //String a = new String(childsnap.getKey());
                         if(childsnap.getKey().equals("0")){
                             if(childsnap.getValue()!=null) {
                                 tv = findViewById(R.id.navname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
-                            //Log.d("mpvalue", (String) childsnap.getValue());
                         }
                         else{
                             String date=childsnap.getKey();
@@ -90,32 +88,57 @@ public class MainActivity extends AppCompatActivity
                             CheckBox cb=new CheckBox(getApplicationContext());
                             cb.setText(task);
                             items.add(cb);
+                            ids.add(date);
                             lltoday.addView(cb);
-
-
                         }
                         //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
-
         }
-
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
+        //fab.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                if(curuser!=null){
+                    int i=0;
+                    String uid = curuser.getUid();
+                    for(CheckBox item : items){
+                        if(item.isChecked()){
+                            final String id=ids.get(i);
+                            //delids.add(id);
+                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                            db.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                                        if(childsnap.getKey().equals(id)){
+                                            if(childsnap.getValue()!=null) {
+                                                childsnap.getRef().setValue(null);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                        i++;
+                    }
+                }
+
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -125,7 +148,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        
+
         taskbut=findViewById(R.id.taskbut);
         taskbut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,14 +167,11 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -185,9 +205,7 @@ public class MainActivity extends AppCompatActivity
             finish();
             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
-
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
