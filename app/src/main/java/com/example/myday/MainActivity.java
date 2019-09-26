@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     private Button logbut;
     private ImageButton taskbut,todaybut,tombut,nextbut;
     private LinearLayout lltoday,lltom,llnext;
-    private TextView tv;
+    private TextView tv,tv2;
     private List<CheckBox>items=new ArrayList<CheckBox>();
     private List<String>ids=new ArrayList<String>();
     Queue<String>delids=new LinkedList<>();
@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity
                             if(childsnap.getValue()!=null) {
                                 tv = findViewById(R.id.navname);
                                 tv.setText((CharSequence) childsnap.getValue());
+                            }
+                        }
+                        else if(childsnap.getKey().equals("1")){
+                            if(childsnap.getValue()!=null) {
+                                tv2 = findViewById(R.id.topemail);
+                                tv2.setText((CharSequence) childsnap.getValue());
                             }
                         }
                         else{

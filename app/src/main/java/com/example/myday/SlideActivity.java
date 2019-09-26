@@ -20,7 +20,6 @@ public class SlideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_slide);
         vp = findViewById(R.id.slidevp);
         sada = new SlideAdapter(this);
-
         vp.setAdapter(sada);
     }
 }

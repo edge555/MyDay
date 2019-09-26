@@ -109,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             TreeMap<String,String>info= new TreeMap<String, String>();
                                             if(n!=null) {
                                                 info.put("0",n);
+                                                info.put("1",u);
                                             }
                                             db.setValue(info);
                                             Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();
