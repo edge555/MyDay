@@ -35,7 +35,7 @@ import java.util.TreeMap;
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
     private EditText addername;
-    private String curdate="",curtime="";
+    private String curdate,curtime,taskdate="",tasktime="";
     FirebaseAuth mAuth;
     private DatabaseReference db;
     @Override
@@ -69,6 +69,14 @@ public class TaskAdderActivity extends AppCompatActivity {
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH);
         int date=calendar.get(Calendar.DATE);
+        String y = Integer.toString(year);
+        String m = Integer.toString(month);
+        String d = Integer.toString(date);
+        if(m.length()!=2)
+            y+="0";
+        if(d.length()!=2)
+            m+="0";
+        curdate=y+m+d;
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
@@ -79,7 +87,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                     y+="0";
                 if(d.length()!=2)
                     m+="0";
-                curdate=y+m+d;
+                taskdate=y+m+d;
             }
         },year,month,date);
         datePickerDialog.show();
@@ -88,6 +96,16 @@ public class TaskAdderActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int hour=calendar.get(Calendar.HOUR);
         int min=calendar.get(Calendar.MINUTE);
+        String s="";
+        String h = Integer.toString(hour);
+        String m = Integer.toString(min);
+        if(h.length()!=2)
+            s+="0";
+        s+=h;
+        if(m.length()!=2)
+            s+="0";
+        s+=m;
+        curtime = s;
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
@@ -100,7 +118,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 if(m.length()!=2)
                     s+="0";
                 s+=m;
-                curtime = s;
+                tasktime = s;
             }
         },hour,min,true);
         timePickerDialog.show();
@@ -108,16 +126,16 @@ public class TaskAdderActivity extends AppCompatActivity {
     public void settask(){
         addername = findViewById(R.id.addername);
         final String task = addername.getText().toString();
-        if(curdate.isEmpty() || curtime.isEmpty()){
+        if(taskdate.isEmpty() || tasktime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
         }
         else if(task.isEmpty()){
             Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
         }
-        else{
+        else if(curdate.compareTo(taskdate)<=0 && curtime.compareTo(tasktime)<=0){
             Random rand = new Random();
             int rNum = 100 + rand.nextInt((999 - 100) + 1);
-            String fin=curdate+curtime+Integer.toString(rNum);
+            String fin=taskdate+tasktime+Integer.toString(rNum);
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             if(curuser!=null){
                 String uid = curuser.getUid();
@@ -125,9 +143,13 @@ public class TaskAdderActivity extends AppCompatActivity {
                 Map<String,Object>val = new TreeMap<>();
                 val.put(fin,task);
                 db.updateChildren(val);
+                //Log.d("value",curdate+" "+curtime+ " "+taskdate+" "+tasktime);
             }
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"You can't choose past date/time",Toast.LENGTH_LONG).show();
         }
     }
 }
