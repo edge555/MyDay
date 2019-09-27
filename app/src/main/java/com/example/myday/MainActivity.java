@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        //fab.setVisibility(View.GONE);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,11 +202,11 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_prof) {
-
+            Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -216,11 +215,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_logout) {
-            mAuth.getInstance().signOut();
+        } else if (id == R.id.nav_exit) {
             finish();
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intent);
+            System.exit(0);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
