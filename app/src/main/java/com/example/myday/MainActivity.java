@@ -1,16 +1,14 @@
 package com.example.myday;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -19,7 +17,6 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,17 +34,11 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.nio.charset.CharacterCodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.TreeMap;
-import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,7 +69,7 @@ public class MainActivity extends AppCompatActivity
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         if(childsnap.getKey().equals("0")){
                             if(childsnap.getValue()!=null) {
-                                tv = findViewById(R.id.navname);
+                                tv = findViewById(R.id.topname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
                         }
@@ -153,7 +144,6 @@ public class MainActivity extends AppCompatActivity
                         i++;
                     }
                 }
-
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -216,8 +206,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_exit) {
-            finish();
-            System.exit(0);
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
