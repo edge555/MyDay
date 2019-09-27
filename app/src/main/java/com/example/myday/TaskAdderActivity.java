@@ -132,7 +132,7 @@ public class TaskAdderActivity extends AppCompatActivity {
         else if(task.isEmpty()){
             Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
         }
-        else if(curdate.compareTo(taskdate)<=0 && curtime.compareTo(tasktime)<=0){
+        else{
             Random rand = new Random();
             int rNum = 100 + rand.nextInt((999 - 100) + 1);
             String fin=taskdate+tasktime+Integer.toString(rNum);
@@ -148,8 +148,6 @@ public class TaskAdderActivity extends AppCompatActivity {
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             startActivity(intent);
         }
-        else{
-            Toast.makeText(getApplicationContext(),"You can't choose past date/time",Toast.LENGTH_LONG).show();
-        }
+
     }
 }

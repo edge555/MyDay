@@ -42,10 +42,9 @@ import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Button logbut;
-    private ImageButton taskbut,todaybut,tombut,nextbut;
-    private LinearLayout lltoday,lltom,llnext;
-    private TextView tv,tv2,profn;
+    private Button taskbut;
+    private LinearLayout maintask;
+    private TextView tv,tv2;
     private List<CheckBox>items=new ArrayList<CheckBox>();
     private List<String>ids=new ArrayList<String>();
     Queue<String>delids=new LinkedList<>();
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    lltoday=findViewById(R.id.maintoday);
+                    maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         if(childsnap.getKey().equals("0")){
                             if(childsnap.getValue()!=null) {
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity
                             cb.setText(task);
                             items.add(cb);
                             ids.add(date);
-                            lltoday.addView(cb);
+                            maintask.addView(cb);
                         }
                         //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
@@ -112,7 +111,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 if(cnt>0) {
-                    lltoday.removeAllViews();
+                    maintask.removeAllViews();
                 }
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                 if(curuser!=null){
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        taskbut=findViewById(R.id.taskbut);
+        taskbut=findViewById(R.id.maintaskbut);
         taskbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

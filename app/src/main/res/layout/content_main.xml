@@ -9,151 +9,34 @@
     android:weightSum="9"
     tools:context=".MainActivity">
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:gravity="center">
+
+   </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="7"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
+        android:orientation="vertical"
+        android:id="@+id/maintask">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center|left"
-                android:text="Today"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:id="@+id/mainbttoday"
-                android:background="#e2eef2"
-                android:src="@drawable/taskbutton" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/maintoday"
-            android:background="#31DA38">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center|left"
-                android:text="Tomorrow"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:id="@+id/mainbttom"
-                android:background="#e2eef2"
-                android:src="@drawable/taskbutton" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:id="@+id/maintom"
-            android:background="#CE2E1E">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center|left"
-                android:text="Next Week"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:id="@+id/mainbtnext"
-                android:background="#e2eef2"
-                android:src="@drawable/taskbutton" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:id="@+id/mainnext"
-            android:background="#2DCCE0">
-
-        </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_weight="2"
-        android:background="#FFF"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/iwant"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:background="#FFF"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_gravity="center"
+            android:id="@+id/maintaskbut">
 
-            android:hint="                   I want to . . .                      "
-            android:textSize="20sp"
-            />
-
-
-        <ImageButton
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="#e2eef2"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/taskbut"
-            android:src="@drawable/taskbutton" />
-
-
+        </Button>
     </LinearLayout>
+
 
 </LinearLayout>
