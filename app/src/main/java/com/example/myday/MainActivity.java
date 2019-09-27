@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private Button logbut;
     private ImageButton taskbut,todaybut,tombut,nextbut;
     private LinearLayout lltoday,lltom,llnext;
-    private TextView tv,tv2;
+    private TextView tv,tv2,profn;
     private List<CheckBox>items=new ArrayList<CheckBox>();
     private List<String>ids=new ArrayList<String>();
     Queue<String>delids=new LinkedList<>();

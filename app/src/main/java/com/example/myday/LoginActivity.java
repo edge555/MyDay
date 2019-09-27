@@ -74,11 +74,11 @@ public class LoginActivity extends AppCompatActivity {
                     eu.requestFocus();
                 }
                 else if(p.isEmpty()){
-                    ep.setError("Enter a password");
+                    ep.setError("Password field can't be empty");
                     ep.requestFocus();
                 }
                 else if(p.length()<6){
-                    ep.setError("Password must be minumum of 6 characters");
+                    ep.setError("Password must be minimum of 6 characters");
                     ep.requestFocus();
                 }
                 else{
@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        //
         //
         TextView textView2 = findViewById(R.id.logintrouble);
         String text2 = "Trouble singing in? Click here";
