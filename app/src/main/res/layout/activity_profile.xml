@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/profile_layout"
     tools:context=".ProfileActivity">
 
     <LinearLayout
@@ -124,6 +125,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/profdelete"
             android:gravity="left"
             android:textColor="#F71010"
             android:text="Delete Account"
