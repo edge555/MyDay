@@ -124,7 +124,16 @@ public class TaskAdderActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
     public void settask(){
+        boolean flag=true;
         addername = findViewById(R.id.addername);
+        if(taskdate.compareTo(curdate)<0){
+            flag=false;
+        }
+        else if(taskdate.compareTo(curdate)==0){
+            if(tasktime.compareTo(curtime)<0){
+                flag=false;
+            }
+        }
         final String task = addername.getText().toString();
         if(taskdate.isEmpty() || tasktime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
@@ -132,7 +141,10 @@ public class TaskAdderActivity extends AppCompatActivity {
         else if(task.isEmpty()){
             Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
         }
-        else{
+        else if(!flag){
+            Toast.makeText(getApplicationContext(),"You can't choose previous time and date",Toast.LENGTH_LONG).show();
+        }
+        else if(flag){
             Random rand = new Random();
             int rNum = 100 + rand.nextInt((999 - 100) + 1);
             String fin=taskdate+tasktime+Integer.toString(rNum);
@@ -143,7 +155,6 @@ public class TaskAdderActivity extends AppCompatActivity {
                 Map<String,Object>val = new TreeMap<>();
                 val.put(fin,task);
                 db.updateChildren(val);
-                //Log.d("value",curdate+" "+curtime+ " "+taskdate+" "+tasktime);
             }
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             startActivity(intent);

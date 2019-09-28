@@ -185,6 +185,9 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this.getApplicationContext(),SettingActivity.class);
             startActivity(intent);
         }
+        else if(id == R.id.actionaboutus){
+
+        }
         return super.onOptionsItemSelected(item);
     }
 
