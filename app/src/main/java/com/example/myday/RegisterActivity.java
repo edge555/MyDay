@@ -105,13 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
                                         if(task.isSuccessful()){
                                             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                                             String uid  = curuser.getUid();
-                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-                                            TreeMap<String,String>info= new TreeMap<String, String>();
-                                            if(n!=null) {
-                                                info.put("0",n);
-                                                info.put("1",u);
-                                            }
-                                            db.setValue(info);
+                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
+                                            HashMap<String,String>abcd=new HashMap<>();
+                                            abcd.put("Name",n);
+                                            abcd.put("Email",u);
+                                            db.setValue(abcd);
+                                            TreeMap<String,String>taskk= new TreeMap<String, String>();
+                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                            db.setValue(taskk);
                                             Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();
                                             finish();
                                             Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);

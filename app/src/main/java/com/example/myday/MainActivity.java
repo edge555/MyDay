@@ -60,33 +60,45 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        if(childsnap.getKey().equals("0")){
+                        if(childsnap.getKey().equals("Name")){
                             if(childsnap.getValue()!=null) {
                                 tv = findViewById(R.id.topname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
                         }
-                        else if(childsnap.getKey().equals("1")){
+                        else if(childsnap.getKey().equals("Email")){
                             if(childsnap.getValue()!=null) {
                                 tv2 = findViewById(R.id.topemail);
                                 tv2.setText((CharSequence) childsnap.getValue());
                             }
                         }
-                        else{
-                            String date=childsnap.getKey();
-                            String task= (String) childsnap.getValue();
-                            CheckBox cb=new CheckBox(getApplicationContext());
-                            cb.setText(task);
-                            items.add(cb);
-                            ids.add(date);
-                            maintask.addView(cb);
-                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    maintask=findViewById(R.id.maintask);
+                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                        String date=childsnap.getKey();
+                        String task= (String) childsnap.getValue();
+                        CheckBox cb=new CheckBox(getApplicationContext());
+                        cb.setText(task);
+                        items.add(cb);
+                        ids.add(date);
+                        maintask.addView(cb);
                         //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
                 }
@@ -95,6 +107,7 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
+
         }
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -121,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                         if(item.isChecked()){
                             final String id=ids.get(i);
                             //delids.add(id);
-                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                             db.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -151,7 +151,7 @@ public class TaskAdderActivity extends AppCompatActivity {
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             if(curuser!=null){
                 String uid = curuser.getUid();
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 Map<String,Object>val = new TreeMap<>();
                 val.put(fin,task);
                 db.updateChildren(val);
