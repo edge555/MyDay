@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResendMailActivity">
+    tools:context=".ResendMailActivity"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:gravity="center">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="           Email  Address           "
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:id="@+id/resendemail"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="               Password               "
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:inputType="textPassword"
+        android:id="@+id/resendpass"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+    </LinearLayout>
+    <Button
+        android:id="@+id/resendbut"
+        android:text="Resend Verification Email"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:background="@drawable/buttonshape"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

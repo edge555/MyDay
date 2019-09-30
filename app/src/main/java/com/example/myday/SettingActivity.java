@@ -23,10 +23,6 @@ public class SettingActivity extends AppCompatActivity {
     public void onProfile(View v){
 
     }
-    public void onInvite(View v){
-        Intent intent = new Intent(SettingActivity.this,InviteActivity.class);
-        startActivity(intent);
-    }
     public void onFeed(View v){
         Intent intent = new Intent(SettingActivity.this,FeedbackActivity.class);
         startActivity(intent);

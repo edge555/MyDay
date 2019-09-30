@@ -212,14 +212,11 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_prof) {
             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
+        }else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(MainActivity.this,InviteActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_exit) {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
