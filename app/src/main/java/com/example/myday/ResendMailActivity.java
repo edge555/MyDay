@@ -33,23 +33,6 @@ public class ResendMailActivity extends AppCompatActivity {
                 rspass = findViewById(R.id.resendpass);
                 String u = rsmail.getText().toString(),p=rspass.getText().toString();
                 rsbt = findViewById(R.id.resendbut);
-                mAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            if(!mAuth.getCurrentUser().isEmailVerified()){
-                                mAuth.getCurrentUser().sendEmailVerification();
-                                Toast.makeText(getApplicationContext(),"Verification email resent.",Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"Email already verified",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"Login failed",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
             }
         });
     }

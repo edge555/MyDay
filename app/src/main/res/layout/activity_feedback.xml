@@ -5,7 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FeedbackActivity"
+    android:gravity="center"
+    android:orientation="vertical"
     android:background="@drawable/feedback">
+    <EditText
+        android:id="@+id/feedbacktext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:maxLines="10" />
+    <Button
+        android:id="@+id/feedbackbut"
+        android:text="Send Feedback"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:background="@drawable/buttonshape"
+        />
 
     
 </LinearLayout>
