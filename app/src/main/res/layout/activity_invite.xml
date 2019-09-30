@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical"
         >
         <TextView
@@ -28,8 +29,26 @@
             android:text="Forward this link to your friend to download My Day!"
             android:textSize="24dp"
             android:paddingTop="20dp"
-            android:paddingLeft="15dp"></TextView>
-
+            android:paddingLeft="15dp">
+        </TextView>
+        <TextView
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:id="@+id/invitelink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Link"
+            android:textSize="24dp">
+        </TextView>
+        <Button
+            android:id="@+id/invitecopy"
+            android:text="Copy Link"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            />
     </LinearLayout>
 
 </LinearLayout>
