@@ -21,11 +21,11 @@ public class TroubleActivity extends AppCompatActivity {
             }
         });
 
-        trresend = findViewById(R.id.troubleresend);
+        trresend = findViewById(R.id.troublesend);
         trresend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resendmail();
+                sendmail();
             }
         });
     }
@@ -33,8 +33,15 @@ public class TroubleActivity extends AppCompatActivity {
         Intent intent = new Intent(TroubleActivity.this,ForgetPassAcitivity.class);
         startActivity(intent);
     }
-    public void resendmail(){
-        Intent intent = new Intent(TroubleActivity.this,ResendMailActivity.class);
-        startActivity(intent);
+    public void sendmail(){
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        String[] recipients={"myday@gmail.com"};
+        intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Subject text here...");
+        intent.putExtra(Intent.EXTRA_TEXT,"Body of the content here...");
+        intent.putExtra(Intent.EXTRA_CC,"mailcc@gmail.com");
+        intent.setType("text/html");
+        intent.setPackage("com.google.android.gm");
+        startActivity(Intent.createChooser(intent, "Send mail"));
     }
 }
