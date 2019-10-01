@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
-
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
             db.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -94,15 +93,13 @@ public class MainActivity extends AppCompatActivity
                     maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         String date=childsnap.getKey();
-                        HashMap<String,String>hmp = new HashMap<>();
+                        HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
-                        //String task= (String) childsnap.getValue();
                         CheckBox cb=new CheckBox(getApplicationContext());
                         cb.setText(hmp.get("title"));
                         items.add(cb);
                         ids.add(date);
                         maintask.addView(cb);
-                        //Log.d("mapvalue",childsnap.getKey()+" "+ childsnap.getValue());
                     }
                 }
                 @Override
@@ -110,7 +107,6 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-
         }
         //////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -136,7 +132,6 @@ public class MainActivity extends AppCompatActivity
                     for(CheckBox item : items){
                         if(item.isChecked()){
                             final String id=ids.get(i);
-                            //delids.add(id);
                             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                             db.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -173,7 +168,7 @@ public class MainActivity extends AppCompatActivity
         taskbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,TaskActivity.class);
+                Intent intent = new Intent(MainActivity.this,TaskAdderActivity.class);
                 startActivity(intent);
             }
         });
@@ -203,6 +198,10 @@ public class MainActivity extends AppCompatActivity
         }
         else if(id == R.id.actionaboutus){
 
+        }
+        else if(id == R.id.actionupdate){
+            Intent intent = new Intent(this.getApplicationContext(),UpdateActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
