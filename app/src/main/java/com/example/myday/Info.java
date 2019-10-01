@@ -3,6 +3,9 @@ package com.example.myday;
 public class Info {
     private String title,des,add;
 
+    public Info() {
+    }
+
     public Info(String title, String des, String add) {
         this.title = title;
         this.des = des;

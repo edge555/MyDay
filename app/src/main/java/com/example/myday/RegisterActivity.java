@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             abcd.put("Name",n);
                                             abcd.put("Email",u);
                                             db.setValue(abcd);
-                                            TreeMap<String,String>taskk= new TreeMap<String, String>();
+                                            TreeMap<String,Info>taskk = new TreeMap<String,Info>();
                                             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                                             db.setValue(taskk);
                                             Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();

@@ -36,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -93,9 +94,11 @@ public class MainActivity extends AppCompatActivity
                     maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         String date=childsnap.getKey();
-                        String task= (String) childsnap.getValue();
+                        HashMap<String,String>hmp = new HashMap<>();
+                        hmp = (HashMap<String, String>) childsnap.getValue();
+                        //String task= (String) childsnap.getValue();
                         CheckBox cb=new CheckBox(getApplicationContext());
-                        cb.setText(task);
+                        cb.setText(hmp.get("title"));
                         items.add(cb);
                         ids.add(date);
                         maintask.addView(cb);

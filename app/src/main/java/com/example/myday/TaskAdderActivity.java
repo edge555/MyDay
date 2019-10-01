@@ -134,7 +134,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 flag=false;
             }
         }
-        final String task = addername.getText().toString();
+        String task = addername.getText().toString();
         if(taskdate.isEmpty() || tasktime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
         }
@@ -153,7 +153,9 @@ public class TaskAdderActivity extends AppCompatActivity {
                 String uid = curuser.getUid();
                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 Map<String,Object>val = new TreeMap<>();
-                val.put(fin,task);
+                Info info = new Info(task,"Null","Null");
+
+                val.put(fin,info);
                 db.updateChildren(val);
             }
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
