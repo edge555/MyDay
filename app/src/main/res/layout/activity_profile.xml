@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     android:id="@+id/profile_layout"
     tools:context=".ProfileActivity">
 
@@ -74,7 +75,8 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#326ADA"
-            android:textSize="21sp">
+            android:textSize="21sp"
+            android:id="@+id/profupgrade">
         </Button>
     </LinearLayout>
 

@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button profsout,profdel,profichange;
+    Button profsout,profdel,profichange,profupgrade;
     ImageView imgv;
     LinearLayout ll;
     FirebaseAuth mAuth;
@@ -63,6 +63,13 @@ public class ProfileActivity extends AppCompatActivity {
                 changeimage();
             }
         });
+        profupgrade = findViewById(R.id.profupgrade);
+        profupgrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upgradetopremium();
+            }
+        });
     }
     public void signout(){
         mAuth.getInstance().signOut();
@@ -77,7 +84,6 @@ public class ProfileActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent.createChooser(intent,"Select picture"),PICK_IMAGE_REQ);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -90,6 +96,10 @@ public class ProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    public void upgradetopremium(){
+        Intent intent = new Intent(ProfileActivity.this,UpPremiumActivity.class);
+        startActivity(intent);
     }
     public void deleteprofile(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(ProfileActivity.this);

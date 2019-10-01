@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -42,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox regpasschk;
     FirebaseAuth mAuth;
     private DatabaseReference db;
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,5 +173,22 @@ public class RegisterActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1,17,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(doubleBackToExitPressedOnce) {
+            Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press back again to go back", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

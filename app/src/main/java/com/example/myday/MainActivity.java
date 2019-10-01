@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     Queue<String>delids=new LinkedList<>();
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,8 +181,20 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }
+        else{
+            if(doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
     @Override
@@ -228,4 +243,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
