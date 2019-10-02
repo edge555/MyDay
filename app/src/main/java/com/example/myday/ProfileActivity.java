@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
@@ -32,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     LinearLayout ll;
     FirebaseAuth mAuth;
     FirebaseUser curuser;
+    DatabaseReference db;
     private Uri filepath;
     private final int PICK_IMAGE_REQ = 71;
     @Override
@@ -112,6 +115,9 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+                            String uid = curuser.getUid();
+                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                            db.setValue(null);
                             showsnackbar1();
                             Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
                             startActivity(intent);
