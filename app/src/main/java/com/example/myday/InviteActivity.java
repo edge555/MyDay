@@ -7,14 +7,18 @@ import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class InviteActivity extends AppCompatActivity {
     private Button bt;
     private TextView tv;
     private ClipboardManager myClipboard;
     private ClipData myClip;
+    LinearLayout ll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +32,9 @@ public class InviteActivity extends AppCompatActivity {
                 String text = tv.getText().toString();
                 myClip = ClipData.newPlainText("text", text);
                 myClipboard.setPrimaryClip(myClip);
-                Toast.makeText(getApplicationContext(), "Text Copied",Toast.LENGTH_SHORT).show();
+                ll = findViewById(R.id.invitefriends);
+                Snackbar sb = Snackbar.make(ll,"Link Copied",Snackbar.LENGTH_LONG);
+                sb.show();
             }
         });
     }
