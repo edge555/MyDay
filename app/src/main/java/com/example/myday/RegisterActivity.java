@@ -101,28 +101,21 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                                            String uid  = curuser.getUid();
-                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
-                                            HashMap<String,String>abcd=new HashMap<>();
-                                            abcd.put("Name",n);
-                                            abcd.put("Email",u);
-                                            db.setValue(abcd);
-                                            TreeMap<String,Info>taskk = new TreeMap<String,Info>();
-                                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
-                                            db.setValue(taskk);
-                                            Toast.makeText(getApplicationContext(),"Registration Successful, Please check your inbox to verify your email",Toast.LENGTH_LONG).show();
-                                            finish();
-                                            Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            startActivity(intent);
-                                        }
-                                    }
-                                });
+                                FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                                String uid  = curuser.getUid();
+                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
+                                HashMap<String,String>abcd=new HashMap<>();
+                                abcd.put("Name",n);
+                                abcd.put("Email",u);
+                                db.setValue(abcd);
+                                TreeMap<String,Info>taskk = new TreeMap<String,Info>();
+                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                db.setValue(taskk);
+                                Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_LONG).show();
+                                finish();
+                                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
 
                             }else{
                                 if(task.getException() instanceof FirebaseAuthUserCollisionException){
