@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ///
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-
+    ArrayList<Exampleitem>mexamplelist;
 
 
     ///
@@ -72,18 +72,11 @@ public class MainActivity extends AppCompatActivity
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
         ///////
-        ArrayList<Exampleitem>examplelist = new ArrayList<>();
-        examplelist.add(new Exampleitem("Title","Time","Date"));
-        examplelist.add(new Exampleitem("Title2","Time2","Date2"));
-        examplelist.add(new Exampleitem("Title3","Time3","Date3"));
+        mexamplelist = new ArrayList<>();
+        
+        createexamplelist();
+        buildrecylerview();
 
-        mRecyclerView = findViewById(R.id.mainll);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new Exampleadapter(examplelist);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
 
         /*
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -202,9 +195,56 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-         */
+        */
     }
+    public void removeitem(int position){
+        mexamplelist.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+    private void createexamplelist() {
+
+        mexamplelist.add(new Exampleitem("Title","Time","Date"));
+        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
+        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
+
+        mexamplelist.add(new Exampleitem("Title","Time","Date"));
+        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
+        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
+
+
+        mexamplelist.add(new Exampleitem("Title","Time","Date"));
+        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
+        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
+
+
+        mexamplelist.add(new Exampleitem("Title","Time","Date"));
+        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
+        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
+
+    }
+
+    public void buildrecylerview() {
+        mRecyclerView = findViewById(R.id.mainll);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new Exampleadapter(mexamplelist);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
+            @Override
+            public void onitemclick(int position) {
+
+            }
+
+            @Override
+            public void ondelete(int position) {
+                removeitem(position);
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
