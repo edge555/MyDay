@@ -48,14 +48,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser FUser = mAuth.getCurrentUser();
-                if(FUser!=null && mAuth.getCurrentUser().isEmailVerified()){
+                if(FUser!=null){
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
             }
         };
         hidepass(); // Password hiding
-        //
+
         regbut=findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override

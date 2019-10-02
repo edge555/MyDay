@@ -1,17 +1,18 @@
 package com.example.myday;
 
 public class Info {
-    private String title,des,add,date,time;
+    private String title, des, add, date, time, full;
 
     public Info() {
     }
 
-    public Info(String title, String des, String add, String date, String time) {
+    public Info(String title, String des, String add, String date, String time, String full) {
         this.title = title;
         this.des = des;
         this.add = add;
         this.date = date;
         this.time = time;
+        this.full = full;
     }
 
     public String getTitle() {
@@ -52,5 +53,13 @@ public class Info {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getFull() {
+        return full;
+    }
+
+    public void setFull(String full) {
+        this.full = full;
     }
 }

@@ -153,7 +153,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 String uid = curuser.getUid();
                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 Map<String,Object>val = new TreeMap<>();
-                Info info = new Info(task,"Null","Null",taskdate,tasktime);
+                Info info = new Info(task,"Null","Null",taskdate,tasktime,fin);
                 val.put(fin,info);
                 db.updateChildren(val);
             }

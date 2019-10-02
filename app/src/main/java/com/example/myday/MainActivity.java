@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                         String date=childsnap.getKey();
                         HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
-                        mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date")));
+                        mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date"),date));
                         mAdapter.notifyDataSetChanged();
                     }
                 }
@@ -129,8 +130,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
     public void removeitem(int position){
+        Exampleitem curitem = mexamplelist.get(position);
+        String delid = curitem.getFull();
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = curuser.getUid();
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+        db.setValue(null);
         mexamplelist.remove(position);
-        mAdapter.notifyItemRemoved(position);
+        //mAdapter.notifyItemRemoved(position);
     }
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.mainll);
@@ -148,6 +155,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void ondelete(int position) {
                 removeitem(position);
+
             }
         });
     }
