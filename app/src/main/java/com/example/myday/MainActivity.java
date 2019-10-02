@@ -47,21 +47,11 @@ import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    ///
     private RecyclerView mRecyclerView;
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     ArrayList<Exampleitem>mexamplelist;
-
-
-    ///
-    private Button taskbut;
-    private LinearLayout maintask;
     private TextView tv,tv2;
-    private List<CheckBox>items=new ArrayList<CheckBox>();
-    private List<String>ids=new ArrayList<String>();
-    Queue<String>delids=new LinkedList<>();
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     boolean doubleBackToExitPressedOnce = false;
@@ -73,12 +63,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ///////
         mexamplelist = new ArrayList<>();
-        
-        createexamplelist();
-        buildrecylerview();
-
-
-        /*
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
@@ -86,7 +70,6 @@ public class MainActivity extends AppCompatActivity
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         if(childsnap.getKey().equals("Name")){
                             if(childsnap.getValue()!=null) {
@@ -111,16 +94,12 @@ public class MainActivity extends AppCompatActivity
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    maintask=findViewById(R.id.maintask);
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         String date=childsnap.getKey();
                         HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
-                        CheckBox cb=new CheckBox(getApplicationContext());
-                        cb.setText(hmp.get("title"));
-                        items.add(cb);
-                        ids.add(date);
-                        maintask.addView(cb);
+                        mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date")));
+                        mAdapter.notifyDataSetChanged();
                     }
                 }
                 @Override
@@ -129,55 +108,17 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
-        //////////////
+        buildrecylerview();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                int cnt=0;
-                for(CheckBox item : items){
-                    if(item.isChecked()){
-                        cnt++;
-                    }
-                }
-                if(cnt>0) {
-                    maintask.removeAllViews();
-                }
-                FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                if(curuser!=null){
-                    int i=0;
-                    String uid = curuser.getUid();
-                    for(CheckBox item : items){
-                        if(item.isChecked()){
-                            final String id=ids.get(i);
-                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
-                            db.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                                        if(childsnap.getKey().equals(id)){
-                                            if(childsnap.getValue()!=null) {
-                                                childsnap.getRef().setValue(null);
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-                        i++;
-                    }
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,TaskAdderActivity.class);
+                startActivity(intent);
             }
         });
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -186,49 +127,16 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        taskbut=findViewById(R.id.maintaskbut);
-        taskbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,TaskAdderActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
     }
     public void removeitem(int position){
         mexamplelist.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
-    private void createexamplelist() {
-
-        mexamplelist.add(new Exampleitem("Title","Time","Date"));
-        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
-        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
-
-        mexamplelist.add(new Exampleitem("Title","Time","Date"));
-        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
-        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
-
-
-        mexamplelist.add(new Exampleitem("Title","Time","Date"));
-        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
-        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
-
-
-        mexamplelist.add(new Exampleitem("Title","Time","Date"));
-        mexamplelist.add(new Exampleitem("Title2","Time2","Date2"));
-        mexamplelist.add(new Exampleitem("Title3","Time3","Date3"));
-
-    }
-
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.mainll);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new Exampleadapter(mexamplelist);
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -237,14 +145,12 @@ public class MainActivity extends AppCompatActivity
             public void onitemclick(int position) {
 
             }
-
             @Override
             public void ondelete(int position) {
                 removeitem(position);
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -312,6 +218,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }
