@@ -28,6 +28,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.Button;
@@ -45,6 +47,15 @@ import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    ///
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
+
+
+    ///
     private Button taskbut;
     private LinearLayout maintask;
     private TextView tv,tv2;
@@ -61,6 +72,20 @@ public class MainActivity extends AppCompatActivity
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
         ///////
+        ArrayList<Exampleitem>examplelist = new ArrayList<>();
+        examplelist.add(new Exampleitem("Title","Time","Date"));
+        examplelist.add(new Exampleitem("Title2","Time2","Date2"));
+        examplelist.add(new Exampleitem("Title3","Time3","Date3"));
+
+        mRecyclerView = findViewById(R.id.mainll);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new Exampleadapter(examplelist);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        /*
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null){
             String uid = curuser.getUid();
@@ -159,6 +184,8 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -175,6 +202,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+         */
     }
     @Override
     public void onBackPressed() {
