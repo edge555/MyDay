@@ -99,8 +99,22 @@ public class MainActivity extends AppCompatActivity
                         String date=childsnap.getKey();
                         HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
-                        mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date"),date));
-                        mAdapter.notifyDataSetChanged();
+                        String name = hmp.get("title");
+                        Boolean exist=false;
+                        int k;
+                        Exampleitem e;
+                        for(k=0;k<mexamplelist.size();k++){
+                            e = mexamplelist.get(k);
+                            if(e.getTitle().equals(name)){
+                                exist=true;
+                                break;
+                            }
+                        }
+                        if(exist==false){
+                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date"),date));
+                            mAdapter.notifyDataSetChanged();
+                        }
+
                     }
                 }
                 @Override
@@ -137,7 +151,7 @@ public class MainActivity extends AppCompatActivity
         db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
         db.setValue(null);
         mexamplelist.remove(position);
-        //mAdapter.notifyItemRemoved(position);
+        mAdapter.notifyDataSetChanged();
     }
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.mainll);
