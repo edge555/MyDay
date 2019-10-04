@@ -3,7 +3,9 @@ package com.example.myday;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -58,8 +60,7 @@ public class MainActivity extends AppCompatActivity
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
-    private TextView tv,tv2;
-    FirebaseAuth mAuth;
+    private TextView tv,tv2;ProgressDialog progressDialog;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db;
@@ -68,6 +69,19 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
+        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Getting your tasks...");
+        progressDialog.show();
+        Runnable progressRunnable = new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.cancel();
+            }
+        };
+        Handler pdCanceller = new Handler();
+        pdCanceller.postDelayed(progressRunnable, 5000);
+
         ///////
         mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
