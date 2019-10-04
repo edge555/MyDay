@@ -32,6 +32,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -157,10 +158,14 @@ public class MainActivity extends AppCompatActivity
     }
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.mainll);
+
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, ((LinearLayoutManager) mLayoutManager).getOrientation());
+
         mAdapter = new Exampleadapter(mexamplelist);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {

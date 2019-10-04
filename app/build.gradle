@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'androidx.mediarouter:mediarouter:1.0.0'
+    implementation 'com.android.support:support-compat:28.0.0'
     implementation 'com.google.firebase:firebase-database:19.0.0'
 
 }
