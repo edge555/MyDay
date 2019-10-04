@@ -93,28 +93,24 @@ public class MainActivity extends AppCompatActivity
             });
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
             db.addValueEventListener(new ValueEventListener() {
+
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<String> arr = new ArrayList<String>();
+                    int k;
+                    for(k=0;k<mexamplelist.size();k++){
+                        arr.add(mexamplelist.get(k).getTitle());
+                    }
                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
                         String date=childsnap.getKey();
                         HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
                         String name = hmp.get("title");
-                        Boolean exist=false;
-                        int k;
-                        Exampleitem e;
-                        for(k=0;k<mexamplelist.size();k++){
-                            e = mexamplelist.get(k);
-                            if(e.getTitle().equals(name)){
-                                exist=true;
-                                break;
-                            }
-                        }
+                        Boolean exist=arr.contains(name);
                         if(exist==false){
                             mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date"),date));
                             mAdapter.notifyDataSetChanged();
                         }
-
                     }
                 }
                 @Override

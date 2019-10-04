@@ -21,7 +21,8 @@ public class SettingActivity extends AppCompatActivity {
 
     }
     public void onProfile(View v){
-
+        Intent intent = new Intent(SettingActivity.this,ProfileActivity.class);
+        startActivity(intent);
     }
     public void onFeed(View v){
         Intent intent = new Intent(SettingActivity.this,FeedbackActivity.class);
@@ -66,5 +67,4 @@ public class SettingActivity extends AppCompatActivity {
             tvRem.setText("ON");
         }
     }
-
 }
