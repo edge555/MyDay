@@ -38,6 +38,10 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
                 @Override
                 public void onClick(View v) {
                     if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onitemclick(position);
+                        }
                     }
                 }
             });

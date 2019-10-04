@@ -171,7 +171,8 @@ public class MainActivity extends AppCompatActivity
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
             @Override
             public void onitemclick(int position) {
-
+                Intent intent = new Intent(MainActivity.this,Popup.class);
+                startActivity(intent);
             }
             @Override
             public void ondelete(int position) {
