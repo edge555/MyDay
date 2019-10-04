@@ -20,7 +20,6 @@ public class TroubleActivity extends AppCompatActivity {
                 forgotpass();
             }
         });
-
         trresend = findViewById(R.id.troublesend);
         trresend.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -69,18 +70,26 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
-        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Getting your tasks...");
-        progressDialog.show();
-        Runnable progressRunnable = new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.cancel();
-            }
-        };
-        Handler pdCanceller = new Handler();
-        pdCanceller.postDelayed(progressRunnable, 5000);
+        String firstrun = "true";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            firstrun = extras.getString("key");
+        }
+        if(firstrun.equals("true")){
+            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setTitle("Loading");
+            progressDialog.setMessage("Getting your tasks...");
+            progressDialog.show();
+            Runnable progressRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.cancel();
+                }
+            };
+            Handler pdCanceller = new Handler();
+            pdCanceller.postDelayed(progressRunnable, 5000);
+
+        }
 
         ///////
         mexamplelist = new ArrayList<>();
@@ -129,10 +138,12 @@ public class MainActivity extends AppCompatActivity
                         String name = hmp.get("title");
                         Boolean exist=arr.contains(name);
                         if(exist==false){
+                            k++;
                             mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
                             mAdapter.notifyDataSetChanged();
                         }
                     }
+
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -151,7 +162,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
