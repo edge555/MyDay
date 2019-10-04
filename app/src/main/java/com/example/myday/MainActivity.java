@@ -112,28 +112,9 @@ public class MainActivity extends AppCompatActivity
                         HashMap<String,String>hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
                         String name = hmp.get("title");
-                        if(k==0){
-                            String d = hmp.get("time");
-                            String h = d.substring(0,2),m = d.substring(2,4);
-                            AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                            Date dat = new Date();
-                            Calendar cal_alarm = Calendar.getInstance();
-                            //Calendar cal_now = Calendar.getInstance();
-                            //cal_now.setTime(dat);
-                            cal_alarm.setTime(dat);
-                            cal_alarm.set(Calendar.HOUR_OF_DAY,Integer.parseInt(h));
-                            cal_alarm.set(Calendar.MINUTE,Integer.parseInt(m));
-                            cal_alarm.set(Calendar.SECOND,0);
-
-                            Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-                            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-
-                            manager.set(AlarmManager.RTC_WAKEUP,cal_alarm.getTimeInMillis(), pendingIntent);
-                        }
-                        k++;
                         Boolean exist=arr.contains(name);
                         if(exist==false){
-                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("time"),hmp.get("date"),date));
+                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
                             mAdapter.notifyDataSetChanged();
                         }
                     }

@@ -1,9 +1,9 @@
 package com.example.myday;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,7 +56,6 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
     }
     public Exampleadapter(ArrayList<Exampleitem>examplelist){
         mexamplelist = examplelist;
-
     }
     @NonNull
     @Override
@@ -70,10 +69,24 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
     public void onBindViewHolder(@NonNull Exampleviewholder holder, int position) {
         Exampleitem curitem = mexamplelist.get(position);
         holder.mtitle.setText(curitem.getTitle());
-        holder.mdate.setText(curitem.getDate());
-        holder.mtime.setText(curitem.getTime());
+        holder.mdate.setText(parsedate(curitem.getDate()));
+        holder.mtime.setText(parsetime(curitem.getTime()));
     }
-
+    public String parsedate(String d){
+        String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
+        return day+"-"+month+"-"+year;
+    }
+    public String parsetime(String d){
+        String h = d.substring(0,2),m = d.substring(2,4);
+        int hr = Integer.parseInt(h);
+        Boolean pm = false;
+        if(hr>=12){
+            pm=true;
+            hr%=12;
+        }
+        h = String.valueOf(hr);
+        return h+":"+m+(pm?" PM":" AM");
+    }
     @Override
     public int getItemCount() {
         return mexamplelist.size();
