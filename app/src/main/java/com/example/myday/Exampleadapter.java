@@ -1,5 +1,6 @@
 package com.example.myday;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,15 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         holder.mtitle.setText(curitem.getTitle());
         holder.mdate.setText(parsedate(curitem.getDate()));
         holder.mtime.setText(parsetime(curitem.getTime()));
+        if(position % 3 == 0){
+            holder.itemView.setBackgroundColor(Color.parseColor("#7E8585"));
+        }
+        else if(position%3 == 1){
+            holder.itemView.setBackgroundColor(Color.parseColor("#B9A09B"));
+        }
+        else{
+            holder.itemView.setBackgroundColor(Color.parseColor("#A6F3EB"));
+        }
     }
     public String parsedate(String d){
         String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);

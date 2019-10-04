@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -143,7 +144,6 @@ public class MainActivity extends AppCompatActivity
                             mAdapter.notifyDataSetChanged();
                         }
                     }
-
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -201,7 +201,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void ondelete(int position) {
                 removeitem(position);
-
             }
         });
     }
@@ -213,8 +212,8 @@ public class MainActivity extends AppCompatActivity
         }
         else{
             if(doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                return;
+                finish();
+                moveTaskToBack(true);
             }
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
@@ -264,9 +263,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,InviteActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_exit) {
+            finish();
             moveTaskToBack(true);
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

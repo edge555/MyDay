@@ -36,7 +36,6 @@ public class OpeningActivity extends AppCompatActivity {
         });
         thread.start();
     }
-
     private void dowork() {
         for (prg = 20; prg <= 100; prg += 100) {
             try {
@@ -51,7 +50,5 @@ public class OpeningActivity extends AppCompatActivity {
         Intent intent = new Intent(OpeningActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
-
     }
-
 }
