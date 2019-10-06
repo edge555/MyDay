@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             pdCanceller.postDelayed(progressRunnable, 5000);
         }
         ///////
-        //mexamplelist = new ArrayList<>();
+        mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null) {
             String uid = curuser.getUid();
@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity
                                 tv = findViewById(R.id.topname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
-                        } else if (childsnap.getKey().equals("Email")) {
+                        }
+                        else if (childsnap.getKey().equals("Email")) {
                             if (childsnap.getValue() != null) {
                                 tv2 = findViewById(R.id.topemail);
                                 tv2.setText((CharSequence) childsnap.getValue());
@@ -121,8 +122,37 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+            db.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<String>arr = new ArrayList<String>();
+                    int k;
+                    for(k=0;k<mexamplelist.size();k++){
+                        arr.add(mexamplelist.get(k).getFull());
+                    }
+                    k=0;
+                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                        String date=childsnap.getKey();
+                        HashMap<String,String>hmp;
+                        hmp = (HashMap<String, String>) childsnap.getValue();
+                        Boolean exist=arr.contains(date);
+                        if(exist==false){
+                            k++;
+                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
         }
+        buildrecylerview();
         refreshTask();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -150,50 +180,52 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String s = getTimeMethod("dd-MMM-yy-hh-mm a");
-                        String curtime = process(s);
-                        //Log.d("timecheck",s);
-                        //Log.d("timecheck",curtime);
-                        mexamplelist = new ArrayList<>();
-                        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                        String uid = curuser.getUid();
-                        if(curuser!=null){
-                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
-                            db.addValueEventListener(new ValueEventListener() {
+                        String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
+                        Log.d("secondcheck",s.substring(16,18));
+                        if(s.substring(16,18).equals("00")){
+                            String curtime = process(s);
+                            //Log.d("timecheck",s);
+                            //Log.d("timecheck",curtime);
+                            mexamplelist = new ArrayList<>();
+                            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = curuser.getUid();
+                            if(curuser!=null){
+                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                db.addValueEventListener(new ValueEventListener() {
 
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    List<String>arr = new ArrayList<String>();
-                                    int k;
-                                    for(k=0;k<mexamplelist.size();k++){
-                                        arr.add(mexamplelist.get(k).getTitle());
-                                        Log.d("titlecheck",mexamplelist.get(k).getTitle());
-                                    }
-                                    k=0;
-                                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                                        String date=childsnap.getKey();
-                                        HashMap<String,String>hmp;
-                                        hmp = (HashMap<String, String>) childsnap.getValue();
-                                        String name = hmp.get("title");
-                                        Boolean exist=arr.contains(name);
-                                        if(exist==false){
-                                            k++;
-                                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
-                                            mAdapter.notifyDataSetChanged();
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        List<String>arr = new ArrayList<String>();
+                                        int k;
+                                        for(k=0;k<mexamplelist.size();k++){
+                                            arr.add(mexamplelist.get(k).getFull());
+                                        }
+                                        k=0;
+                                        for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                                            String date=childsnap.getKey();
+                                            HashMap<String,String>hmp;
+                                            hmp = (HashMap<String, String>) childsnap.getValue();
+                                            Boolean exist=arr.contains(date);
+                                            if(exist==false){
+                                                k++;
+                                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                                mAdapter.notifyDataSetChanged();
+                                            }
                                         }
                                     }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
+                            }
+                            buildrecylerview();
                         }
-                        buildrecylerview();
+
                     };
                 });
             }
-        }, 0, 60000);
+        }, 0, 1000);
     }
 
     private String process(String s) {
@@ -238,7 +270,7 @@ public class MainActivity extends AppCompatActivity
         f+=s.substring(0,2);
         String h = s.substring(10,12);
         int hr = Integer.parseInt(h);
-        if(s.charAt(16)=='P'){
+        if(s.charAt(19)=='P'){
             hr += 12;
         }
         f+=String.valueOf(hr);
