@@ -48,6 +48,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,6 +56,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
-    private TextView tv,tv2;
+    private TextView tv,tv2,ttv;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db;
     @Override
@@ -88,68 +91,39 @@ public class MainActivity extends AppCompatActivity
             };
             Handler pdCanceller = new Handler();
             pdCanceller.postDelayed(progressRunnable, 5000);
-
         }
         ///////
-        mexamplelist = new ArrayList<>();
+        //mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        if(curuser!=null){
+        if(curuser!=null) {
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
             db.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        if(childsnap.getKey().equals("Name")){
-                            if(childsnap.getValue()!=null) {
+                    for (DataSnapshot childsnap : dataSnapshot.getChildren()) {
+                        if (childsnap.getKey().equals("Name")) {
+                            if (childsnap.getValue() != null) {
                                 tv = findViewById(R.id.topname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
-                        }
-                        else if(childsnap.getKey().equals("Email")){
-                            if(childsnap.getValue()!=null) {
+                        } else if (childsnap.getKey().equals("Email")) {
+                            if (childsnap.getValue() != null) {
                                 tv2 = findViewById(R.id.topemail);
                                 tv2.setText((CharSequence) childsnap.getValue());
                             }
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
-            db.addValueEventListener(new ValueEventListener() {
 
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    List<String> arr = new ArrayList<String>();
-                    int k;
-                    for(k=0;k<mexamplelist.size();k++){
-                        arr.add(mexamplelist.get(k).getTitle());
-                    }
-                    k=0;
-                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        String date=childsnap.getKey();
-                        HashMap<String,String>hmp;
-                        hmp = (HashMap<String, String>) childsnap.getValue();
-                        String name = hmp.get("title");
-                        Boolean exist=arr.contains(name);
-                        if(exist==false){
-                            k++;
-                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
-                            mAdapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
         }
-        buildrecylerview();
+        refreshTask();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -167,6 +141,54 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    private void refreshTask()
+    {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mexamplelist = new ArrayList<>();
+                        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                        String uid = curuser.getUid();
+                        if(curuser!=null){
+                            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                            db.addValueEventListener(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    List<String>arr = new ArrayList<String>();
+                                    int k;
+                                    for(k=0;k<mexamplelist.size();k++){
+                                        arr.add(mexamplelist.get(k).getTitle());
+                                    }
+                                    k=0;
+                                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                                        String date=childsnap.getKey();
+                                        HashMap<String,String>hmp;
+                                        hmp = (HashMap<String, String>) childsnap.getValue();
+                                        String name = hmp.get("title");
+                                        Boolean exist=arr.contains(name);
+                                        if(exist==false){
+                                            k++;
+                                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                            mAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                        buildrecylerview();
+                    };
+                });
+            }
+        }, 0, 60000);
     }
     public void removeitem(int position){
         Exampleitem curitem = mexamplelist.get(position);
