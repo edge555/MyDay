@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
-    private TextView tv,tv2,ttv;
+    private TextView tv,tv2;
     boolean doubleBackToExitPressedOnce = false;
-    DatabaseReference db;
+    DatabaseReference db,dbb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +150,10 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        String s = getTimeMethod("dd-MMM-yy-hh-mm a");
+                        String curtime = process(s);
+                        //Log.d("timecheck",s);
+                        //Log.d("timecheck",curtime);
                         mexamplelist = new ArrayList<>();
                         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                         String uid = curuser.getUid();
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity
                                     int k;
                                     for(k=0;k<mexamplelist.size();k++){
                                         arr.add(mexamplelist.get(k).getTitle());
+                                        Log.d("titlecheck",mexamplelist.get(k).getTitle());
                                     }
                                     k=0;
                                     for(DataSnapshot childsnap : dataSnapshot.getChildren()){
@@ -190,6 +195,65 @@ public class MainActivity extends AppCompatActivity
             }
         }, 0, 60000);
     }
+
+    private String process(String s) {
+        String f = "20"+s.substring(7,9);
+        String month = s.substring(3,6);
+        if(month.equals("Jan")){
+            f+="00";
+        }
+        else if(month.equals("Feb")){
+            f+="01";
+        }
+        else if(month.equals("Mar")){
+            f+="02";
+        }
+        else if(month.equals("Apr")){
+            f+="03";
+        }
+        else if(month.equals("May")){
+            f+="04";
+        }
+        else if(month.equals("Jul")){
+            f+="05";
+        }
+        else if(month.equals("Jul")){
+            f+="06";
+        }
+        else if(month.equals("Aug")){
+            f+="07";
+        }
+        else if(month.equals("Sep")){
+            f+="08";
+        }
+        else if(month.equals("Oct")){
+            f+="09";
+        }
+        else if(month.equals("Nov")){
+            f+="10";
+        }
+        else{
+            f+="11";
+        }
+        f+=s.substring(0,2);
+        String h = s.substring(10,12);
+        int hr = Integer.parseInt(h);
+        if(s.charAt(16)=='P'){
+            hr += 12;
+        }
+        f+=String.valueOf(hr);
+        f+=s.substring(13,15);
+        return f;
+    }
+
+    private String getTimeMethod(String formate)
+    {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formate);
+        String formattedDate= dateFormat.format(date);
+        return formattedDate;
+    }
+
     public void removeitem(int position){
         Exampleitem curitem = mexamplelist.get(position);
         String delid = curitem.getFull();
