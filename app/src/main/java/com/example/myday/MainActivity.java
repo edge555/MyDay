@@ -68,8 +68,10 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
     private TextView tv,tv2;
+    ProgressDialog progressDialog;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,15 +82,16 @@ public class MainActivity extends AppCompatActivity
         if (extras != null) {
             firstrun = extras.getString("key");
         }
+
         if(firstrun.equals("true")){
-            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setTitle("Loading");
             progressDialog.setMessage("Getting your tasks...");
             progressDialog.show();
             Runnable progressRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    progressDialog.cancel();
+                    progressDialog.dismiss();
                 }
             };
             Handler pdCanceller = new Handler();
@@ -181,7 +184,6 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run() {
                         final String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
-                        Log.d("secondcheck",s.substring(16,18));
                         if(s.substring(16,18).equals("00")){
                             final String curtime = process(s);
                             mexamplelist = new ArrayList<>();
@@ -345,6 +347,13 @@ public class MainActivity extends AppCompatActivity
                     doubleBackToExitPressedOnce=false;
                 }
             }, 1500);
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if ( progressDialog!=null && progressDialog.isShowing() ){
+            progressDialog.cancel();
         }
     }
     @Override
