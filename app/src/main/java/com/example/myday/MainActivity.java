@@ -55,9 +55,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity
             Handler pdCanceller = new Handler();
             pdCanceller.postDelayed(progressRunnable, 5000);
         }
-        ///////
+
         mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null) {
@@ -116,7 +118,6 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -150,7 +151,6 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-
         }
         buildrecylerview();
         refreshTask();
@@ -180,19 +180,16 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
+                        final String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
                         Log.d("secondcheck",s.substring(16,18));
                         if(s.substring(16,18).equals("00")){
-                            String curtime = process(s);
-                            //Log.d("timecheck",s);
-                            //Log.d("timecheck",curtime);
+                            final String curtime = process(s);
                             mexamplelist = new ArrayList<>();
                             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                            String uid = curuser.getUid();
+                            final String uid = curuser.getUid();
                             if(curuser!=null){
                                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                                 db.addValueEventListener(new ValueEventListener() {
-
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         List<String>arr = new ArrayList<String>();
@@ -205,6 +202,17 @@ public class MainActivity extends AppCompatActivity
                                             String date=childsnap.getKey();
                                             HashMap<String,String>hmp;
                                             hmp = (HashMap<String, String>) childsnap.getValue();
+                                            String tasktime = date.substring(0,12);
+                                            if(curtime.compareTo(tasktime)>0){
+                                                dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+                                                Map<String,Object> val = new TreeMap<>();
+                                                Info info = new Info(hmp.get("title"),"Null","Null",hmp.get("date"),hmp.get("time"),date);
+                                                val.put(date,info);
+                                                dbb.updateChildren(val);
+                                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
+                                                db.setValue(null);
+                                                continue;
+                                            }
                                             Boolean exist=arr.contains(date);
                                             if(exist==false){
                                                 k++;
@@ -221,13 +229,11 @@ public class MainActivity extends AppCompatActivity
                             }
                             buildrecylerview();
                         }
-
                     };
                 });
             }
         }, 0, 1000);
     }
-
     private String process(String s) {
         String f = "20"+s.substring(7,9);
         String month = s.substring(3,6);
