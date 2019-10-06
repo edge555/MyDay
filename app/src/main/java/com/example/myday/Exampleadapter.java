@@ -83,7 +83,7 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
             holder.itemView.setBackgroundColor(Color.parseColor("#B9A09B"));
         }
         else{
-            holder.itemView.setBackgroundColor(Color.parseColor("#A6F3EB"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#B2B7B7"));
         }
     }
     public String parsedate(String d){

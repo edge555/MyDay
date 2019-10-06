@@ -9,17 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Popup"
-            android:theme="@style/AppTheme.custompop">
-            
-        </activity>
+        <activity android:name=".PastTaskActivity"></activity>
+        <activity
+            android:name=".Popup"
+            android:theme="@style/AppTheme.custompop"></activity>
         <activity android:name=".UpdateActivity" />
         <activity android:name=".InviteActivity" />
         <activity android:name=".UpPremiumActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".ResendMailActivity" />
         <activity android:name=".TroubleActivity" />
         <activity android:name=".TaskAdderActivity" />
         <activity android:name=".ForgetPassAcitivity" />

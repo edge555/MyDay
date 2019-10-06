@@ -257,8 +257,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_prof) {
             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_tools) {
-
+        }else if (id == R.id.nav_past) {
+            Intent intent = new Intent(MainActivity.this,PastTaskActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(MainActivity.this,InviteActivity.class);
             startActivity(intent);

@@ -9,9 +9,9 @@
             android:icon="@drawable/profile"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:id="@+id/nav_past"
+            android:icon="@drawable/ic"
+            android:title="Past Tasks" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"

@@ -7,18 +7,32 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SettingActivity extends AppCompatActivity {
 
     private TextView tvShake,tvNot,tvRem;
-    private ImageButton pink,black,blue;
+    private Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-
+        aSwitch = findViewById(R.id.darkswitch);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(aSwitch.isChecked()){
+                    Toast.makeText(getApplicationContext(),"Checked",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Not Checked",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
     public void onProfile(View v){
         Intent intent = new Intent(SettingActivity.this,ProfileActivity.class);

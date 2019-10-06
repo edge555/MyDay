@@ -72,33 +72,17 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="THEME"
+                    android:text="Night mode"
                     android:textStyle="bold"
                     android:gravity="center|left"/>
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/darkswitch">
 
-                <ImageButton
-
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#FFFF"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/pink" />
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#FFFF"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:src="@drawable/black" />
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#FFFF"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/blue" />
+                </Switch>
+                
             </LinearLayout>
 
 
