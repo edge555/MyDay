@@ -10,7 +10,7 @@
             android:title="Profile" />
         <item
             android:id="@+id/nav_past"
-            android:icon="@drawable/ic"
+            android:icon="@drawable/prevtask"
             android:title="Past Tasks" />
         <item
             android:id="@+id/nav_share"

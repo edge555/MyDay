@@ -62,8 +62,7 @@ public class MainActivity extends AppCompatActivity
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
-    private TextView tv,tv2;ProgressDialog progressDialog;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private TextView tv,tv2;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db;
     @Override
@@ -91,7 +90,6 @@ public class MainActivity extends AppCompatActivity
             pdCanceller.postDelayed(progressRunnable, 5000);
 
         }
-
         ///////
         mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -222,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                 public void run() {
                     doubleBackToExitPressedOnce=false;
                 }
-            }, 2000);
+            }, 1500);
         }
     }
     @Override
@@ -234,7 +232,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.actionsettings) {
             Intent intent = new Intent(this.getApplicationContext(),SettingActivity.class);
             startActivity(intent);

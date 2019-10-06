@@ -29,7 +29,7 @@ public class TroubleActivity extends AppCompatActivity {
         });
     }
     public void forgotpass(){
-        Intent intent = new Intent(TroubleActivity.this,ForgetPassAcitivity.class);
+        Intent intent = new Intent(TroubleActivity.this, ForgetPassActivity.class);
         startActivity(intent);
     }
     public void sendmail(){
