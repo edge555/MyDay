@@ -25,33 +25,84 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private TextView tvVib,tvNot,tvRem;
-    private Switch aSwitch;
+    private TextView tvVib,tvRem;
+    private Switch darkSwitch,fullSwitch,notSwitch,vibSwitch;
     DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-
-            
-
-        aSwitch = findViewById(R.id.darkswitch);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        darkSwitch = findViewById(R.id.darkswitch);
+        darkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = curuser.getUid();
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Darkmode");
-                if(aSwitch.isChecked()){
-                    db.setValue("True");
-                }
-                else{
-                    db.setValue("False");
-                }
+                toggledarkmode();
+            }
+        });
+        fullSwitch = findViewById(R.id.fullswitch);
+        fullSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                togglefullscreen();
+            }
+        });
+        notSwitch = findViewById(R.id.notisoundswitch);
+        notSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                togglesound();
+            }
+        });
+        vibSwitch = findViewById(R.id.vibswitch);
+        vibSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                togglevib();
             }
         });
     }
+
+    private void togglevib() {
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = curuser.getUid();
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Vibration");
+        if(vibSwitch.isChecked()){
+            db.setValue("True");
+        }
+        else{
+            db.setValue("False");
+        }
+    }
+
+    private void togglesound() {
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = curuser.getUid();
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Sound");
+        if(notSwitch.isChecked()){
+            db.setValue("True");
+        }
+        else{
+            db.setValue("False");
+        }
+    }
+
+    private void togglefullscreen() {
+
+    }
+
+    private void toggledarkmode() {
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = curuser.getUid();
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Darkmode");
+        if(darkSwitch.isChecked()){
+            db.setValue("True");
+        }
+        else{
+            db.setValue("False");
+        }
+    }
+
     public void onProfile(View v){
         Intent intent = new Intent(SettingActivity.this,ProfileActivity.class);
         startActivity(intent);
@@ -67,47 +118,6 @@ public class SettingActivity extends AppCompatActivity {
     public void onAbout(View v){
 
     }
-    public void onVib(View v){
-        tvVib = findViewById(R.id.tvVib);
-        String a = tvVib.getText().toString();
-        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Vibration");
-        if(a.equals("ON")){
-            tvVib.setText("OFF");
-            db.setValue("True");
-        }
-        else{
-            tvVib.setText("ON");
-            db.setValue("False");
-        }
-    }
-    public void onNot(View v){
-        tvNot = findViewById(R.id.tvNot);
-        String a = tvNot.getText().toString();
-        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Notification");
-        if(a.equals("ON")){
-            tvNot.setText("OFF");
-            db.setValue("True");
-        }
-        else{
-            tvNot.setText("ON");
-            db.setValue("False");
-        }
-    }
-    public void onRem(View v){
-        tvRem = findViewById(R.id.tvRem);
-        String a = tvRem.getText().toString();
-        if(a.equals("ON")){
-            tvRem.setText("OFF");
-        }
-        else{
-            tvRem.setText("ON");
-        }
-    }
-
     private void resetDefault() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(SettingActivity.this);
         dialog.setTitle("Reset");

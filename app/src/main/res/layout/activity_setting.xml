@@ -19,6 +19,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
@@ -28,8 +29,10 @@
                 android:layout_gravity="center_horizontal"
                 android:textAllCaps="true"
                 android:id="@+id/settings"
+
                 />
             <TextView
+                android:paddingTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Account"
@@ -93,19 +96,17 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="3"
                     android:text="VIBRATION"
                     android:gravity="center|left"
                     android:textStyle="bold"/>
-                <TextView
+                <Switch
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="OFF"
-                    android:gravity="center"
-                    android:textColor="#137FD5"
-                    android:id="@+id/tvVib"
-                    android:onClick="onVib"/>
+                    android:id="@+id/vibswitch">
+
+                </Switch>
             </LinearLayout>
 
             <LinearLayout
@@ -115,19 +116,17 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="3"
                     android:text="NOTIFICATION SOUND"
                     android:gravity="center|left"
                     android:textStyle="bold"/>
-                <TextView
+                <Switch
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="OFF"
-                    android:gravity="center"
-                    android:textColor="#137FD5"
-                    android:onClick="onNot"
-                    android:id="@+id/tvNot"/>
+                    android:id="@+id/notisoundswitch">
+
+                </Switch>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,24 +147,7 @@
                 </Switch>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="DEFAULT LIST"
-                android:gravity="center|left"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:onClick="onDef"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="RESET TO DEFAULT"
-                android:gravity="center|left"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:onClick="onDef"
-                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
