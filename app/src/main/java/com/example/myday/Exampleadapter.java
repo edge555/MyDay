@@ -97,6 +97,8 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         if(hr>=12){
             pm=true;
             hr%=12;
+            if(hr==0)
+                hr=12;
         }
         h = String.valueOf(hr);
         return h+":"+m+(pm?" PM":" AM");

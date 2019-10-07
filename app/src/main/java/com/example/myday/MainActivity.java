@@ -2,12 +2,15 @@ package com.example.myday;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +20,9 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -41,22 +47,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeMap;
@@ -68,6 +67,9 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem>mexamplelist;
     private TextView tv,tv2;
+    private final String Channel_ID = "My_Channel";
+    private final int Notification_ID = 001;
+
     ProgressDialog progressDialog;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
+
         String firstrun = "true";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this,TaskAdderActivity.class);
                 startActivity(intent);
             }
@@ -175,6 +179,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     private void refreshTask()
     {
         new Timer().schedule(new TimerTask() {
@@ -205,7 +210,16 @@ public class MainActivity extends AppCompatActivity
                                             HashMap<String,String>hmp;
                                             hmp = (HashMap<String, String>) childsnap.getValue();
                                             String tasktime = date.substring(0,12);
-                                            if(curtime.compareTo(tasktime)>0){
+                                            if(curtime.compareTo(tasktime)==0){
+                                                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                                                    showNotification1();
+                                                }
+                                                else{
+                                                    showNotification2();
+                                                }
+                                            }
+                                            else if(curtime.compareTo(tasktime)>0){
+
                                                 dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
                                                 Map<String,Object> val = new TreeMap<>();
                                                 Info info = new Info(hmp.get("title"),"Null","Null",hmp.get("date"),hmp.get("time"),date);
@@ -235,6 +249,38 @@ public class MainActivity extends AppCompatActivity
                 });
             }
         }, 0, 1000);
+    }
+    private void showNotification1() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,Channel_ID);
+        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setContentTitle("My Day");
+        builder.setContentText("You have task now");
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat compat = NotificationManagerCompat.from(this);
+        compat.notify(Notification_ID,builder.build());
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void showNotification2() {
+        String id = "main_channel";
+        NotificationManager notificationManager = (NotificationManager) getSystemService(getApplicationContext().NOTIFICATION_SERVICE);
+        CharSequence name = "Channel Name";
+        String description = "Channel Description";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel notificationChannel = new NotificationChannel(id,name,importance);
+        notificationChannel.setDescription(description);
+        notificationChannel.enableVibration(true);
+        if(notificationManager!=null){
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id);
+        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setContentTitle("My Day");
+        builder.setContentText("You have task now");
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1000,builder.build());
     }
     private String process(String s) {
         String f = "20"+s.substring(7,9);
@@ -328,6 +374,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
