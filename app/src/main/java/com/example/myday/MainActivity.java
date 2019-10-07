@@ -1,7 +1,5 @@
 package com.example.myday;
 
-import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -40,7 +38,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tv,tv2;
     private final String Channel_ID = "My_Channel";
     private final int Notification_ID = 001;
-
+    boolean notification,vibration;
     ProgressDialog progressDialog;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity
         if (extras != null) {
             firstrun = extras.getString("key");
         }
-
         if(firstrun.equals("true")){
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setTitle("Loading");
@@ -298,7 +294,7 @@ public class MainActivity extends AppCompatActivity
         else if(month.equals("May")){
             f+="04";
         }
-        else if(month.equals("Jul")){
+        else if(month.equals("Jun")){
             f+="05";
         }
         else if(month.equals("Jul")){
@@ -325,7 +321,11 @@ public class MainActivity extends AppCompatActivity
         if(s.charAt(19)=='P'){
             hr += 12;
         }
-        f+=String.valueOf(hr);
+        String hour = String.valueOf(hr);
+        if(hour.length()==1){
+            f+="0";
+        }
+        f+=hour;
         f+=s.substring(13,15);
         return f;
     }
