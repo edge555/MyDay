@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".SettingActivity">
@@ -72,7 +72,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="Night mode"
+                    android:text="NIGHT MODE"
                     android:textStyle="bold"
                     android:gravity="center|left"/>
                 <Switch
@@ -94,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:text="SHAKE"
+                    android:text="VIBRATION"
                     android:gravity="center|left"
                     android:textStyle="bold"/>
                 <TextView
@@ -104,8 +104,8 @@
                     android:text="OFF"
                     android:gravity="center"
                     android:textColor="#137FD5"
-                    android:id="@+id/tvShake"
-                    android:onClick="onShake"/>
+                    android:id="@+id/tvVib"
+                    android:onClick="onVib"/>
             </LinearLayout>
 
             <LinearLayout
@@ -129,6 +129,24 @@
                     android:onClick="onNot"
                     android:id="@+id/tvNot"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="FULLSCREEN VIEW"
+                    android:textStyle="bold"
+                    android:gravity="center|left"/>
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/fullswitch">
+
+                </Switch>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -142,11 +160,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="WIDGET"
+                android:text="RESET TO DEFAULT"
                 android:gravity="center|left"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:onClick="onWid"
+                android:onClick="onDef"
                 />
             <TextView
                 android:layout_width="wrap_content"

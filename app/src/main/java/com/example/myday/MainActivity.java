@@ -7,8 +7,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -355,11 +353,8 @@ public class MainActivity extends AppCompatActivity
 
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, ((LinearLayoutManager) mLayoutManager).getOrientation());
-
         mAdapter = new Exampleadapter(mexamplelist);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
