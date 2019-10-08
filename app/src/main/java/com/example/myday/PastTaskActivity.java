@@ -3,6 +3,7 @@ package com.example.myday;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,6 +88,7 @@ public class PastTaskActivity extends AppCompatActivity {
         mAdapter = new Exampleadapter(mexamplelist);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(itemDecoration);
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
@@ -101,4 +103,23 @@ public class PastTaskActivity extends AppCompatActivity {
             }
         });
     }
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            Exampleitem curitem = mexamplelist.get(position);
+            String delid = curitem.getFull();
+            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask").child(delid);
+            db.setValue(null);
+            mexamplelist.remove(position);
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 }

@@ -33,7 +33,6 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
             mtitle = itemView.findViewById(R.id.reltitle);
             mtime = itemView.findViewById(R.id.reltime);
             mdate = itemView.findViewById(R.id.reldate);
-            mdelimg = itemView.findViewById(R.id.deltask);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,17 +45,7 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
                     }
                 }
             });
-            mdelimg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.ondelete(position);
-                        }
-                    }
-                }
-            });
+
         }
     }
     public Exampleadapter(ArrayList<Exampleitem>examplelist){

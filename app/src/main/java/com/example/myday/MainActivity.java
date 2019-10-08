@@ -38,6 +38,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -350,13 +351,12 @@ public class MainActivity extends AppCompatActivity
     }
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.mainll);
-
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new Exampleadapter(mexamplelist);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
-
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
             @Override
             public void onitemclick(int position) {
@@ -369,6 +369,25 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            Exampleitem curitem = mexamplelist.get(position);
+            String delid = curitem.getFull();
+            FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+            db.setValue(null);
+            mexamplelist.remove(position);
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 
     @Override
     public void onBackPressed() {
