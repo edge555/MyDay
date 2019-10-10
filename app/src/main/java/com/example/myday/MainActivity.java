@@ -268,12 +268,15 @@ public class MainActivity extends AppCompatActivity
         if(notificationManager!=null){
             notificationManager.createNotificationChannel(notificationChannel);
         }
-
+        Intent resintent = new Intent(this,MainActivity.class);
+        PendingIntent respenindent = PendingIntent.getActivity(this,1,resintent,PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentTitle("My Day");
         builder.setContentText("You have task now");
         builder.setDefaults(Notification.DEFAULT_SOUND);
+        builder.setContentIntent(respenindent);
+        builder.setAutoCancel(true);
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
         managerCompat.notify(1000,builder.build());
     }
