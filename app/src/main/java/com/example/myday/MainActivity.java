@@ -125,37 +125,72 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
-            db.addValueEventListener(new ValueEventListener() {
+            if(now==2){
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder");
+                db.addValueEventListener(new ValueEventListener() {
 
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    List<String>arr = new ArrayList<String>();
-                    int k;
-                    for(k=0;k<mexamplelist.size();k++){
-                        arr.add(mexamplelist.get(k).getFull());
-                    }
-                    k=0;
-                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        String date=childsnap.getKey();
-                        HashMap<String,String>hmp;
-                        hmp = (HashMap<String, String>) childsnap.getValue();
-                        Boolean exist=arr.contains(date);
-                        if(exist==false){
-                            k++;
-                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
-                            mAdapter.notifyDataSetChanged();
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<String>arr = new ArrayList<String>();
+                        int k;
+                        for(k=0;k<mexamplelist.size();k++){
+                            arr.add(mexamplelist.get(k).getFull());
+                        }
+                        k=0;
+                        for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                            String date=childsnap.getKey();
+                            HashMap<String,String>hmp;
+                            hmp = (HashMap<String, String>) childsnap.getValue();
+                            Boolean exist=arr.contains(date);
+                            if(exist==false){
+                                k++;
+                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                mAdapter.notifyDataSetChanged();
+                            }
                         }
                     }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
+            }
+            else{
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                db.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<String>arr = new ArrayList<String>();
+                        int k;
+                        for(k=0;k<mexamplelist.size();k++){
+                            arr.add(mexamplelist.get(k).getFull());
+                        }
+                        k=0;
+                        for(DataSnapshot childsnap : dataSnapshot.getChildren()){
+                            String date=childsnap.getKey();
+                            HashMap<String,String>hmp;
+                            hmp = (HashMap<String, String>) childsnap.getValue();
+                            Boolean exist=arr.contains(date);
+                            if(exist==false){
+                                k++;
+                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
         }
         buildrecylerview();
-        refreshTask();
+        if(now!=2) {
+            refreshTask();
+        }
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -281,67 +316,7 @@ public class MainActivity extends AppCompatActivity
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
         managerCompat.notify(1000,builder.build());
     }
-    private String process(String s) {
-        String f = "20"+s.substring(7,9);
-        String month = s.substring(3,6);
-        if(month.equals("Jan")){
-            f+="00";
-        }
-        else if(month.equals("Feb")){
-            f+="01";
-        }
-        else if(month.equals("Mar")){
-            f+="02";
-        }
-        else if(month.equals("Apr")){
-            f+="03";
-        }
-        else if(month.equals("May")){
-            f+="04";
-        }
-        else if(month.equals("Jun")){
-            f+="05";
-        }
-        else if(month.equals("Jul")){
-            f+="06";
-        }
-        else if(month.equals("Aug")){
-            f+="07";
-        }
-        else if(month.equals("Sep")){
-            f+="08";
-        }
-        else if(month.equals("Oct")){
-            f+="09";
-        }
-        else if(month.equals("Nov")){
-            f+="10";
-        }
-        else{
-            f+="11";
-        }
-        f+=s.substring(0,2);
-        String h = s.substring(10,12);
-        int hr = Integer.parseInt(h);
-        if(s.charAt(19)=='P'){
-            hr += 12;
-        }
-        String hour = String.valueOf(hr);
-        if(hour.length()==1){
-            f+="0";
-        }
-        f+=hour;
-        f+=s.substring(13,15);
-        return f;
-    }
 
-    private String getTimeMethod(String formate)
-    {
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat(formate);
-        String formattedDate= dateFormat.format(date);
-        return formattedDate;
-    }
 
     public void removeitem(int position){
         Exampleitem curitem = mexamplelist.get(position);
@@ -386,7 +361,12 @@ public class MainActivity extends AppCompatActivity
             String delid = curitem.getFull();
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+            if(now==2){
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder").child(delid);
+            }
+            else{
+                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(delid);
+            }
             db.setValue(null);
             mexamplelist.remove(position);
             mAdapter.notifyDataSetChanged();
@@ -466,27 +446,87 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public void onReminder(View view) {
+    public void onTimetask(View view) {
         TextView ttv = findViewById(R.id.timetasktv);
         TextView rtv = findViewById(R.id.remindertv);
-        ttv.setTextColor(Color.parseColor("#000000"));
-        rtv.setTextColor(Color.parseColor("#00BFFF"));
+        ttv.setTextColor(Color.parseColor("#00BFFF"));
+        rtv.setTextColor(Color.parseColor("#000000"));
         now=1;
         Intent intent= getIntent();
         finish();
         startActivity(intent);
     }
 
-    public void onTimetask(View view) {
+    public void onReminder(View view) {
         TextView ttv = findViewById(R.id.timetasktv);
         TextView rtv = findViewById(R.id.remindertv);
-        ttv.setTextColor(Color.parseColor("#00BFFF"));
-        rtv.setTextColor(Color.parseColor("#000000"));
+        ttv.setTextColor(Color.parseColor("#000000"));
+        rtv.setTextColor(Color.parseColor("#00BFFF"));
         now=2;
         Intent intent= getIntent();
         finish();
         startActivity(intent);
+    }
+    private String process(String s) {
+        String f = "20"+s.substring(7,9);
+        String month = s.substring(3,6);
+        if(month.equals("Jan")){
+            f+="00";
+        }
+        else if(month.equals("Feb")){
+            f+="01";
+        }
+        else if(month.equals("Mar")){
+            f+="02";
+        }
+        else if(month.equals("Apr")){
+            f+="03";
+        }
+        else if(month.equals("May")){
+            f+="04";
+        }
+        else if(month.equals("Jun")){
+            f+="05";
+        }
+        else if(month.equals("Jul")){
+            f+="06";
+        }
+        else if(month.equals("Aug")){
+            f+="07";
+        }
+        else if(month.equals("Sep")){
+            f+="08";
+        }
+        else if(month.equals("Oct")){
+            f+="09";
+        }
+        else if(month.equals("Nov")){
+            f+="10";
+        }
+        else{
+            f+="11";
+        }
+        f+=s.substring(0,2);
+        String h = s.substring(10,12);
+        int hr = Integer.parseInt(h);
+        if(s.charAt(19)=='P'){
+            hr += 12;
+        }
+        String hour = String.valueOf(hr);
+        if(hour.length()==1){
+            f+="0";
+        }
+        f+=hour;
+        f+=s.substring(13,15);
+        return f;
+    }
+
+    private String getTimeMethod(String formate)
+    {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formate);
+        String formattedDate= dateFormat.format(date);
+        return formattedDate;
     }
 
 }
