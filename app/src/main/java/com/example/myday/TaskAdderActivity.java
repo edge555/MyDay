@@ -26,8 +26,7 @@ import java.util.TreeMap;
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
     private EditText addername;
-    private String curdate,curtime,taskdate="",tasktime="";
-    FirebaseAuth mAuth;
+    private String curdate="",curtime="",taskdate="",tasktime="";
     private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
