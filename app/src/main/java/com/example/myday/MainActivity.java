@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
+
         }
         buildrecylerview();
         refreshTask();
@@ -464,5 +466,22 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onReminder(View view) {
+        TextView ttv = findViewById(R.id.timetasktv);
+        TextView rtv = findViewById(R.id.remindertv);
+
+        ttv.setTextColor(Color.parseColor("#000000"));
+        rtv.setTextColor(Color.parseColor("#00BFFF"));
+
+    }
+
+    public void onTimetask(View view) {
+        TextView ttv = findViewById(R.id.timetasktv);
+        TextView rtv = findViewById(R.id.remindertv);
+
+        ttv.setTextColor(Color.parseColor("#00BFFF"));
+        rtv.setTextColor(Color.parseColor("#000000"));
     }
 }

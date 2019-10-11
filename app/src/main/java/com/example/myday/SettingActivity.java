@@ -30,7 +30,6 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        darkSwitch = findViewById(R.id.darkswitch);
         fullSwitch = findViewById(R.id.fullswitch);
         notisoundSwitch = findViewById(R.id.notisoundswitch);
         vibSwitch = findViewById(R.id.vibswitch);
@@ -46,15 +45,7 @@ public class SettingActivity extends AppCompatActivity {
                     String key = childsnap.getKey();
                     String value = (String) childsnap.getValue();
                     //Log.d("Settingscheck",key+ " "+value);
-                    if(key.equals("Darkmode")){
-                        if(value.equals("True")){
-                            darkSwitch.setChecked(true);
-                        }
-                        else{
-                            darkSwitch.setChecked(false);
-                        }
-                    }
-                    else if(key.equals("Vibration")){
+                   if(key.equals("Vibration")){
                         if(value.equals("True")){
                             vibSwitch.setChecked(true);
                         }
@@ -92,13 +83,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-        darkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                toggledarkmode();
-            }
-        });
+        });;
 
         fullSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -128,8 +113,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void togglevib() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -179,18 +162,6 @@ public class SettingActivity extends AppCompatActivity {
         }
     }
 
-    private void toggledarkmode() {
-        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = curuser.getUid();
-        db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Darkmode");
-        if(darkSwitch.isChecked()){
-            db.setValue("True");
-        }
-        else{
-            db.setValue("False");
-        }
-    }
-
     public void onProfile(View v){
         Intent intent = new Intent(SettingActivity.this,ProfileActivity.class);
         startActivity(intent);
@@ -215,8 +186,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = curuser.getUid();
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Darkmode");
-                db.setValue("False");
                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Vibration");
                 db.setValue("True");
                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Settings").child("Sound");
