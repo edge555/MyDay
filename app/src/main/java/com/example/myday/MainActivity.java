@@ -62,27 +62,27 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private Exampleadapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<Exampleitem>mexamplelist;
+    ArrayList<Exampleitem>mexamplelist,mreminderlist;
     private TextView tv,tv2;
     private final String Channel_ID = "My_Channel";
     private final int Notification_ID = 001;
-    boolean notification,vibration;
     ProgressDialog progressDialog;
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
-
+    public static int now = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
-
+        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
+        Log.d("chknow", String.valueOf(now));
         String firstrun = "true";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             firstrun = extras.getString("key");
         }
-        if(firstrun.equals("true")){
+        if(firstrun.equals("true") && now==0){
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setTitle("Loading");
             progressDialog.setMessage("Getting your tasks...");
@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             Handler pdCanceller = new Handler();
-            pdCanceller.postDelayed(progressRunnable, 5000);
+            pdCanceller.postDelayed(progressRunnable, 4500);
         }
-
         mexamplelist = new ArrayList<>();
+        mreminderlist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null) {
             String uid = curuser.getUid();
@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-
         }
         buildrecylerview();
         refreshTask();
@@ -471,17 +470,23 @@ public class MainActivity extends AppCompatActivity
     public void onReminder(View view) {
         TextView ttv = findViewById(R.id.timetasktv);
         TextView rtv = findViewById(R.id.remindertv);
-
         ttv.setTextColor(Color.parseColor("#000000"));
         rtv.setTextColor(Color.parseColor("#00BFFF"));
-
+        now=1;
+        Intent intent= getIntent();
+        finish();
+        startActivity(intent);
     }
 
     public void onTimetask(View view) {
         TextView ttv = findViewById(R.id.timetasktv);
         TextView rtv = findViewById(R.id.remindertv);
-
         ttv.setTextColor(Color.parseColor("#00BFFF"));
         rtv.setTextColor(Color.parseColor("#000000"));
+        now=2;
+        Intent intent= getIntent();
+        finish();
+        startActivity(intent);
     }
+
 }
