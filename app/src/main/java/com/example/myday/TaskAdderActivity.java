@@ -32,20 +32,6 @@ public class TaskAdderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_adder);
-        adderdate = findViewById(R.id.adderdate);
-        adderdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setdate();
-            }
-        });
-        addertime = findViewById(R.id.addertime);
-        addertime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                settime();
-            }
-        });
         adderset = findViewById(R.id.adderset);
         adderset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +40,7 @@ public class TaskAdderActivity extends AppCompatActivity {
             }
         });
     }
-    public void setdate(){
+    public void setdate(View view){
         Calendar calendar = Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH);
@@ -82,7 +68,7 @@ public class TaskAdderActivity extends AppCompatActivity {
         },year,month,date);
         datePickerDialog.show();
     }
-    public void settime(){
+    public void settime(View view){
         Calendar calendar = Calendar.getInstance();
         int hour=calendar.get(Calendar.HOUR);
         int min=calendar.get(Calendar.MINUTE);
