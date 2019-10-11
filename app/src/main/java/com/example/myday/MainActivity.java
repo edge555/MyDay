@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
-        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_LONG).show();
-        Log.d("chknow", String.valueOf(now));
+        settvcolor();
         String firstrun = "true";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -211,6 +210,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
     private void refreshTask()
     {
         new Timer().schedule(new TimerTask() {
@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,Channel_ID);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentTitle("My Day");
-        builder.setContentText("You have task now");
+        builder.setContentText("You have task now.Click to open app.");
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat compat = NotificationManagerCompat.from(this);
@@ -316,7 +316,6 @@ public class MainActivity extends AppCompatActivity
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
         managerCompat.notify(1000,builder.build());
     }
-
 
     public void removeitem(int position){
         Exampleitem curitem = mexamplelist.get(position);
@@ -467,6 +466,19 @@ public class MainActivity extends AppCompatActivity
         finish();
         startActivity(intent);
     }
+    private void settvcolor() {
+        TextView ttv = findViewById(R.id.timetasktv);
+        TextView rtv = findViewById(R.id.remindertv);
+        if(now==2){
+            ttv.setTextColor(Color.parseColor("#000000"));
+            rtv.setTextColor(Color.parseColor("#00BFFF"));
+        }
+        else{
+            ttv.setTextColor(Color.parseColor("#00BFFF"));
+            rtv.setTextColor(Color.parseColor("#000000"));
+        }
+    }
+
     private String process(String s) {
         String f = "20"+s.substring(7,9);
         String month = s.substring(3,6);

@@ -11,17 +11,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="0dp"
         android:layout_gravity="bottom"
         android:layout_weight="2"
-        android:background="#1B74CF"
         android:gravity="start"
         >
 
         <EditText
             android:id="@+id/addername"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="start"
             android:gravity="start"
             android:hint="Remind me to..."
@@ -32,21 +31,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="end"
+        android:layout_height="0dp"
         android:layout_weight="2"
-        android:background="#1B74CF"
         android:gravity="end"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-
-
             android:layout_weight="1"
-            android:src="@drawable/call" />
+            android:src="@drawable/call"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -55,7 +49,7 @@
 
             android:layout_marginBottom="100dp"
             android:layout_weight="1"
-            android:src="@drawable/contacts" />
+            android:src="@drawable/msg" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -63,7 +57,7 @@
             android:layout_gravity="center_horizontal"
 
             android:layout_weight="1"
-            android:src="@drawable/microphone" />
+            android:src="@drawable/mic" />
 
 
 
@@ -87,9 +81,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/date2"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/date"
                 >
 
             </ImageView>
@@ -115,9 +109,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/time2">
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/time">
 
             </ImageView>
             <Button
@@ -138,9 +132,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/repeat2">
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:src="@drawable/repeat">
 
             </ImageView>
 
@@ -164,8 +158,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
                 android:src="@drawable/marker"
                 >
             </ImageView>
