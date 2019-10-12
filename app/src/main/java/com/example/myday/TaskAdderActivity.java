@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,8 +28,9 @@ public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
     private EditText addername;
     private String curdate="",curtime="",taskdate="",tasktime="";
+    private TextView repeattv;
     private DatabaseReference db;
-    private static int noww;
+    private static int noww,repeat=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +149,28 @@ public class TaskAdderActivity extends AppCompatActivity {
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             intent.putExtra("key",v);
             startActivity(intent);
+        }
+    }
+
+    public void setrepeat(View view) {
+        repeat=(repeat+1)%5;
+        repeattv = findViewById(R.id.adderrepeat);
+        switch (repeat){
+            case 0:
+                repeattv.setText("None");
+                break;
+            case 1:
+                repeattv.setText("Daily");
+                break;
+            case 2:
+                repeattv.setText("Weekly");
+                break;
+            case 3:
+                repeattv.setText("Monthly");
+                break;
+            case 4:
+                repeattv.setText("Yearly");
+                break;
         }
     }
 }

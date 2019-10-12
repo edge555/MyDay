@@ -73,8 +73,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="4"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="20dp">
 
+        </TextView>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:hint="Add details about task...">
+
+        </EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -95,6 +111,8 @@
                android:layout_height="match_parent"
                android:text="date"
                android:gravity="center"
+               android:textSize="22dp"
+               android:textStyle="bold"
                android:layout_weight="7"
                android:paddingRight="15dp"
                android:onClick="setdate">
@@ -119,6 +137,8 @@
             android:layout_height="match_parent"
             android:text="time"
             android:gravity="center"
+            android:textSize="22dp"
+            android:textStyle="bold"
             android:layout_weight="7"
             android:paddingRight="15dp"
             android:onClick="settime">
@@ -127,29 +147,29 @@
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:orientation="horizontal">
             <ImageView
                 android:paddingLeft="15dp"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:src="@drawable/repeat">
-
             </ImageView>
+           <TextView
+               android:id="@+id/adderrepeat"
+               android:onClick="setrepeat"
+               android:layout_width="0dp"
+               android:gravity="center"
+               android:layout_height="match_parent"
+               android:layout_weight="7"
+               android:textSize="22dp"
+               android:textStyle="bold"
+               android:paddingRight="15dp"
+               android:text="None">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="   Repeat    "
-                android:layout_gravity="center"
-                android:gravity="left"
-                android:id="@+id/adderrepeat"
-                android:background="#FFF"
-                android:textColor="#1B74CF"
-                android:textSize="20sp"
-                android:layout_margin="10dp">
-
-            </Button>
+           </TextView>
 
         </LinearLayout>
         <LinearLayout
@@ -173,9 +193,7 @@
                 android:textColor="#1B74CF"
                 android:textSize="20sp"
                 android:layout_margin="10dp"></Button>
-
         </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -183,12 +201,16 @@
         android:layout_weight="5"
         android:gravity="center">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/adderset"
-            android:text="Add Task">
 
-        </Button>
+            android:text="Set"
+            android:textColor="#000000"
+            android:textSize="22sp"
+
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:background="@drawable/adderbutton"
+            />
     </LinearLayout>
 
 </LinearLayout>
