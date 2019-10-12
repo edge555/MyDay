@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -308,7 +309,7 @@ public class MainActivity extends AppCompatActivity
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentTitle("My Day");
-        builder.setContentText("You have task now");
+        builder.setContentText("You have task now.Click to open app.");
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setContentIntent(respenindent);
         builder.setAutoCancel(true);
@@ -338,6 +339,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onitemclick(int position) {
                 Intent intent = new Intent(MainActivity.this,Popup.class);
+                Exampleitem e = mexamplelist.get(position);
+                intent.putExtra("title",e.getTitle());
+                intent.putExtra("date",e.getDate());
+                intent.putExtra("time",e.getTime());
                 startActivity(intent);
             }
             @Override
@@ -389,7 +394,7 @@ public class MainActivity extends AppCompatActivity
                 public void run() {
                     doubleBackToExitPressedOnce=false;
                 }
-            }, 4500);
+            }, 1500);
         }
     }
     @Override

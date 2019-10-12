@@ -28,6 +28,7 @@
 
     </TextView>
     <TextView
+        android:id="@+id/poptitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -48,6 +49,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/popdes"
         android:layout_weight="3"
         android:background="#FFFF"
         ></TextView>
@@ -66,6 +68,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/popdate"
         android:layout_weight="1"
         android:background="#FFFF"
         ></TextView>
@@ -84,6 +87,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/poptime"
         android:layout_weight="1"
         android:background="#FFFF">
 
