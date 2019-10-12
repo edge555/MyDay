@@ -66,13 +66,13 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         holder.mdate.setText(parsedate(curitem.getDate()));
         holder.mtime.setText(parsetime(curitem.getTime()));
         if(position % 3 == 0){
-            holder.itemView.setBackgroundColor(Color.parseColor("#7E8585"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#26b3de"));
         }
         else if(position%3 == 1){
-            holder.itemView.setBackgroundColor(Color.parseColor("#B9A09B"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#8aedeb"));
         }
         else{
-            holder.itemView.setBackgroundColor(Color.parseColor("#B2B7B7"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#77d1ed"));
         }
     }
     public String parsedate(String d){

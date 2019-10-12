@@ -389,7 +389,7 @@ public class MainActivity extends AppCompatActivity
                 public void run() {
                     doubleBackToExitPressedOnce=false;
                 }
-            }, 1500);
+            }, 4500);
         }
     }
     @Override
@@ -539,5 +539,4 @@ public class MainActivity extends AppCompatActivity
         String formattedDate= dateFormat.format(date);
         return formattedDate;
     }
-
 }
