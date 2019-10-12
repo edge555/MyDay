@@ -31,6 +31,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private TextView repeattv;
     private DatabaseReference db;
     private static int noww,repeat=0;
+    String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +142,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 }
                 Map<String,Object>val = new TreeMap<>();
-                Info info = new Info(task,"Null","Null",taskdate,tasktime,fin);
+                Info info = new Info(task,"Null",taskdate,tasktime,rep[repeat],fin);
                 val.put(fin,info);
                 db.updateChildren(val);
             }
@@ -155,22 +156,6 @@ public class TaskAdderActivity extends AppCompatActivity {
     public void setrepeat(View view) {
         repeat=(repeat+1)%5;
         repeattv = findViewById(R.id.adderrepeat);
-        switch (repeat){
-            case 0:
-                repeattv.setText("None");
-                break;
-            case 1:
-                repeattv.setText("Daily");
-                break;
-            case 2:
-                repeattv.setText("Weekly");
-                break;
-            case 3:
-                repeattv.setText("Monthly");
-                break;
-            case 4:
-                repeattv.setText("Yearly");
-                break;
-        }
+        repeattv.setText(rep[repeat]);
     }
 }

@@ -13,7 +13,6 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -21,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -253,7 +251,7 @@ public class MainActivity extends AppCompatActivity
 
                                                 dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
                                                 Map<String,Object> val = new TreeMap<>();
-                                                Info info = new Info(hmp.get("title"),"Null","Null",hmp.get("date"),hmp.get("time"),date);
+                                                Info info = new Info(hmp.get("title"),"Null",hmp.get("date"),hmp.get("time"),"None",date);
                                                 val.put(date,info);
                                                 dbb.updateChildren(val);
                                                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);

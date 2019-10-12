@@ -51,7 +51,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="78" />
+                                                <entry key="scalingPercent" value="165" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -61,7 +62,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="$USER_HOME$/Downloads/mydayicon.png" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Downloads/mydayicon.jpg" />
                                       <entry key="outputName" value="mydayicon" />
                                     </map>
                                   </option>
