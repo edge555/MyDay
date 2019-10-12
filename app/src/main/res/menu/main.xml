@@ -9,8 +9,8 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/actionaboutus"
-        android:title="About Us"
+        android:id="@+id/actionaboutapp"
+        android:title="About App"
         android:orderInCategory="20"
         app:showAsAction="never"
         />

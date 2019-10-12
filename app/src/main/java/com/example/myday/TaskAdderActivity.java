@@ -28,10 +28,15 @@ public class TaskAdderActivity extends AppCompatActivity {
     private EditText addername;
     private String curdate="",curtime="",taskdate="",tasktime="";
     private DatabaseReference db;
+    private static int noww;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_adder);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            noww = extras.getInt("now");
+        }
         adderset = findViewById(R.id.adderset);
         adderset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +132,12 @@ public class TaskAdderActivity extends AppCompatActivity {
             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
             if(curuser!=null){
                 String uid = curuser.getUid();
-                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                if(noww==2){
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder");
+                }
+                else{
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                }
                 Map<String,Object>val = new TreeMap<>();
                 Info info = new Info(task,"Null","Null",taskdate,tasktime,fin);
                 val.put(fin,info);

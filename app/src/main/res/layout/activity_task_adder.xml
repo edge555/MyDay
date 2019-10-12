@@ -31,7 +31,9 @@
             android:gravity="start"
             android:hint="Remind me to..."
             android:textColor="#141172"
-            android:textSize="30sp"
+            android:paddingLeft="15dp"
+            android:textSize="25sp"
+            android:paddingRight="15dp"
             android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
@@ -84,6 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:paddingLeft="15dp"
             android:src="@drawable/date">
             </ImageView>
 
@@ -91,7 +94,9 @@
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:text="date"
+               android:gravity="center"
                android:layout_weight="7"
+               android:paddingRight="15dp"
                android:onClick="setdate">
            </TextView>
 
@@ -105,6 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:paddingLeft="15dp"
             android:src="@drawable/time">
         </ImageView>
 
@@ -112,7 +118,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="time"
+            android:gravity="center"
             android:layout_weight="7"
+            android:paddingRight="15dp"
             android:onClick="settime">
         </TextView>
 
@@ -122,6 +130,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:paddingLeft="15dp"
                 android:layout_width="30dp"
                 android:layout_height="50dp"
                 android:src="@drawable/repeat">
@@ -166,23 +175,20 @@
                 android:layout_margin="10dp"></Button>
 
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/adderset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Task">
-        </Button>
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/adderset"
+            android:text="Add Task">
+
+        </Button>
     </LinearLayout>
 
 </LinearLayout>

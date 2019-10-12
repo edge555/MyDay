@@ -184,7 +184,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
             }
-
         }
         buildrecylerview();
         if(now!=2) {
@@ -198,6 +197,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this,TaskAdderActivity.class);
+                intent.putExtra("now",now);
                 startActivity(intent);
             }
         });
@@ -209,7 +209,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
     }
-
 
     private void refreshTask()
     {
@@ -413,7 +412,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this.getApplicationContext(),SettingActivity.class);
             startActivity(intent);
         }
-        else if(id == R.id.actionaboutus){
+        else if(id == R.id.actionaboutapp){
 
         }
         else if(id == R.id.actionupdate){
