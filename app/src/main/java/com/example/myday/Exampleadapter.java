@@ -25,14 +25,17 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         mlistener = listner;
     }
     public static class Exampleviewholder extends RecyclerView.ViewHolder{
-        public TextView mtitle,mtime,mdate;
-        public ImageView mdelimg;
+        public TextView mtitle,mtime,mdate,mrep;
+        public ImageView marker;
+
 
         public Exampleviewholder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mtitle = itemView.findViewById(R.id.reltitle);
             mtime = itemView.findViewById(R.id.reltime);
             mdate = itemView.findViewById(R.id.reldate);
+            mrep = itemView.findViewById(R.id.relrep);
+            marker = itemView.findViewById(R.id.relmarker);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,6 +68,29 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         holder.mtitle.setText(curitem.getTitle());
         holder.mdate.setText(parsedate(curitem.getDate()));
         holder.mtime.setText(parsetime(curitem.getTime()));
+        holder.mrep.setText(curitem.getRepeat());
+        String color = "Black";
+        if(curitem.getMarker()!=null){
+            color= curitem.getMarker();
+        }
+        switch (color)
+        {
+            case "Black":
+                holder.marker.setImageResource(R.drawable.mblack);
+                break;
+            case "Red":
+                holder.marker.setImageResource(R.drawable.mred);
+                break;
+            case "Green":
+                holder.marker.setImageResource(R.drawable.mgreen);
+                break;
+            case "Yellow":
+                holder.marker.setImageResource(R.drawable.myellow);
+                break;
+            case "Purple":
+                holder.marker.setImageResource(R.drawable.mpurple);
+                break;
+        }
         if(position % 3 == 0){
             holder.itemView.setBackgroundColor(Color.parseColor("#26b3de"));
         }

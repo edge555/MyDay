@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                             Boolean exist=arr.contains(date);
                             if(exist==false){
                                 k++;
-                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
+                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat"), hmp.get("marker")));
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                             Boolean exist=arr.contains(date);
                             if(exist==false){
                                 k++;
-                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
+                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat"), hmp.get("marker")));
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity
 
                                                 dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
                                                 Map<String,Object> val = new TreeMap<>();
-                                                Info info = new Info(hmp.get("title"),"Null",hmp.get("date"),hmp.get("time"),"None",date);
+                                                Info info = new Info(hmp.get("title"),"Null",hmp.get("date"),hmp.get("time"),"None",date, hmp.get("marker"));
                                                 val.put(date,info);
                                                 dbb.updateChildren(val);
                                                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity
                                             Boolean exist=arr.contains(date);
                                             if(exist==false){
                                                 k++;
-                                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
+                                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat"), hmp.get("marker")));
                                                 mAdapter.notifyDataSetChanged();
                                             }
                                         }

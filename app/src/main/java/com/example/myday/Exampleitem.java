@@ -2,15 +2,16 @@ package com.example.myday;
 
 public class Exampleitem {
 
-    private String title,des,date,time,full,repeat;
+    private String title,des,date,time,full,repeat,marker;
 
-    public Exampleitem(String title, String des, String date, String time, String full, String repeat) {
+    public Exampleitem(String title, String des, String date, String time, String full, String repeat, String marker) {
         this.title = title;
         this.des = des;
         this.date = date;
         this.time = time;
         this.full = full;
         this.repeat = repeat;
+        this.marker = marker;
     }
 
     public String getTitle() {
@@ -59,5 +60,13 @@ public class Exampleitem {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getMarker() {
+        return marker;
+    }
+
+    public void setMarker(String marker) {
+        this.marker = marker;
     }
 }

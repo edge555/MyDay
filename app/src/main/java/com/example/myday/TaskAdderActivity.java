@@ -34,6 +34,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private DatabaseReference db;
     private static int noww,repeat = 0,color = 0 ;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
+    String[] col = new String[]{"Black","Red","Green","Yellow","Purple"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,7 +147,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 }
                 Map<String,Object>val = new TreeMap<>();
-                Info info = new Info(task,details,taskdate,tasktime,rep[repeat],fin);
+                Info info = new Info(task,details,taskdate,tasktime,rep[repeat],fin, col[color]);
                 val.put(fin,info);
                 db.updateChildren(val);
             }

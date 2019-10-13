@@ -58,7 +58,7 @@ public class PastTaskActivity extends AppCompatActivity {
                         Boolean exist=arr.contains(name);
                         if(exist==false){
                             k++;
-                            mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, "None"));
+                            mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, "None", hmp.get("marker")));
                             mAdapter.notifyDataSetChanged();
                         }
                     }
