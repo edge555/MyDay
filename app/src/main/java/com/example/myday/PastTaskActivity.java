@@ -1,16 +1,20 @@
 package com.example.myday;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -125,13 +129,32 @@ public class PastTaskActivity extends AppCompatActivity {
     };
 
     public void clearpasttask(View view) {
-        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        if(curuser!=null){
-            String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
-            db.setValue(null);
-            mexamplelist.clear();
-        }
-        buildrecylerview();
+        AlertDialog.Builder dialog = new AlertDialog.Builder(PastTaskActivity.this);
+        dialog.setTitle("Are you sure?");
+        dialog.setMessage("This action can't be reversed");
+
+        dialog.setPositiveButton("Clear", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+                if(curuser!=null){
+                    String uid = curuser.getUid();
+                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+                    db.setValue(null);
+                    mexamplelist.clear();
+                }
+                buildrecylerview();
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+
+
     }
 }

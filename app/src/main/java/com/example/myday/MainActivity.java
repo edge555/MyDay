@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setContentTitle("My Day");
-        builder.setContentText("You have task now.Click to open app.");
+        builder.setContentText("You have task now. Tap to open app.");
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setContentIntent(respenindent);
         builder.setAutoCancel(true);
