@@ -26,7 +26,7 @@ import java.util.TreeMap;
 
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
-    private EditText addername;
+    private EditText addername,adderdes;
     private String curdate="",curtime="",taskdate="",tasktime="";
     private TextView repeattv;
     private DatabaseReference db;
@@ -109,7 +109,6 @@ public class TaskAdderActivity extends AppCompatActivity {
     }
     public void settask(){
         boolean flag=true;
-        addername = findViewById(R.id.addername);
         if(taskdate.compareTo(curdate)<0){
             flag=false;
         }
@@ -118,7 +117,10 @@ public class TaskAdderActivity extends AppCompatActivity {
                 flag=false;
             }
         }
+        addername = findViewById(R.id.addername);
         String task = addername.getText().toString();
+        adderdes = findViewById(R.id.adderdes);
+        String details = adderdes.getText().toString();
         if(taskdate.isEmpty() || tasktime.isEmpty()){
             Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
         }
@@ -142,7 +144,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 }
                 Map<String,Object>val = new TreeMap<>();
-                Info info = new Info(task,"Null",taskdate,tasktime,rep[repeat],fin);
+                Info info = new Info(task,details,taskdate,tasktime,rep[repeat],fin);
                 val.put(fin,info);
                 db.updateChildren(val);
             }
@@ -152,7 +154,6 @@ public class TaskAdderActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
     public void setrepeat(View view) {
         repeat=(repeat+1)%5;
         repeattv = findViewById(R.id.adderrepeat);

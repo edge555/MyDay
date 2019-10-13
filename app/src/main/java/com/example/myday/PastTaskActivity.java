@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -122,4 +123,15 @@ public class PastTaskActivity extends AppCompatActivity {
             mAdapter.notifyDataSetChanged();
         }
     };
+
+    public void clearpasttask(View view) {
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        if(curuser!=null){
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+            db.setValue(null);
+            mexamplelist.clear();
+        }
+        buildrecylerview();
+    }
 }

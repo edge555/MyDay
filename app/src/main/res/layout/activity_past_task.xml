@@ -5,14 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e2eef2"
+    android:orientation="vertical"
     tools:context=".PastTaskActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Your previous tasks"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_weight="6">
+        </TextView>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:text="CLEAR ALL"
+            android:onClick="clearpasttask">
+        </Button>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pastll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="4dp"
         android:scrollbars="vertical">
-
     </androidx.recyclerview.widget.RecyclerView>
-
 </LinearLayout>
