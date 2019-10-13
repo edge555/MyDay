@@ -201,7 +201,11 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:id="@+id/addermarker"
+                    android:onClick="setcolor"
+                    android:src="@drawable/mblack"
+                    android:layout_marginRight="15dp">
                 </ImageView>
                 <LinearLayout
                     android:layout_width="0dp"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -29,8 +30,9 @@ public class TaskAdderActivity extends AppCompatActivity {
     private EditText addername,adderdes;
     private String curdate="",curtime="",taskdate="",tasktime="";
     private TextView repeattv;
+    private ImageView addermarker;
     private DatabaseReference db;
-    private static int noww,repeat=0;
+    private static int noww,repeat = 0,color = 0 ;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,8 +157,32 @@ public class TaskAdderActivity extends AppCompatActivity {
         }
     }
     public void setrepeat(View view) {
-        repeat=(repeat+1)%5;
+        repeat = (repeat+1) % 5;
         repeattv = findViewById(R.id.adderrepeat);
         repeattv.setText(rep[repeat]);
+    }
+
+    public void setcolor(View view) {
+        color = (color + 1) % 5;
+        addermarker = findViewById(R.id.addermarker);
+
+        switch (color)
+        {
+            case 0:
+                addermarker.setImageResource(R.drawable.mblack);
+                break;
+            case 1:
+                addermarker.setImageResource(R.drawable.mred);
+                break;
+            case 2:
+                addermarker.setImageResource(R.drawable.mgreen);
+                break;
+            case 3:
+                addermarker.setImageResource(R.drawable.myellow);
+                break;
+            case 4:
+                addermarker.setImageResource(R.drawable.mpurple);
+                break;
+        }
     }
 }
