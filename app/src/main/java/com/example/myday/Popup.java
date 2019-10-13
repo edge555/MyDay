@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 public class Popup extends AppCompatActivity {
     Exampleitem e;
-    String title="",date="",time="";
-    TextView poptitle,poptime,popdate;
+    String title="",date="",time="",repeat="",des="";
+    TextView poptitle,poptime,popdate,poprepeat,popdes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +21,20 @@ public class Popup extends AppCompatActivity {
             title = e.getString("title");
             time = e.getString("time");
             date = e.getString("date");
+            repeat = e.getString("repeat");
+            des = e.getString("des");
         }
         poptitle = findViewById(R.id.poptitle);
         popdate = findViewById(R.id.popdate);
         poptime = findViewById(R.id.poptime);
+        poprepeat = findViewById(R.id.poprepeat);
+        popdes = findViewById(R.id.popdes);
         poptitle.setText(title);
         popdate.setText(parsedate(date));
         poptime.setText(parsetime(time));
+        poprepeat.setText(repeat);
+        popdes.setText(des);
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = (int) (dm.widthPixels*.8);

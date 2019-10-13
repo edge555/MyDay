@@ -13,8 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,7 +58,7 @@ public class PastTaskActivity extends AppCompatActivity {
                         Boolean exist=arr.contains(name);
                         if(exist==false){
                             k++;
-                            mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                            mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, "None"));
                             mAdapter.notifyDataSetChanged();
                         }
                     }

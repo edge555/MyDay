@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="#d9fcff"
     android:orientation="vertical"
     tools:context=".Popup">
@@ -92,25 +91,56 @@
         android:background="#FFFF">
 
     </TextView>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Repeat"
-        android:background="#a1e9f0"
-        android:layout_marginBottom="8dp"
-        android:gravity="left"
-        android:textSize="18sp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Repeat"
+            android:textStyle="bold"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:background="#d9fcff"
+            >
 
-    </Button>
-    <Button
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/poprepeat">
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:background="#d9fcff"
+            android:text="Marker">
+
+        </TextView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Marker"
+        android:layout_height="0dp"
         android:background="#a1e9f0"
-        android:gravity="left"
-        android:textSize="18sp"></Button>
+        android:layout_weight="1">
 
-
-
-
+    </LinearLayout>
 </LinearLayout>

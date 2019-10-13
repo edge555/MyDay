@@ -2,13 +2,15 @@ package com.example.myday;
 
 public class Exampleitem {
 
-    private String title,date,time,full;
+    private String title,des,date,time,full,repeat;
 
-    public Exampleitem(String title, String date, String time, String full) {
+    public Exampleitem(String title, String des, String date, String time, String full, String repeat) {
         this.title = title;
+        this.des = des;
         this.date = date;
         this.time = time;
         this.full = full;
+        this.repeat = repeat;
     }
 
     public String getTitle() {
@@ -41,5 +43,21 @@ public class Exampleitem {
 
     public void setFull(String full) {
         this.full = full;
+    }
+
+    public String getRepeat() {
+        return repeat;
+    }
+
+    public void setRepeat(String repeat) {
+        this.repeat = repeat;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
     }
 }

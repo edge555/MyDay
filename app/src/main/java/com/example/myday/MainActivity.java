@@ -13,7 +13,6 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -142,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                             Boolean exist=arr.contains(date);
                             if(exist==false){
                                 k++;
-                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                             Boolean exist=arr.contains(date);
                             if(exist==false){
                                 k++;
-                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -261,7 +260,7 @@ public class MainActivity extends AppCompatActivity
                                             Boolean exist=arr.contains(date);
                                             if(exist==false){
                                                 k++;
-                                                mexamplelist.add(new Exampleitem(hmp.get("title"),hmp.get("date"),hmp.get("time"),date));
+                                                mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat")));
                                                 mAdapter.notifyDataSetChanged();
                                             }
                                         }
@@ -341,6 +340,8 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("title",e.getTitle());
                 intent.putExtra("date",e.getDate());
                 intent.putExtra("time",e.getTime());
+                intent.putExtra("des",e.getDes());
+                intent.putExtra("repeat",e.getRepeat());
                 startActivity(intent);
             }
             @Override
