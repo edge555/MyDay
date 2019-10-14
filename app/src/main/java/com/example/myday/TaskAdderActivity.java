@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +42,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private DatabaseReference db;
     private static int noww,repeat = 0,color = 0 ;
     private static final int REQUEST_CODE_SPEECH = 1000;
+    private static final int PICK_CONTACT = 1;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
     String[] col = new String[]{"Black","Red","Green","Yellow","Purple"};
     @Override
@@ -223,6 +227,10 @@ public class TaskAdderActivity extends AppCompatActivity {
             Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+    public void callcontacts(View view){
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, PICK_CONTACT);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -236,6 +244,18 @@ public class TaskAdderActivity extends AppCompatActivity {
                 }
                 break;
             }
+            case PICK_CONTACT:{
+                Uri contactData = data.getData();
+                Cursor c = getContentResolver().query(contactData,null, null, null, null);
+                if(c.moveToFirst()){
+                    String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    addername = findViewById(R.id.addername);
+                    addername.setText("Call "+name);
+                }
+                break;
+            }
         }
     }
+
+
 }
