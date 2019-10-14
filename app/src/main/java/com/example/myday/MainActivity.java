@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             Handler pdCanceller = new Handler();
-            pdCanceller.postDelayed(progressRunnable, 4500);
+            pdCanceller.postDelayed(progressRunnable, 4000);
         }
         mexamplelist = new ArrayList<>();
         mreminderlist = new ArrayList<>();

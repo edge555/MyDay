@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ForgetPassActivity"
     android:gravity="center"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
     <EditText
         android:layout_width="250dp"

@@ -42,7 +42,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private DatabaseReference db;
     private static int noww,repeat = 0,color = 0 ;
     private static final int REQUEST_CODE_SPEECH = 1000;
-    private static final int PICK_CONTACT = 1;
+    private static final int PICK_CONTACT_CALL = 1,PICK_CONTACT_MSG = 2;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
     String[] col = new String[]{"Black","Red","Green","Yellow","Purple"};
     @Override
@@ -229,7 +229,11 @@ public class TaskAdderActivity extends AppCompatActivity {
     }
     public void callcontacts(View view){
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, PICK_CONTACT);
+        startActivityForResult(intent, PICK_CONTACT_CALL);
+    }
+    public void sendmsg(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, PICK_CONTACT_MSG);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -244,7 +248,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 }
                 break;
             }
-            case PICK_CONTACT:{
+            case PICK_CONTACT_CALL:{
                 Uri contactData = data.getData();
                 Cursor c = getContentResolver().query(contactData,null, null, null, null);
                 if(c.moveToFirst()){
@@ -254,8 +258,16 @@ public class TaskAdderActivity extends AppCompatActivity {
                 }
                 break;
             }
+            case PICK_CONTACT_MSG:{
+                Uri contactData = data.getData();
+                Cursor c = getContentResolver().query(contactData,null, null, null, null);
+                if(c.moveToFirst()){
+                    String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    addername = findViewById(R.id.addername);
+                    addername.setText("Send SMS to "+name);
+                }
+                break;
+            }
         }
     }
-
-
 }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,7 +29,7 @@ public class InviteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = tv.getText().toString();
-                myClip = ClipData.newPlainText("text", text);
+                myClip = ClipData.newPlainText("www.github.com/edge555/MyDay", text);
                 myClipboard.setPrimaryClip(myClip);
                 ll = findViewById(R.id.invitefriends);
                 Snackbar sb = Snackbar.make(ll,"Link Copied",Snackbar.LENGTH_LONG);
