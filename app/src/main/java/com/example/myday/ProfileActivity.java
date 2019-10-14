@@ -17,30 +17,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button profsout,profdel,profichange,profupgrade;
+    Button profsout,profdel,profupgrade;
+    private TextView profname,profmail;
     LinearLayout ll;
     FirebaseAuth mAuth;
     FirebaseUser curuser;
     DatabaseReference db;
-    private Uri filepath;
-    private final int PICK_IMAGE_REQ = 71;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        setInfo();
         mAuth=FirebaseAuth.getInstance();
         curuser = mAuth.getCurrentUser();
         profdel = findViewById(R.id.profdelete);
@@ -66,6 +69,37 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setInfo() {
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        if(curuser!=null) {
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot childsnap : dataSnapshot.getChildren()) {
+                        if (childsnap.getKey().equals("Name")) {
+                            if (childsnap.getValue() != null) {
+                                profname = findViewById(R.id.profname);
+                                profname.setText((CharSequence) childsnap.getValue());
+                            }
+                        } else if (childsnap.getKey().equals("Email")) {
+                            if (childsnap.getValue() != null) {
+                                profmail = findViewById(R.id.profmail);
+                                profmail.setText((CharSequence) childsnap.getValue());
+                            }
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
     public void signout(){
         mAuth.getInstance().signOut();
         finish();

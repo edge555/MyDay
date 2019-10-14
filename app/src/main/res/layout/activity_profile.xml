@@ -47,15 +47,19 @@
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:text="Name"
+                android:textColor="#3704d1"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:id="@+id/profname">
-
+                >
             </TextView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
+                android:id="@+id/profname">
 
             </TextView>
         </LinearLayout>
@@ -84,6 +88,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="Email"
+
+                android:textColor="#3704d1"
                 android:textSize="25sp"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp">
@@ -93,6 +99,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
                 android:id="@+id/profmail">
 
             </TextView>
@@ -122,6 +131,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="Profession"
+                android:textColor="#3704d1"
                 android:textSize="25sp"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp">
@@ -130,7 +140,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
+                android:text="Student">
 
             </TextView>
         </LinearLayout>
@@ -160,6 +174,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="Mobile No."
+                android:textColor="#3704d1"
                 android:textSize="25sp"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp">

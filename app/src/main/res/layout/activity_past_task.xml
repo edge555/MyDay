@@ -9,6 +9,12 @@
     tools:context=".PastTaskActivity">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#57E1F8">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
@@ -25,6 +31,7 @@
             android:layout_weight="2"
             android:layout_gravity="center"
             android:text="CLEAR ALL"
+            android:layout_marginRight="20dp"
             android:onClick="clearpasttask">
         </Button>
     </LinearLayout>
