@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Popup extends AppCompatActivity {
     Exampleitem e;
-    String title="",date="",time="",repeat="",des="";
+    String title="",date="",time="",repeat="",des="",color="";
     TextView poptitle,poptime,popdate,poprepeat,popdes;
+    ImageView popmarker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,18 +25,38 @@ public class Popup extends AppCompatActivity {
             date = e.getString("date");
             repeat = e.getString("repeat");
             des = e.getString("des");
+            color = e.getString("marker");
         }
         poptitle = findViewById(R.id.poptitle);
         popdate = findViewById(R.id.popdate);
         poptime = findViewById(R.id.poptime);
         poprepeat = findViewById(R.id.poprepeat);
         popdes = findViewById(R.id.popdes);
+        popmarker = findViewById(R.id.popmarker);
         poptitle.setText(title);
         popdate.setText(parsedate(date));
         poptime.setText(parsetime(time));
         poprepeat.setText(repeat);
         popdes.setText(des);
 
+        switch (color)
+        {
+            case "Black":
+                popmarker.setImageResource(R.drawable.mblack);
+                break;
+            case "Red":
+                popmarker.setImageResource(R.drawable.mred);
+                break;
+            case "Green":
+                popmarker.setImageResource(R.drawable.mgreen);
+                break;
+            case "Yellow":
+                popmarker.setImageResource(R.drawable.myellow);
+                break;
+            case "Purple":
+                popmarker.setImageResource(R.drawable.mpurple);
+                break;
+        }
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = (int) (dm.widthPixels*.8);

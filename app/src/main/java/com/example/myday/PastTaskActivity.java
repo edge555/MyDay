@@ -98,6 +98,13 @@ public class PastTaskActivity extends AppCompatActivity {
             @Override
             public void onitemclick(int position) {
                 Intent intent = new Intent(PastTaskActivity.this,Popup.class);
+                Exampleitem e = mexamplelist.get(position);
+                intent.putExtra("title",e.getTitle());
+                intent.putExtra("date",e.getDate());
+                intent.putExtra("time",e.getTime());
+                intent.putExtra("des",e.getDes());
+                intent.putExtra("repeat",e.getRepeat());
+                intent.putExtra("marker",e.getMarker());
                 startActivity(intent);
             }
             @Override

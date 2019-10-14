@@ -31,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:paddingTop="8dp"
+        android:paddingLeft="15dp"
         android:background="#FFFF">
     </TextView>
     <TextView
@@ -50,6 +52,8 @@
         android:layout_height="0dp"
         android:id="@+id/popdes"
         android:layout_weight="3"
+        android:paddingTop="8dp"
+        android:paddingLeft="15dp"
         android:background="#FFFF"
         ></TextView>
     <TextView
@@ -69,6 +73,8 @@
         android:layout_height="0dp"
         android:id="@+id/popdate"
         android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
         android:background="#FFFF"
         ></TextView>
     <TextView
@@ -88,6 +94,8 @@
         android:layout_height="0dp"
         android:id="@+id/poptime"
         android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
         android:background="#FFFF">
 
     </TextView>
@@ -114,6 +122,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:id="@+id/poprepeat">
 
         </TextView>
@@ -129,12 +138,15 @@
             android:text="Marker">
 
         </TextView>
-        <TextView
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:id="@+id/popmarker"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
-        </TextView>
+        </ImageView>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
