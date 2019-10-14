@@ -30,7 +30,6 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
     Button profsout,profdel,profichange,profupgrade;
-    ImageView imgv;
     LinearLayout ll;
     FirebaseAuth mAuth;
     FirebaseUser curuser;
@@ -41,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        imgv = findViewById(R.id.profimg);
+
         mAuth=FirebaseAuth.getInstance();
         curuser = mAuth.getCurrentUser();
         profdel = findViewById(R.id.profdelete);
@@ -58,14 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
                 signout();
             }
         });
-        profichange = findViewById(R.id.profimagechange);
-        profichange.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-            @Override
-            public void onClick(View v) {
-                changeimage();
-            }
-        });
+
         profupgrade = findViewById(R.id.profupgrade);
         profupgrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,26 +71,6 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
         Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
         startActivity(intent);
-    }
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-    public void changeimage(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent.createChooser(intent,"Select picture"),PICK_IMAGE_REQ);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE_REQ && resultCode == RESULT_OK && data!=null && data.getData()!=null){
-            filepath = data.getData();
-            try{
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filepath);
-                imgv.setImageBitmap(bitmap);
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
     }
     public void upgradetopremium(){
         Intent intent = new Intent(ProfileActivity.this,UpPremiumActivity.class);

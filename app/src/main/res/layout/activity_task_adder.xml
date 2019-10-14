@@ -228,11 +228,9 @@
         android:gravity="center">
         <Button
             android:id="@+id/adderset"
-
             android:text="Set"
             android:textColor="#000000"
             android:textSize="22sp"
-
             android:layout_width="180dp"
             android:layout_height="60dp"
             android:background="@drawable/adderbutton"

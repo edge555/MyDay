@@ -146,40 +146,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calendar"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#141414"
-                android:textAllCaps="true"
-                android:id="@+id/calendar"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:text="EVENT REMINDERS"
-                    android:gravity="center|left"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="OFF"
-                    android:gravity="center"
-                    android:textColor="#137FD5"
-                    android:onClick="onRem"
-                    android:id="@+id/tvRem"/>
-            </LinearLayout>
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Community"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
