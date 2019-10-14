@@ -1,11 +1,14 @@
 package com.example.myday;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -33,6 +38,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private ImageView addermarker;
     private DatabaseReference db;
     private static int noww,repeat = 0,color = 0 ;
+    private static final int REQUEST_CODE_SPEECH = 1000;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
     String[] col = new String[]{"Black","Red","Green","Yellow","Purple"};
     @Override
@@ -207,5 +213,36 @@ public class TaskAdderActivity extends AppCompatActivity {
         }
         h = String.valueOf(hr);
         return h+":"+m+(pm?" PM":" AM");
+    }
+
+    public void setmic(View view) {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak to add");
+        try{
+            startActivityForResult(intent,REQUEST_CODE_SPEECH);
+
+
+        }catch (Exception e){
+            Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case REQUEST_CODE_SPEECH:{
+                if(data != null){
+                    ArrayList<String>result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    addername = findViewById(R.id.addername);
+                    addername.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
 }
