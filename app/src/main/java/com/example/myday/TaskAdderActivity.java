@@ -29,7 +29,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private Button adderdate,addertime,adderset;
     private EditText addername,adderdes;
     private String curdate="",curtime="",taskdate="",tasktime="";
-    private TextView repeattv;
+    private TextView repeattv,addertimetv,adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
     private static int noww,repeat = 0,color = 0 ;
@@ -75,6 +75,8 @@ public class TaskAdderActivity extends AppCompatActivity {
                 if(d.length()!=2)
                     m+="0";
                 taskdate=y+m+d;
+                adderdatetv = findViewById(R.id.adderdatetv);
+                adderdatetv.setText(parsedate(taskdate));
             }
         },year,month,date);
         datePickerDialog.show();
@@ -106,6 +108,8 @@ public class TaskAdderActivity extends AppCompatActivity {
                     s+="0";
                 s+=m;
                 tasktime = s;
+                addertimetv = findViewById(R.id.addertimetv);
+                addertimetv.setText(parsetime(tasktime));
             }
         },hour,min,true);
         timePickerDialog.show();
@@ -151,6 +155,8 @@ public class TaskAdderActivity extends AppCompatActivity {
                 val.put(fin,info);
                 db.updateChildren(val);
             }
+
+
             String v = "false";
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
             intent.putExtra("key",v);
@@ -166,7 +172,6 @@ public class TaskAdderActivity extends AppCompatActivity {
     public void setcolor(View view) {
         color = (color + 1) % 5;
         addermarker = findViewById(R.id.addermarker);
-
         switch (color)
         {
             case 0:
@@ -185,5 +190,22 @@ public class TaskAdderActivity extends AppCompatActivity {
                 addermarker.setImageResource(R.drawable.mpurple);
                 break;
         }
+    }
+    public String parsedate(String d){
+        String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
+        return day+"-"+month+"-"+year;
+    }
+    public String parsetime(String d){
+        String h = d.substring(0,2),m = d.substring(2,4);
+        int hr = Integer.parseInt(h);
+        Boolean pm = false;
+        if(hr>=12){
+            pm=true;
+            hr%=12;
+            if(hr==0)
+                hr=12;
+        }
+        h = String.valueOf(hr);
+        return h+":"+m+(pm?" PM":" AM");
     }
 }

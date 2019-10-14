@@ -111,7 +111,8 @@
            <TextView
                android:layout_width="0dp"
                android:layout_height="match_parent"
-               android:text="date"
+               android:text="---"
+               android:id="@+id/adderdatetv"
                android:gravity="center"
                android:textSize="22dp"
                android:textStyle="bold"
@@ -137,11 +138,12 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="time"
+            android:text="---"
             android:gravity="center"
             android:textSize="22dp"
             android:textStyle="bold"
             android:layout_weight="7"
+            android:id="@+id/addertimetv"
             android:paddingRight="15dp"
             android:onClick="settime">
         </TextView>
@@ -182,7 +184,7 @@
             >
             <ImageView
                 android:layout_width="0dp"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/marker"
@@ -202,6 +204,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:id="@+id/addermarker"
                     android:onClick="setcolor"
                     android:src="@drawable/mblack"
