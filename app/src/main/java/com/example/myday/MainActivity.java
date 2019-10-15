@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             Handler pdCanceller = new Handler();
-            pdCanceller.postDelayed(progressRunnable, 4000);
+            pdCanceller.postDelayed(progressRunnable, 3000);
         }
         mexamplelist = new ArrayList<>();
         mreminderlist = new ArrayList<>();
@@ -247,15 +248,71 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                             }
                                             else if(curtime.compareTo(tasktime)>0){
-
-                                                dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
-                                                Map<String,Object> val = new TreeMap<>();
-                                                Info info = new Info(hmp.get("title"),"Null",hmp.get("date"),hmp.get("time"),"None",date, hmp.get("marker"));
-                                                val.put(date,info);
-                                                dbb.updateChildren(val);
-                                                db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
-                                                db.setValue(null);
-                                                continue;
+                                                
+                                                String repeat = hmp.get("repeat");
+                                                if(repeat.equals("None")){
+                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
+                                                    Map<String,Object> val = new TreeMap<>();
+                                                    Info info = new Info(hmp.get("title"),hmp.get("des"),hmp.get("date"),hmp.get("time"),"None",date, hmp.get("marker"));
+                                                    val.put(date,info);
+                                                    dbb.updateChildren(val);
+                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
+                                                    db.setValue(null);
+                                                }
+                                                else{
+                                                    ArrayList <Integer> dates;
+                                                    Process p = new Process();
+                                                    dates = p.getdatelist(hmp.get("date"));
+                                                    int y = dates.get(0);
+                                                    int m = dates.get(1)+1;
+                                                    int d = dates.get(2);
+                                                    int x = p.dateToInt(y,m,d);
+                                                    dates.clear();
+                                                    String curdate = "";
+                                                    if(repeat.equals("Daily")){
+                                                        x++;
+                                                        dates = p.intToDate(x);
+                                                        y = dates.get(0);
+                                                        m = dates.get(1);
+                                                        d = dates.get(2);
+                                                    }
+                                                   else if(repeat.equals("Weekly")){
+                                                       x+=7;
+                                                       dates = p.intToDate(x);
+                                                       y = dates.get(0);
+                                                       m = dates.get(1);
+                                                       d = dates.get(2);
+                                                   }
+                                                   else if(repeat.equals("Monthly")){
+                                                        if(m == 12){
+                                                            m = 1;
+                                                            y++;
+                                                        }
+                                                        else{
+                                                            m++;
+                                                        }
+                                                   }
+                                                   else{
+                                                        y++;
+                                                   }
+                                                   String ys = Integer.toString(y);
+                                                   String ms = Integer.toString(m-1);
+                                                   String ds = Integer.toString(d);
+                                                   if(ms.length()!=2)
+                                                       ys+="0";
+                                                   if(ds.length()!=2)
+                                                       ms+="0";
+                                                   curdate=ys+ms+ds;
+                                                   Map<String,Object> val2 = new TreeMap<>();
+                                                   String date2 = curdate+hmp.get("time")+date.substring(12,15);
+                                                   Info info2 = new Info(hmp.get("title"),hmp.get("des"),curdate,hmp.get("time"),repeat,date2, hmp.get("marker"));
+                                                   val2.put(date2,info2);
+                                                    db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
+                                                    Log.d("datesx",date);
+                                                    db.setValue(null);
+                                                    dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
+                                                    dbb.updateChildren(val2);
+                                                }
                                             }
                                             Boolean exist=arr.contains(date);
                                             if(exist==false){

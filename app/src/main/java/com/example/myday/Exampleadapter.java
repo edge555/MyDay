@@ -66,7 +66,8 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
     public void onBindViewHolder(@NonNull Exampleviewholder holder, int position) {
         Exampleitem curitem = mexamplelist.get(position);
         holder.mtitle.setText(curitem.getTitle());
-        holder.mdate.setText(parsedate(curitem.getDate()));
+        Process p = new Process();
+        holder.mdate.setText(parsedate(p.incrementmonth(curitem.getDate())));
         holder.mtime.setText(parsetime(curitem.getTime()));
         holder.mrep.setText(curitem.getRepeat());
         String color = "Black";
