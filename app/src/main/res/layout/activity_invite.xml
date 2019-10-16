@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forward this link to your friend to download My Day!"
+            android:text="Forward this link to your friends to download My Day!"
             android:textSize="24dp"
             android:paddingTop="20dp"
             android:paddingLeft="15dp">
@@ -36,9 +36,11 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:id="@+id/invitelink"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Link"
+            android:textColor="#C5451D"
+            android:text="www.github.com/edge555/MyDay"
             android:textSize="24dp">
         </TextView>
         <Button

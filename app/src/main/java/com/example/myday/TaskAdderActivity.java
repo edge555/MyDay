@@ -40,7 +40,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     private TextView repeattv,addertimetv,adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
-    private static int noww,repeat = 0,color = 0 ;
+    private static int noww,repeat,color = 0 ;
     private static final int REQUEST_CODE_SPEECH = 1000;
     private static final int PICK_CONTACT_CALL = 1,PICK_CONTACT_MSG = 2;
     String[] rep = new String[]{"None","Daily","Weekly","Monthly","Yearly"};
@@ -49,6 +49,7 @@ public class TaskAdderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_adder);
+        repeat = 0;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             noww = extras.getInt("now");
@@ -171,6 +172,7 @@ public class TaskAdderActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     public void setrepeat(View view) {
         repeat = (repeat+1) % 5;
         repeattv = findViewById(R.id.adderrepeat);
@@ -210,9 +212,9 @@ public class TaskAdderActivity extends AppCompatActivity {
         if(hr>=12){
             pm=true;
             hr%=12;
-            if(hr==0)
-                hr=12;
         }
+        if(hr==0)
+            hr=12;
         h = String.valueOf(hr);
         return h+":"+m+(pm?" PM":" AM");
     }

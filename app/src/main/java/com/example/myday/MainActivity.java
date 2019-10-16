@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                             }
                                             else if(curtime.compareTo(tasktime)>0){
-                                                
+
                                                 String repeat = hmp.get("repeat");
                                                 if(repeat.equals("None")){
                                                     dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
