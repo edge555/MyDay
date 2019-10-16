@@ -41,27 +41,46 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="25dp"
-                android:text="Name"
-                android:textColor="#3704d1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                >
-            </TextView>
-            <TextView
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:textSize="25dp"
+                    android:text="Name"
+                    android:textColor="#3704d1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    >
+                </TextView>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="updatename"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/profnameimg"
+                    android:src="@drawable/editicon">
+
+                </ImageView>
+
+            </LinearLayout>
+
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:textSize="20sp"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:id="@+id/profname">
 
-            </TextView>
+            </EditText>
         </LinearLayout>
 
     </LinearLayout>
@@ -101,6 +120,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:textSize="20sp"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:id="@+id/profmail">
 
@@ -126,27 +146,42 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Profession"
-                android:textColor="#3704d1"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="Profession"
+                    android:textColor="#3704d1"
+                    android:textSize="25sp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/editicon"
+                    android:layout_marginRight="10dp"
+                    android:onClick="updateprofession">
 
-            </TextView>
-            <TextView
+                </ImageView>
+            </LinearLayout>
+
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:textSize="20sp"
-                android:paddingLeft="15dp"
-                android:text="Student">
-
-            </TextView>
+                android:inputType="text"
+                android:id="@+id/profprofession"
+                android:paddingLeft="15dp">
+            </EditText>
         </LinearLayout>
 
 
@@ -169,23 +204,37 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Mobile No."
-                android:textColor="#3704d1"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="Mobile No."
+                    android:textColor="#3704d1"
+                    android:textSize="25sp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/editicon"
+                    android:layout_marginRight="10dp"
+                    android:onClick="updatemobile">
 
-            </TextView>
-            <TextView
+                </ImageView>
+            </LinearLayout>
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
-
-            </TextView>
+                android:layout_weight="1"
+                android:id="@+id/profmobile">
+            </EditText>
         </LinearLayout>
 
     </LinearLayout>
@@ -194,12 +243,21 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Info"
+                android:id="@+id/profupdate"
+                android:textColor="#e33da6"
+                android:background="@drawable/adderbutton">
+            </Button>
 
-        </TextView>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

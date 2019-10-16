@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,19 +34,28 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button profsout,profdel,profupgrade;
-    private TextView profname,profmail;
+    Button profsout,profdel,profupgrade,profupdate;
+    private TextView profmail;
+    private EditText profname,profprofession,profmobile;
     LinearLayout ll;
     FirebaseAuth mAuth;
     FirebaseUser curuser;
     DatabaseReference db;
+    static boolean nameEnable = false,professionEnabled = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setInfo();
+        seteditextsfalse();
+
         mAuth=FirebaseAuth.getInstance();
         curuser = mAuth.getCurrentUser();
+        setonclicklisteners();
+
+    }
+
+    private void setonclicklisteners() {
         profdel = findViewById(R.id.profdelete);
         profdel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +70,6 @@ public class ProfileActivity extends AppCompatActivity {
                 signout();
             }
         });
-
         profupgrade = findViewById(R.id.profupgrade);
         profupgrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +77,33 @@ public class ProfileActivity extends AppCompatActivity {
                 upgradetopremium();
             }
         });
+        profupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateinfo();
+            }
+        });
+    }
+
+    private void updateinfo() {
+        
+    }
+
+    private void seteditextsfalse() {
+        profname = findViewById(R.id.profname);
+        toggleedit(false,profname);
+        profprofession = findViewById(R.id.profprofession);
+        toggleedit(false,profprofession);
+        profmobile = findViewById(R.id.profmobile);
+        toggleedit(false,profmobile);
+    }
+
+    private void toggleedit(boolean isEnabled, EditText editText) {
+        editText.setFocusable(isEnabled);
+        editText.setFocusableInTouchMode(isEnabled) ;
+        editText.setClickable(isEnabled);
+        editText.setLongClickable(isEnabled);
+        editText.setCursorVisible(isEnabled);
     }
 
     private void setInfo() {
@@ -110,6 +146,41 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(ProfileActivity.this,UpPremiumActivity.class);
         startActivity(intent);
     }
+
+    public void showsnackbar1(){
+        ll = findViewById(R.id.profile_layout);
+        Snackbar sb = Snackbar.make(ll,"Account deleted successfully",Snackbar.LENGTH_LONG);
+        sb.show();
+    }
+    public void showsnackbar2(){
+        ll = findViewById(R.id.profile_layout);
+        Snackbar sb = Snackbar.make(ll,"Account not deleted",Snackbar.LENGTH_LONG);
+        sb.show();
+    }
+
+    public void updatename(View view) {
+        profname = findViewById(R.id.profname);
+        if(nameEnable){
+            toggleedit(false,profname);
+            nameEnable = false;
+        }
+        else{
+            toggleedit(true,profname);
+            nameEnable = true;
+        }
+    }
+
+    public void updateprofession(View view) {
+        profprofession = findViewById(R.id.profprofession);
+        if(professionEnabled){
+            toggleedit(false,profprofession);
+            professionEnabled = false;
+        }
+        else{
+            toggleedit(true, profprofession);
+            professionEnabled = true;
+        }
+    }
     public void deleteprofile(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(ProfileActivity.this);
         dialog.setTitle("Are you sure?");
@@ -144,14 +215,16 @@ public class ProfileActivity extends AppCompatActivity {
         AlertDialog alertDialog = dialog.create();
         alertDialog.show();
     }
-    public void showsnackbar1(){
-        ll = findViewById(R.id.profile_layout);
-        Snackbar sb = Snackbar.make(ll,"Account deleted successfully",Snackbar.LENGTH_LONG);
-        sb.show();
-    }
-    public void showsnackbar2(){
-        ll = findViewById(R.id.profile_layout);
-        Snackbar sb = Snackbar.make(ll,"Account not deleted",Snackbar.LENGTH_LONG);
-        sb.show();
+
+    public void updatemobile(View view) {
+        profmobile = findViewById(R.id.profmobile);
+        if(nameEnable){
+            toggleedit(false,profmobile);
+            nameEnable = false;
+        }
+        else{
+            toggleedit(true,profmobile);
+            nameEnable = true;
+        }
     }
 }

@@ -308,7 +308,6 @@ public class MainActivity extends AppCompatActivity
                                                    Info info2 = new Info(hmp.get("title"),hmp.get("des"),curdate,hmp.get("time"),repeat,date2, hmp.get("marker"));
                                                    val2.put(date2,info2);
                                                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task").child(date);
-                                                    Log.d("datesx",date);
                                                     db.setValue(null);
                                                     dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                                                     dbb.updateChildren(val2);
