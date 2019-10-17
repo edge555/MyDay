@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
     Button profsout,profdel,profupgrade,profupdate;
@@ -48,11 +49,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         setInfo();
         seteditextsfalse();
-
         mAuth=FirebaseAuth.getInstance();
         curuser = mAuth.getCurrentUser();
         setonclicklisteners();
-
     }
 
     private void setonclicklisteners() {
@@ -77,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
                 upgradetopremium();
             }
         });
+        profupdate = findViewById(R.id.profupdate);
         profupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +86,25 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateinfo() {
-        
+        profname = findViewById(R.id.profname);
+        profmail = findViewById(R.id.profmail);
+        profprofession = findViewById(R.id.profprofession);
+        profmobile = findViewById(R.id.profmobile);
+        String name = profname.getText().toString();
+        String profession = profprofession.getText().toString();
+        String mobile = profmobile.getText().toString();
+        String mail = profmail.getText().toString();
+        FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
+        if(curuser!=null) {
+            String uid = curuser.getUid();
+            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
+            HashMap<String,String> info=new HashMap<>();
+            info.put("Name",name);
+            info.put("Email",mail);
+            info.put("Profession",profession);
+            info.put("Mobile",mobile);
+            db.setValue(info);
+        }
     }
 
     private void seteditextsfalse() {
@@ -104,6 +122,7 @@ public class ProfileActivity extends AppCompatActivity {
         editText.setClickable(isEnabled);
         editText.setLongClickable(isEnabled);
         editText.setCursorVisible(isEnabled);
+
     }
 
     private void setInfo() {
@@ -120,10 +139,23 @@ public class ProfileActivity extends AppCompatActivity {
                                 profname = findViewById(R.id.profname);
                                 profname.setText((CharSequence) childsnap.getValue());
                             }
-                        } else if (childsnap.getKey().equals("Email")) {
+                        }
+                        else if (childsnap.getKey().equals("Email")) {
                             if (childsnap.getValue() != null) {
                                 profmail = findViewById(R.id.profmail);
                                 profmail.setText((CharSequence) childsnap.getValue());
+                            }
+                        }
+                        else if (childsnap.getKey().equals("Profession")) {
+                            if (childsnap.getValue() != null) {
+                                profprofession = findViewById(R.id.profprofession);
+                                profprofession.setText((CharSequence) childsnap.getValue());
+                            }
+                        }
+                        else if (childsnap.getKey().equals("Mobile")) {
+                            if (childsnap.getValue() != null) {
+                                profmobile = findViewById(R.id.profmobile);
+                                profmobile.setText((CharSequence) childsnap.getValue());
                             }
                         }
                     }

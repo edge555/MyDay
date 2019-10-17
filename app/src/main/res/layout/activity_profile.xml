@@ -121,6 +121,7 @@
                 android:gravity="center_vertical"
                 android:textSize="20sp"
                 android:inputType="text"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="15dp"
                 android:id="@+id/profmail">
 
@@ -233,6 +234,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
+                android:inputType="number"
                 android:id="@+id/profmobile">
             </EditText>
         </LinearLayout>
@@ -242,30 +247,28 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update Info"
-                android:id="@+id/profupdate"
-                android:textColor="#e33da6"
-                android:background="@drawable/adderbutton">
-            </Button>
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Info"
+            android:id="@+id/profupdate"
+            android:textColor="#e33da6"
+            android:background="@drawable/adderbutton">
+        </Button>
 
-        </LinearLayout>
+    </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:text="Sign Out"
                 android:id="@+id/profsignout"
@@ -281,7 +284,7 @@
             </LinearLayout>
             <Button
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:id="@+id/profdelete"
                 android:text="Delete Account"
@@ -291,7 +294,7 @@
 
             </Button>
         </LinearLayout>
-    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
