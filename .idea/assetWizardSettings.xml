@@ -136,7 +136,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/edge555/.local/share/JetBrains/Toolbox/apps/AndroidStudio/ch-0/183.5692245/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_edit_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/home/edge555/.local/share/JetBrains/Toolbox/apps/AndroidStudio/ch-0/183.5692245/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_date_range_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -146,7 +146,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="edit" />
+                            <entry key="outputName" value="calender" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>

@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_pasttask"
             android:title="Past Tasks" />
         <item
+            android:id="@+id/nav_calender"
+            android:icon="@drawable/calender"
+            android:title="Calender" />
+        <item
             android:id="@+id/nav_friends"
             android:icon="@drawable/friends"
             android:title="Friends" />
