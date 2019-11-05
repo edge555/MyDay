@@ -1,5 +1,6 @@
 package com.example.myday;
 
+import android.app.DatePickerDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -44,12 +45,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -151,7 +154,6 @@ public class MainActivity extends AppCompatActivity
                                 mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, hmp.get("repeat"), hmp.get("marker")));
                                 mAdapter.notifyDataSetChanged();
                             }
-
                         }
                     }
                     @Override
@@ -480,7 +482,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.actionaboutapp){
-
+            Intent intent = new Intent(this.getApplicationContext(),AboutAppActivity.class);
+            startActivity(intent);
         }
         else if(id == R.id.actionupdate){
             Intent intent = new Intent(this.getApplicationContext(),UpdateActivity.class);
@@ -500,6 +503,10 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_past) {
             Intent intent = new Intent(MainActivity.this,PastTaskActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_calender) {
+            Intent intent = new Intent(MainActivity.this,CalenderActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(MainActivity.this,InviteActivity.class);
             startActivity(intent);
