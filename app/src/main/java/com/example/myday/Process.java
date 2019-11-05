@@ -49,6 +49,9 @@ public class Process {
     }
 
     public String incrementmonth(String s) {
+        if(s.equals("---")){
+            return s;
+        }
         String m = s.substring(4,6);
         int month = Integer.valueOf(m);
         String d = s.substring(0,4)+String.valueOf(month+1)+s.substring(6,8);

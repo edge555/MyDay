@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
     private LinearLayout notaskll;
-    public static int now = 0,numberoftask = 0;
+    public static int now = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });
             if(now==2){
@@ -187,7 +186,6 @@ public class MainActivity extends AppCompatActivity
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
             }
@@ -226,6 +224,7 @@ public class MainActivity extends AppCompatActivity
                     public void run() {
                         final String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
                         if(s.substring(16,18).equals("00")){
+                            final Boolean[] update = {false};
                             final String curtime = process(s);
                             mexamplelist = new ArrayList<>();
                             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -255,6 +254,7 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                             }
                                             else if(curtime.compareTo(tasktime)>0){
+                                                update[0] = true;
 
                                                 String repeat = hmp.get("repeat");
                                                 if(repeat.equals("None")){
@@ -334,7 +334,8 @@ public class MainActivity extends AppCompatActivity
                                     }
                                 });
                             }
-                            buildrecylerview();
+                            if(update[0]==true)
+                                buildrecylerview();
                         }
                     };
                 });

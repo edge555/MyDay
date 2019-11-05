@@ -163,15 +163,7 @@
                 android:textStyle="bold"
                 android:onClick="onFeed"
                 />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="ABOUT APP"
-                android:gravity="center|left"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:onClick="onAbout"
-                />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -34,9 +34,9 @@ import java.util.Random;
 import java.util.TreeMap;
 
 public class TaskAdderActivity extends AppCompatActivity {
-    private Button adderdate,addertime,adderset;
+    private Button adderset;
     private EditText addername,adderdes;
-    private String curdate="",curtime="",taskdate="",tasktime="";
+    private String curdate="",curtime="",taskdate="---",tasktime="--";
     private TextView repeattv,addertimetv,adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
@@ -63,6 +63,9 @@ public class TaskAdderActivity extends AppCompatActivity {
         });
     }
     public void setdate(View view){
+        if(noww==2){
+            return;
+        }
         Calendar calendar = Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH);
@@ -93,6 +96,9 @@ public class TaskAdderActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
     public void settime(View view){
+        if(noww==2){
+            return;
+        }
         Calendar calendar = Calendar.getInstance();
         int hour=calendar.get(Calendar.HOUR);
         int min=calendar.get(Calendar.MINUTE);
@@ -127,10 +133,10 @@ public class TaskAdderActivity extends AppCompatActivity {
     }
     public void settask(){
         boolean flag=true;
-        if(taskdate.compareTo(curdate)<0){
+        if(taskdate.compareTo(curdate)<0 && noww!=2){
             flag=false;
         }
-        else if(taskdate.compareTo(curdate)==0){
+        else if(taskdate.compareTo(curdate)==0 && noww!=2){
             if(tasktime.compareTo(curtime)<0){
                 flag=false;
             }
@@ -139,13 +145,15 @@ public class TaskAdderActivity extends AppCompatActivity {
         String task = addername.getText().toString();
         adderdes = findViewById(R.id.adderdes);
         String details = adderdes.getText().toString();
-        if(taskdate.isEmpty() || tasktime.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
+        if(noww!=2){
+            if(taskdate.isEmpty() || tasktime.isEmpty()){
+                Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
+            }
         }
-        else if(task.isEmpty()){
+        if(task.isEmpty()){
             Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
         }
-        else if(!flag){
+        else if(!flag && noww!=2){
             Toast.makeText(getApplicationContext(),"You can't choose previous time and date",Toast.LENGTH_LONG).show();
         }
         else if(flag){
@@ -162,7 +170,13 @@ public class TaskAdderActivity extends AppCompatActivity {
                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Task");
                 }
                 Map<String,Object>val = new TreeMap<>();
-                Info info = new Info(task,details,taskdate,tasktime,rep[repeat],fin, col[color]);
+                Info info;
+                if(noww==2){
+                    info = new Info(task,details,"---","---","None",fin, col[color]);
+                }
+                else{
+                    info = new Info(task,details,taskdate,tasktime,rep[repeat],fin, col[color]);
+                }
                 val.put(fin,info);
                 db.updateChildren(val);
             }
@@ -174,11 +188,13 @@ public class TaskAdderActivity extends AppCompatActivity {
     }
 
     public void setrepeat(View view) {
+        if(noww==2){
+            return;
+        }
         repeat = (repeat+1) % 5;
         repeattv = findViewById(R.id.adderrepeat);
         repeattv.setText(rep[repeat]);
     }
-
     public void setcolor(View view) {
         color = (color + 1) % 5;
         addermarker = findViewById(R.id.addermarker);
