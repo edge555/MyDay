@@ -64,10 +64,16 @@ public class Popup extends AppCompatActivity {
         getWindow().setLayout(width,height);
     }
     public String parsedate(String d){
+        if(d.equals("---")){
+            return d;
+        }
         String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
         return day+"/"+month+"/"+year;
     }
     public String parsetime(String d){
+        if(d.equals("---")){
+            return d;
+        }
         String h = d.substring(0,2),m = d.substring(2,4);
         int hr = Integer.parseInt(h);
         Boolean pm = false;

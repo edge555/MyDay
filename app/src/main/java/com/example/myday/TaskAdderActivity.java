@@ -177,6 +177,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 else{
                     info = new Info(task,details,taskdate,tasktime,rep[repeat],fin, col[color]);
                 }
+                Log.d("chk",taskdate);
                 val.put(fin,info);
                 db.updateChildren(val);
             }

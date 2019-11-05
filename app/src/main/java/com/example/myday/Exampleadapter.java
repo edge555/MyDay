@@ -105,6 +105,7 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         if(d.equals("---")){
             return d;
         }
+        Log.d("chkdate",d);
         String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
         return day+"-"+month+"-"+year;
     }
@@ -118,9 +119,9 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         if(hr>=12){
             pm=true;
             hr%=12;
-            if(hr==0)
-                hr=12;
         }
+        if(hr==0)
+            hr=12;
         h = String.valueOf(hr);
         return h+":"+m+(pm?" PM":" AM");
     }
