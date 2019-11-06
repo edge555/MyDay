@@ -49,9 +49,9 @@ public class OpeningActivity extends AppCompatActivity {
     }
 
     private void dowork() {
-        for (prg = 20; prg <= 100; prg += 100) {
+        for (prg = 0; prg <= 100; prg += 250) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 pgbar.setVisibility(View.VISIBLE);
             } catch (InterruptedException e) {
                 e.printStackTrace();

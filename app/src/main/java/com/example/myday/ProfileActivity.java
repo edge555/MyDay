@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,6 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void updateinfo() {
         profname = findViewById(R.id.profname);
         profmail = findViewById(R.id.profmail);
+        profmail.setMovementMethod(new ScrollingMovementMethod());
         profprofession = findViewById(R.id.profprofession);
         profmobile = findViewById(R.id.profmobile);
         String name = profname.getText().toString();

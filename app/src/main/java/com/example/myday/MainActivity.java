@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             Handler pdCanceller = new Handler();
-            pdCanceller.postDelayed(progressRunnable, 2000);
+            pdCanceller.postDelayed(progressRunnable, 1500);
         }
 
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -334,8 +334,7 @@ public class MainActivity extends AppCompatActivity
                                     }
                                 });
                             }
-                            if(update[0]==true)
-                                buildrecylerview();
+                            buildrecylerview();
                         }
                     };
                 });
@@ -449,7 +448,6 @@ public class MainActivity extends AppCompatActivity
         else{
             if(doubleBackToExitPressedOnce) {
                 finish();
-                moveTaskToBack(true);
             }
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
