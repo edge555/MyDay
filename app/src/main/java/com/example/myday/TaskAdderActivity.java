@@ -36,7 +36,7 @@ import java.util.TreeMap;
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderset;
     private EditText addername,adderdes;
-    private String curdate="",curtime="",taskdate="---",tasktime="--";
+    private String curdate="",curtime="",taskdate="---",tasktime="---";
     private TextView repeattv,addertimetv,adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
@@ -177,7 +177,6 @@ public class TaskAdderActivity extends AppCompatActivity {
                 else{
                     info = new Info(task,details,taskdate,tasktime,rep[repeat],fin, col[color]);
                 }
-                Log.d("chk",taskdate);
                 val.put(fin,info);
                 db.updateChildren(val);
             }
@@ -263,7 +262,9 @@ public class TaskAdderActivity extends AppCompatActivity {
                 if(data != null){
                     ArrayList<String>result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     addername = findViewById(R.id.addername);
-                    addername.setText(result.get(0));
+                    String res=result.get(0);
+                    res = res.substring(0, 1).toUpperCase() + res.substring(1);
+                    addername.setText(res);
                 }
                 break;
             }
