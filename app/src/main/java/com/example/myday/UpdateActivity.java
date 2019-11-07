@@ -15,7 +15,7 @@ import com.github.ybq.android.spinkit.style.Wave;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    TextView updatetext;
+    TextView updatetext,updatever;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,9 @@ public class UpdateActivity extends AppCompatActivity {
             public void run() {
                 progressDialog.dismiss();
                 updatetext = findViewById(R.id.updatetext);
-                updatetext.setText("You are up to date! Check again later.");
+                updatetext.setText("You are up to date! Check again later");
+                updatever = findViewById(R.id.updatever);
+                updatever.setText("Current version v1.0.0");
             }
         };
         Handler pdCanceller = new Handler();

@@ -5,18 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/aboutback"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".AboutAppActivity">
 
     <TextView
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
-        android:layout_height="465dp"
-        android:singleLine="false"
-        android:text="@string/aboutapp"
+        android:layout_height="wrap_content"
+        android:textColor="#213BCC"
+        android:text="This app helps you to keep up with your regular tasks"
         android:textSize="28sp">
-
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"></LinearLayout>
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#D50000"
+        android:text="You can add,delete tasks in realtime here"
+        android:textSize="28sp">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"></LinearLayout>
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="With your account you can get your task in any devices you log in"
+        android:textSize="28sp">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"></LinearLayout>
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#E91E63"
+        android:text="If find any bug or if you have any suggestions please let us know"
+        android:textSize="28sp">
     </TextView>
 
 </LinearLayout>

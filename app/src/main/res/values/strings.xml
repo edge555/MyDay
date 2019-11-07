@@ -7,7 +7,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="aboutapp">This app helps you to keep up with your future/uncomplete tasks\n\n You can add,delete tasks in realtime here\n\n With your account you can get your task in any devices you log in\n\n If find any bug or if you have any suggestions please let us know.</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
