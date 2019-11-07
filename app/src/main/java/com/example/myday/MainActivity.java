@@ -98,35 +98,12 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             Handler pdCanceller = new Handler();
-            pdCanceller.postDelayed(progressRunnable, 1500);
+            pdCanceller.postDelayed(progressRunnable, 4500);
         }
         firstrun++;
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null) {
             String uid = curuser.getUid();
-            db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
-            db.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot childsnap : dataSnapshot.getChildren()) {
-                        if (childsnap.getKey().equals("Name")) {
-                            if (childsnap.getValue() != null) {
-                                tv = findViewById(R.id.topname);
-                                tv.setText((CharSequence) childsnap.getValue());
-                            }
-                            else if (childsnap.getKey().equals("Email")) {
-                                if (childsnap.getValue() != null) {
-                                    tv2 = findViewById(R.id.topemail);
-                                    tv2.setText((CharSequence) childsnap.getValue());
-                                }
-                            }
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
             if(now==2){
                 db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reminder");
                 db.addValueEventListener(new ValueEventListener() {

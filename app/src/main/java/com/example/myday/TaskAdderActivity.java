@@ -186,9 +186,7 @@ public class TaskAdderActivity extends AppCompatActivity {
                 val.put(fin,info);
                 db.updateChildren(val);
             }
-            String v = "false";
             Intent intent = new Intent(TaskAdderActivity.this,MainActivity.class);
-            intent.putExtra("key",v);
             startActivity(intent);
         }
     }

@@ -47,9 +47,9 @@ public class OpeningActivity extends AppCompatActivity {
     private void checkconnectivity() {
 
     }
-
+    
     private void dowork() {
-        for (prg = 0; prg <= 100; prg += 250) {
+        for (prg = 0; prg <= 100; prg += 25) {
             try {
                 Thread.sleep(1000);
                 pgbar.setVisibility(View.VISIBLE);
