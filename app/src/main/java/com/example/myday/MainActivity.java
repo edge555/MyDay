@@ -74,9 +74,10 @@ public class MainActivity extends AppCompatActivity
     boolean doubleBackToExitPressedOnce = false;
     DatabaseReference db,dbb;
     private LinearLayout notaskll;
-    public static int now = 0;
+    public static int now = 0,firstrun = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setTitle("MY DAY");
         setContentView(R.layout.activity_main);
@@ -85,12 +86,7 @@ public class MainActivity extends AppCompatActivity
         mreminderlist = new ArrayList<>();
         notaskll = findViewById(R.id.notask);
         notaskll.setVisibility(View.GONE);
-        String firstrun = "true";
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            firstrun = extras.getString("key");
-        }
-        if(firstrun.equals("true") && now==0){
+        if(firstrun == 0) {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setTitle("Loading");
             progressDialog.setMessage("Getting your tasks...");
@@ -104,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             Handler pdCanceller = new Handler();
             pdCanceller.postDelayed(progressRunnable, 1500);
         }
-
+        firstrun++;
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
         if(curuser!=null) {
             String uid = curuser.getUid();
@@ -118,11 +114,11 @@ public class MainActivity extends AppCompatActivity
                                 tv = findViewById(R.id.topname);
                                 tv.setText((CharSequence) childsnap.getValue());
                             }
-                        }
-                        else if (childsnap.getKey().equals("Email")) {
-                            if (childsnap.getValue() != null) {
-                                tv2 = findViewById(R.id.topemail);
-                                tv2.setText((CharSequence) childsnap.getValue());
+                            else if (childsnap.getKey().equals("Email")) {
+                                if (childsnap.getValue() != null) {
+                                    tv2 = findViewById(R.id.topemail);
+                                    tv2.setText((CharSequence) childsnap.getValue());
+                                }
                             }
                         }
                     }
@@ -224,7 +220,6 @@ public class MainActivity extends AppCompatActivity
                     public void run() {
                         final String s = getTimeMethod("dd-MMM-yy-hh-mm-ss a");
                         if(s.substring(16,18).equals("00")){
-                            final Boolean[] update = {false};
                             final String curtime = process(s);
                             mexamplelist = new ArrayList<>();
                             FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -254,8 +249,6 @@ public class MainActivity extends AppCompatActivity
                                                 }
                                             }
                                             else if(curtime.compareTo(tasktime)>0){
-                                                update[0] = true;
-
                                                 String repeat = hmp.get("repeat");
                                                 if(repeat.equals("None")){
                                                     dbb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");

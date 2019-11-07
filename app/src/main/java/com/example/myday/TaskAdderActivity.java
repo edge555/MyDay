@@ -36,7 +36,7 @@ import java.util.TreeMap;
 public class TaskAdderActivity extends AppCompatActivity {
     private Button adderset;
     private EditText addername,adderdes;
-    private String curdate="",curtime="",taskdate="---",tasktime="---";
+    private String curdate="",curtime="",taskdate="",tasktime="";
     private TextView repeattv,addertimetv,adderdatetv;
     private ImageView addermarker;
     private DatabaseReference db;
@@ -141,22 +141,28 @@ public class TaskAdderActivity extends AppCompatActivity {
                 flag=false;
             }
         }
+        Log.d("chk", String.valueOf(noww));
         addername = findViewById(R.id.addername);
         String task = addername.getText().toString();
         adderdes = findViewById(R.id.adderdes);
         String details = adderdes.getText().toString();
+        String ct = curdate+curtime;
+        String tt = taskdate+tasktime;
+        if(task.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
+            flag = false;
+        }
         if(noww!=2){
             if(taskdate.isEmpty() || tasktime.isEmpty()){
                 Toast.makeText(getApplicationContext(),"Choose Time and Date",Toast.LENGTH_LONG).show();
+                flag = false;
+            }
+            if(ct.compareTo(tt)>0){
+                Toast.makeText(getApplicationContext(),"You can't choose previous time and date",Toast.LENGTH_LONG).show();
+                flag = false;
             }
         }
-        if(task.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Task name is empty",Toast.LENGTH_LONG).show();
-        }
-        else if(!flag && noww!=2){
-            Toast.makeText(getApplicationContext(),"You can't choose previous time and date",Toast.LENGTH_LONG).show();
-        }
-        else if(flag){
+        if(flag){
             Random rand = new Random();
             int rNum = 100 + rand.nextInt((999 - 100) + 1);
             String fin=taskdate+tasktime+Integer.toString(rNum);
@@ -186,7 +192,6 @@ public class TaskAdderActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
     public void setrepeat(View view) {
         if(noww==2){
             return;
