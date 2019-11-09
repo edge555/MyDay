@@ -32,7 +32,7 @@ public class UpdateActivity extends AppCompatActivity {
                 updatetext = findViewById(R.id.updatetext);
                 updatetext.setText("You are up to date! Check again later");
                 updatever = findViewById(R.id.updatever);
-                updatever.setText("Current version v1.0.0");
+                updatever.setText("Current version v1.0.1");
             }
         };
         Handler pdCanceller = new Handler();

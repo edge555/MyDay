@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
         TextView textView2 = findViewById(R.id.logintrouble);
-        String text2 = "Trouble singing in? Click here";
+        String text2 = "Trouble signing in? Click here";
         SpannableString ss2 = new SpannableString(text2);
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override

@@ -28,7 +28,6 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         public TextView mtitle,mtime,mdate,mrep;
         public ImageView marker;
 
-
         public Exampleviewholder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mtitle = itemView.findViewById(R.id.reltitle);
@@ -104,7 +103,8 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.Examplev
         if(d.equals("---")){
             return d;
         }
-        String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
+        String year = d.substring(0,4), m = d.substring(4,6), day = d.substring(6,8);
+        int month = Integer.parseInt(m);
         return day+"-"+month+"-"+year;
     }
     public String parsetime(String d){

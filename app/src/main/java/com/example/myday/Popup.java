@@ -67,7 +67,8 @@ public class Popup extends AppCompatActivity {
         if(d.equals("---")){
             return d;
         }
-        String year = d.substring(0,4), month = d.substring(4,6), day = d.substring(6,8);
+        String year = d.substring(0,4), m = d.substring(4,6), day = d.substring(6,8);
+        int month = Integer.parseInt(m)+1;
         return day+"/"+month+"/"+year;
     }
     public String parsetime(String d){
