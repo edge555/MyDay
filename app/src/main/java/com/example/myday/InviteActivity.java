@@ -18,11 +18,12 @@ public class InviteActivity extends AppCompatActivity {
     private ClipboardManager myClipboard;
     private ClipData myClip;
     LinearLayout ll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
-        myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+        myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         bt = findViewById(R.id.invitecopy);
         tv = findViewById(R.id.invitelink);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -32,7 +33,7 @@ public class InviteActivity extends AppCompatActivity {
                 myClip = ClipData.newPlainText("www.github.com/edge555/MyDay", text);
                 myClipboard.setPrimaryClip(myClip);
                 ll = findViewById(R.id.invitefriends);
-                Snackbar sb = Snackbar.make(ll,"Link Copied",Snackbar.LENGTH_LONG);
+                Snackbar sb = Snackbar.make(ll, "Link Copied", Snackbar.LENGTH_LONG);
                 sb.show();
             }
         });

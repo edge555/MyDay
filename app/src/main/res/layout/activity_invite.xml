@@ -2,56 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/invitefriends"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InviteActivity"
-    android:orientation="vertical"
     android:background="@drawable/gradient"
-    android:id="@+id/invitefriends">
+    android:orientation="vertical"
+    tools:context=".InviteActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/invitefriends"></ImageView>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forward this link to your friends to download My Day!"
-            android:textSize="24dp"
+            android:paddingLeft="15dp"
             android:paddingTop="20dp"
-            android:paddingLeft="15dp">
-        </TextView>
+            android:text="Forward this link to your friends to download My Day!"
+            android:textSize="24dp"></TextView>
+
         <TextView
+            android:id="@+id/invitelink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:id="@+id/invitelink"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#C5451D"
             android:text="www.github.com/edge555/MyDay"
-            android:textSize="24dp">
-        </TextView>
+            android:textColor="#C5451D"
+            android:textSize="24dp"></TextView>
+
         <Button
             android:id="@+id/invitecopy"
-            android:text="Copy Link"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/buttonshape"
-            />
+            android:text="Copy Link"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

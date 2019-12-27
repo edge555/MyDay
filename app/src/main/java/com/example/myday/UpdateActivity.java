@@ -15,8 +15,9 @@ import com.github.ybq.android.spinkit.style.Wave;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    TextView updatetext,updatever;
+    TextView updatetext, updatever;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

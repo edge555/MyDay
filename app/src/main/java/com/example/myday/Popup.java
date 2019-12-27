@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 public class Popup extends AppCompatActivity {
     Exampleitem e;
-    String title="",date="",time="",repeat="",des="",color="";
-    TextView poptitle,poptime,popdate,poprepeat,popdes;
+    String title = "", date = "", time = "", repeat = "", des = "", color = "";
+    TextView poptitle, poptime, popdate, poprepeat, popdes;
     ImageView popmarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +40,7 @@ public class Popup extends AppCompatActivity {
         poprepeat.setText(repeat);
         popdes.setText(des);
 
-        switch (color)
-        {
+        switch (color) {
             case "Black":
                 popmarker.setImageResource(R.drawable.mblack);
                 break;
@@ -59,32 +59,34 @@ public class Popup extends AppCompatActivity {
         }
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = (int) (dm.widthPixels*.8);
-        int height = (int) (dm.heightPixels*.6);
-        getWindow().setLayout(width,height);
+        int width = (int) (dm.widthPixels * .8);
+        int height = (int) (dm.heightPixels * .6);
+        getWindow().setLayout(width, height);
     }
-    public String parsedate(String d){
-        if(d.equals("---")){
+
+    public String parsedate(String d) {
+        if (d.equals("---")) {
             return d;
         }
-        String year = d.substring(0,4), m = d.substring(4,6), day = d.substring(6,8);
-        int month = Integer.parseInt(m)+1;
-        return day+"/"+month+"/"+year;
+        String year = d.substring(0, 4), m = d.substring(4, 6), day = d.substring(6, 8);
+        int month = Integer.parseInt(m) + 1;
+        return day + "/" + month + "/" + year;
     }
-    public String parsetime(String d){
-        if(d.equals("---")){
+
+    public String parsetime(String d) {
+        if (d.equals("---")) {
             return d;
         }
-        String h = d.substring(0,2),m = d.substring(2,4);
+        String h = d.substring(0, 2), m = d.substring(2, 4);
         int hr = Integer.parseInt(h);
         Boolean pm = false;
-        if(hr>=12){
-            pm=true;
-            hr%=12;
-            if(hr==0)
-                hr=12;
+        if (hr >= 12) {
+            pm = true;
+            hr %= 12;
+            if (hr == 0)
+                hr = 12;
         }
         h = String.valueOf(hr);
-        return h+":"+m+(pm?" PM":" AM");
+        return h + ":" + m + (pm ? " PM" : " AM");
     }
 }

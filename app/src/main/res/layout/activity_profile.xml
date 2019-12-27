@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/gradient"
-    android:id="@+id/profile_layout"
+    android:orientation="vertical"
     tools:context=".ProfileActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,47 +25,51 @@
         </TextView>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/profname"
+            android:layout_weight="1"
             android:paddingLeft="2dp"
-            android:layout_weight="1">
+            android:src="@drawable/profname">
 
         </ImageView>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:textSize="25dp"
-                    android:text="Name"
-                    android:textColor="#3704d1"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
-                    >
-                </TextView>
+                    android:text="Name"
+                    android:textColor="#3704d1"
+                    android:textSize="25dp"></TextView>
+
                 <ImageView
+                    android:id="@+id/profnameimg"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:onClick="updatename"
-                    android:layout_marginRight="10dp"
-                    android:id="@+id/profnameimg"
                     android:src="@drawable/editicon">
 
                 </ImageView>
@@ -71,72 +77,79 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/profname"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
                 android:inputType="text"
                 android:paddingLeft="15dp"
-                android:id="@+id/profname">
+                android:textSize="20sp">
 
             </EditText>
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/profmail"
+            android:layout_weight="1"
             android:paddingLeft="4dp"
-            android:layout_weight="1">
+            android:src="@drawable/profmail">
 
         </ImageView>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Email"
-
-                android:textColor="#3704d1"
-                android:textSize="25sp"
                 android:gravity="center_vertical"
-                android:paddingLeft="15dp">
+
+                android:paddingLeft="15dp"
+                android:text="Email"
+                android:textColor="#3704d1"
+                android:textSize="25sp">
 
             </TextView>
+
             <TextView
+                android:id="@+id/profmail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:textSize="17sp"
-                android:ellipsize="none"
-                android:scrollHorizontally="false"
-                android:scrollbars="horizontal"
-                android:inputType="text"
                 android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:gravity="center_vertical"
+                android:inputType="text"
                 android:paddingLeft="15dp"
-                android:id="@+id/profmail">
+                android:scrollbars="horizontal"
+                android:scrollHorizontally="false"
+                android:textSize="17sp">
 
             </TextView>
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -145,56 +158,60 @@
             android:src="@drawable/profwork">
 
         </ImageView>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
                     android:text="Profession"
                     android:textColor="#3704d1"
-                    android:textSize="25sp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp">
-                </TextView>
+                    android:textSize="25sp"></TextView>
+
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/editicon"
                     android:layout_marginRight="10dp"
-                    android:onClick="updateprofession">
+                    android:layout_weight="1"
+                    android:onClick="updateprofession"
+                    android:src="@drawable/editicon">
 
                 </ImageView>
             </LinearLayout>
 
             <EditText
+                android:id="@+id/profprofession"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
                 android:inputType="text"
-                android:id="@+id/profprofession"
-                android:paddingLeft="15dp">
-            </EditText>
+                android:paddingLeft="15dp"
+                android:textSize="20sp"></EditText>
         </LinearLayout>
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -203,113 +220,121 @@
             android:src="@drawable/profmobile">
 
         </ImageView>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
                     android:text="Mobile No."
                     android:textColor="#3704d1"
-                    android:textSize="25sp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp">
-                </TextView>
+                    android:textSize="25sp"></TextView>
+
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/editicon"
                     android:layout_marginRight="10dp"
-                    android:onClick="updatemobile">
+                    android:layout_weight="1"
+                    android:onClick="updatemobile"
+                    android:src="@drawable/editicon">
 
                 </ImageView>
             </LinearLayout>
+
             <EditText
+                android:id="@+id/profmobile"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
-                android:paddingLeft="15dp"
                 android:inputType="number"
-                android:id="@+id/profmobile">
-            </EditText>
+                android:paddingLeft="15dp"
+                android:textSize="20sp"></EditText>
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center">
+
         <Button
+            android:id="@+id/profupdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/adderbutton"
             android:text="Update Info"
-            android:id="@+id/profupdate"
-            android:textColor="#e33da6"
-            android:background="@drawable/adderbutton">
+            android:textColor="#e33da6"></Button>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/profsignout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="3"
+            android:background="@drawable/adderbutton"
+            android:text="Sign Out">
+
         </Button>
 
-    </LinearLayout>
-
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Sign Out"
-                android:id="@+id/profsignout"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/adderbutton">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-            </Button>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-            </LinearLayout>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:id="@+id/profdelete"
-                android:text="Delete Account"
-                android:textColor="#de2d2a"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/adderbutton">
-
-            </Button>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/profdelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="3"
+            android:background="@drawable/adderbutton"
+            android:text="Delete Account"
+            android:textColor="#de2d2a">
+
+        </Button>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center">
+
         <Button
+            android:id="@+id/profupgrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/adderbutton"
             android:text="Upgrade to Premium"
-            android:id="@+id/profupgrade"
-            android:textColor="#e33da6"
-            android:background="@drawable/adderbutton">
+            android:textColor="#e33da6">
 
         </Button>
 

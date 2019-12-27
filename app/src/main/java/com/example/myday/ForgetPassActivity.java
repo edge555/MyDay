@@ -19,6 +19,7 @@ public class ForgetPassActivity extends AppCompatActivity {
     EditText forpassemail;
     Button forpassresetbut;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,28 +33,26 @@ public class ForgetPassActivity extends AppCompatActivity {
             }
         });
     }
-    public void resetpass(){
+
+    public void resetpass() {
         forpassemail = findViewById(R.id.forpassmail);
         String email = forpassemail.getText().toString();
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             forpassemail.setError("Enter an e-mail address");
             forpassemail.requestFocus();
-        }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             forpassemail.setError("Enter a valid e-mail address");
             forpassemail.requestFocus();
-        }
-        else{
+        } else {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Password reset link sent. Check your inbox",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ForgetPassActivity.this,LoginActivity.class);
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Password reset link sent. Check your inbox", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ForgetPassActivity.this, LoginActivity.class);
                         startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });

@@ -32,13 +32,14 @@ public class PastTaskActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Exampleitem> mexamplelist;
     DatabaseReference db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_task);
         mexamplelist = new ArrayList<>();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        if(curuser!=null){
+        if (curuser != null) {
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
             db.addValueEventListener(new ValueEventListener() {
@@ -47,23 +48,24 @@ public class PastTaskActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     List<String> arr = new ArrayList<String>();
                     int k;
-                    for(k=0;k<mexamplelist.size();k++){
+                    for (k = 0; k < mexamplelist.size(); k++) {
                         arr.add(mexamplelist.get(k).getTitle());
                     }
-                    k=0;
-                    for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                        String date=childsnap.getKey();
-                        HashMap<String,String> hmp;
+                    k = 0;
+                    for (DataSnapshot childsnap : dataSnapshot.getChildren()) {
+                        String date = childsnap.getKey();
+                        HashMap<String, String> hmp;
                         hmp = (HashMap<String, String>) childsnap.getValue();
                         String name = hmp.get("title");
-                        Boolean exist=arr.contains(name);
-                        if(exist==false){
+                        Boolean exist = arr.contains(name);
+                        if (exist == false) {
                             k++;
-                            mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"),hmp.get("time"),date, "None", hmp.get("marker")));
+                            mexamplelist.add(new Exampleitem(hmp.get("title"), hmp.get("des"), hmp.get("date"), hmp.get("time"), date, "None", hmp.get("marker")));
                             mAdapter.notifyDataSetChanged();
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -73,7 +75,8 @@ public class PastTaskActivity extends AppCompatActivity {
         }
         buildrecylerview();
     }
-    public void removeitem(int position){
+
+    public void removeitem(int position) {
         Exampleitem curitem = mexamplelist.get(position);
         String delid = curitem.getFull();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -83,6 +86,7 @@ public class PastTaskActivity extends AppCompatActivity {
         mexamplelist.remove(position);
         mAdapter.notifyDataSetChanged();
     }
+
     public void buildrecylerview() {
         mRecyclerView = findViewById(R.id.pastll);
         mRecyclerView.setHasFixedSize(true);
@@ -98,23 +102,25 @@ public class PastTaskActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new Exampleadapter.OnItemClickListener() {
             @Override
             public void onitemclick(int position) {
-                Intent intent = new Intent(PastTaskActivity.this,Popup.class);
+                Intent intent = new Intent(PastTaskActivity.this, Popup.class);
                 Exampleitem e = mexamplelist.get(position);
-                intent.putExtra("title",e.getTitle());
-                intent.putExtra("date",e.getDate());
-                intent.putExtra("time",e.getTime());
-                intent.putExtra("des",e.getDes());
-                intent.putExtra("repeat",e.getRepeat());
-                intent.putExtra("marker",e.getMarker());
+                intent.putExtra("title", e.getTitle());
+                intent.putExtra("date", e.getDate());
+                intent.putExtra("time", e.getTime());
+                intent.putExtra("des", e.getDes());
+                intent.putExtra("repeat", e.getRepeat());
+                intent.putExtra("marker", e.getMarker());
                 startActivity(intent);
             }
+
             @Override
             public void ondelete(int position) {
                 removeitem(position);
             }
         });
     }
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -143,7 +149,7 @@ public class PastTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-                if(curuser!=null){
+                if (curuser != null) {
                     String uid = curuser.getUid();
                     db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Pasttask");
                     db.setValue(null);

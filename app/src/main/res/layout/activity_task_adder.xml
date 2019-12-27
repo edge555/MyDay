@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:background="@drawable/gradient"
-    tools:context=".TaskAdderActivity"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    >
+    tools:context=".TaskAdderActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +15,14 @@
         android:layout_weight="2">
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="bottom"
         android:layout_weight="2"
-        android:gravity="start"
-        >
+        android:gravity="start">
+
         <EditText
             android:id="@+id/addername"
             android:layout_width="match_parent"
@@ -30,18 +30,20 @@
             android:layout_gravity="start"
             android:gravity="start"
             android:hint="Remind me to..."
-            android:textColor="#141172"
             android:paddingLeft="15dp"
-            android:textSize="25sp"
             android:paddingRight="15dp"
+            android:textColor="#141172"
+            android:textSize="25sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -54,47 +56,50 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="callcontacts"
-            android:src="@drawable/call"/>
+            android:src="@drawable/call" />
 
         <ImageView
+            android:id="@+id/addermsg"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:id="@+id/addermsg"
             android:onClick="sendmsg"
             android:src="@drawable/msg" />
 
         <ImageView
+            android:id="@+id/addermic"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/addermic"
             android:layout_weight="1"
             android:onClick="setmic"
-            android:src="@drawable/mic"/>
+            android:src="@drawable/mic" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
         android:orientation="vertical">
+
         <TextView
-            android:layout_marginTop="15dp"
-            android:paddingLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="15dp"
             android:text="Details"
-            android:textSize="20dp">
+            android:textSize="20dp"
+            android:textStyle="bold">
 
         </TextView>
+
         <EditText
+            android:id="@+id/adderdes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="15dp"
-            android:id="@+id/adderdes"
-            android:hint="Add details about task...">
+            android:hint="Add details about task..."
+            android:paddingLeft="15dp">
 
         </EditText>
     </LinearLayout>
@@ -104,139 +109,140 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingLeft="15dp"
-            android:src="@drawable/date">
-            </ImageView>
+            android:src="@drawable/date"></ImageView>
 
-           <TextView
-               android:layout_width="0dp"
-               android:layout_height="match_parent"
-               android:text="---"
-               android:id="@+id/adderdatetv"
-               android:gravity="center"
-               android:textSize="22dp"
-               android:textStyle="bold"
-               android:layout_weight="7"
-               android:paddingRight="15dp"
-               android:onClick="setdate">
-           </TextView>
+        <TextView
+            android:id="@+id/adderdatetv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:onClick="setdate"
+            android:paddingRight="15dp"
+            android:text="---"
+            android:textSize="22dp"
+            android:textStyle="bold"></TextView>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingLeft="15dp"
-            android:src="@drawable/time">
-        </ImageView>
+            android:src="@drawable/time"></ImageView>
 
         <TextView
+            android:id="@+id/addertimetv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="---"
-            android:gravity="center"
-            android:textSize="22dp"
-            android:textStyle="bold"
             android:layout_weight="7"
-            android:id="@+id/addertimetv"
+            android:gravity="center"
+            android:onClick="settime"
             android:paddingRight="15dp"
-            android:onClick="settime">
+            android:text="---"
+            android:textSize="22dp"
+            android:textStyle="bold"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:src="@drawable/repeat"></ImageView>
+
+        <TextView
+            android:id="@+id/adderrepeat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:gravity="center"
+            android:onClick="setrepeat"
+            android:paddingRight="15dp"
+            android:text="None"
+            android:textSize="22dp"
+            android:textStyle="bold">
+
         </TextView>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:src="@drawable/marker"></ImageView>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
             android:orientation="horizontal">
-            <ImageView
-                android:paddingLeft="15dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:src="@drawable/repeat">
-            </ImageView>
-           <TextView
-               android:id="@+id/adderrepeat"
-               android:onClick="setrepeat"
-               android:layout_width="0dp"
-               android:gravity="center"
-               android:layout_height="match_parent"
-               android:layout_weight="7"
-               android:textSize="22dp"
-               android:textStyle="bold"
-               android:paddingRight="15dp"
-               android:text="None">
 
-           </TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal"
-            >
-            <ImageView
-                android:layout_width="0dp"
-                android:paddingLeft="10dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/marker"
-                >
-            </ImageView>
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="7"
-                android:orientation="horizontal"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:id="@+id/addermarker"
-                    android:onClick="setcolor"
-                    android:src="@drawable/mblack"
-                    android:layout_marginRight="15dp">
-                </ImageView>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                </LinearLayout>
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1"></LinearLayout>
+
+            <ImageView
+                android:id="@+id/addermarker"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:onClick="setcolor"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:src="@drawable/mblack"></ImageView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:gravity="center">
+
         <Button
             android:id="@+id/adderset"
-            android:text="Set"
-            android:textColor="#000000"
-            android:textSize="22sp"
             android:layout_width="180dp"
             android:layout_height="60dp"
             android:background="@drawable/adderbutton"
-            />
+            android:text="Set"
+            android:textColor="#000000"
+            android:textSize="22sp" />
     </LinearLayout>
 
 </LinearLayout>

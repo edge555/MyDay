@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class FeedbackActivity extends AppCompatActivity {
     Button feedbut;
     EditText feedtext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +25,10 @@ public class FeedbackActivity extends AppCompatActivity {
                 String text = feedtext.getText().toString();
                 if (!text.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Thanks for your feedback!!!", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(FeedbackActivity.this,SettingActivity.class);
+                    Intent intent = new Intent(FeedbackActivity.this, SettingActivity.class);
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Please write something",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please write something", Toast.LENGTH_LONG).show();
                 }
             }
         });

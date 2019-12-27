@@ -8,80 +8,82 @@
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".SettingActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarThumbVertical="@null"
-        android:scrollbarThumbHorizontal="@null">
+        android:scrollbarThumbHorizontal="@null"
+        android:scrollbarThumbVertical="@null">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
-                android:paddingTop="10dp"
+                android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="10dp"
                 android:text="Settings"
+                android:textAllCaps="true"
+                android:textColor="#326ADA"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:textColor="#326ADA"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="true"
-                android:id="@+id/settings"
 
                 />
+
             <TextView
-                android:paddingTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#141414"
-                android:textAllCaps="true"
                 android:id="@+id/account"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="PROFILE"
-                android:gravity="center|left"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:onClick="onProfile"
-                />
-
-            <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preferences"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#141414"
+                android:paddingTop="15dp"
+                android:text="Account"
                 android:textAllCaps="true"
+                android:textColor="#141414"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:onClick="onProfile"
+                android:text="PROFILE"
+                android:textStyle="bold" />
+
+            <TextView
+
                 android:id="@+id/preferences"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Preferences"
+                android:textAllCaps="true"
+                android:textColor="#141414"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:gravity="center|left"
                     android:text="VIBRATION"
-                    android:gravity="center|left"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <Switch
+                    android:id="@+id/vibswitch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/vibswitch">
+                    android:layout_weight="1">
 
                 </Switch>
             </LinearLayout>
@@ -90,36 +92,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="NOTIFICATION SOUND"
                     android:gravity="center|left"
-                    android:textStyle="bold"/>
+                    android:text="NOTIFICATION SOUND"
+                    android:textStyle="bold" />
+
                 <Switch
+                    android:id="@+id/notisoundswitch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/notisoundswitch">
+                    android:layout_weight="1">
 
                 </Switch>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:gravity="center|left"
                     android:text="FULLSCREEN VIEW"
-                    android:textStyle="bold"
-                    android:gravity="center|left"/>
+                    android:textStyle="bold" />
+
                 <Switch
+                    android:id="@+id/fullswitch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/fullswitch">
+                    android:layout_weight="1">
 
                 </Switch>
             </LinearLayout>
@@ -128,41 +135,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="STATUSBAR NOTIFICATION"
                     android:gravity="center|left"
-                    android:textStyle="bold"/>
+                    android:text="STATUSBAR NOTIFICATION"
+                    android:textStyle="bold" />
+
                 <Switch
+                    android:id="@+id/notishowswitch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:id="@+id/notishowswitch">
+                    android:layout_weight="1">
 
                 </Switch>
             </LinearLayout>
+
             <TextView
+                android:id="@+id/community"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Community"
                 android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#141414"
+                android:text="Community"
                 android:textAllCaps="true"
-                android:id="@+id/community"
-                />
+                android:textColor="#141414"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="FEEDBACK"
-                android:gravity="center|left"
                 android:layout_weight="1"
-                android:textStyle="bold"
+                android:gravity="center|left"
                 android:onClick="onFeed"
-                />
+                android:text="FEEDBACK"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

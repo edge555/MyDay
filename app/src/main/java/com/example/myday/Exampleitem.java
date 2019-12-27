@@ -2,7 +2,7 @@ package com.example.myday;
 
 public class Exampleitem {
 
-    private String title,des,date,time,full,repeat,marker;
+    private String title, des, date, time, full, repeat, marker;
 
     public Exampleitem(String title, String des, String date, String time, String full, String repeat, String marker) {
         this.title = title;

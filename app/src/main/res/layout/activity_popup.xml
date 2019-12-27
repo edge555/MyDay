@@ -7,152 +7,163 @@
     android:background="#d9fcff"
     android:orientation="vertical"
     tools:context=".Popup">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#a1e9f0"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#a1e9f0">
 
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="15dp"
-        android:gravity="center_vertical"
         android:layout_marginBottom="5dp"
-        android:textStyle="bold"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="Title:"
         android:textSize="20sp"
-        android:text="Title:">
+        android:textStyle="bold">
 
     </TextView>
+
     <TextView
         android:id="@+id/poptitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:paddingTop="8dp"
+        android:background="#FFFF"
         android:paddingLeft="15dp"
-        android:background="#FFFF">
-    </TextView>
+        android:paddingTop="8dp"></TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textStyle="bold"
+        android:gravity="center_vertical"
 
         android:paddingLeft="15dp"
-        android:gravity="center_vertical"
+        android:text="Description:"
         android:textSize="20sp"
-        android:text="Description:">
+        android:textStyle="bold">
 
     </TextView>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:id="@+id/popdes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="3"
-        android:paddingTop="8dp"
-        android:paddingLeft="15dp"
         android:background="#FFFF"
-        ></TextView>
+        android:paddingLeft="15dp"
+        android:paddingTop="8dp"></TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textStyle="bold"
+        android:gravity="center_vertical"
 
         android:paddingLeft="15dp"
-        android:gravity="center_vertical"
+        android:text="Date:"
         android:textSize="20sp"
-        android:text="Date:">
+        android:textStyle="bold">
 
     </TextView>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:id="@+id/popdate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
         android:background="#FFFF"
-        ></TextView>
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"></TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
 
-        android:paddingLeft="15dp"
         android:gravity="center_vertical"
-        android:textStyle="bold"
+        android:paddingLeft="15dp"
+        android:text="Time:"
         android:textSize="20sp"
-        android:text="Time:">
+        android:textStyle="bold">
 
     </TextView>
+
     <TextView
+        android:id="@+id/poptime"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/poptime"
         android:layout_weight="1"
-        android:paddingLeft="15dp"
+        android:background="#FFFF"
         android:gravity="center_vertical"
-        android:background="#FFFF">
+        android:paddingLeft="15dp">
 
     </TextView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#FFFFFF"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#d9fcff"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
             android:text="Repeat"
-            android:textStyle="bold"
-            android:paddingLeft="15dp"
-            android:gravity="center_vertical"
             android:textSize="14sp"
-            android:background="#d9fcff"
-            >
+            android:textStyle="bold">
 
         </TextView>
+
+        <TextView
+            android:id="@+id/poprepeat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        </TextView>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:id="@+id/poprepeat">
-
-        </TextView>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingLeft="15dp"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:background="#d9fcff"
-            android:text="Marker">
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="Marker"
+            android:textSize="14sp"
+            android:textStyle="bold">
 
         </TextView>
+
         <ImageView
+            android:id="@+id/popmarker"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/popmarker"
             android:paddingTop="5dp"
             android:paddingBottom="5dp">
 
         </ImageView>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#a1e9f0"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#a1e9f0">
 
     </LinearLayout>
 </LinearLayout>

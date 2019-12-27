@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,45 +10,47 @@
     tools:context=".AboutAppActivity">
 
     <TextView
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#213BCC"
+        android:layout_marginLeft="5dp"
         android:text="This app helps you to keep up with your regular tasks"
-        android:textSize="28sp">
-    </TextView>
+        android:textColor="#213BCC"
+        android:textSize="28sp"></TextView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="25dp"></LinearLayout>
+
     <TextView
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#D50000"
+        android:layout_marginLeft="5dp"
         android:text="You can add,delete tasks in realtime here"
-        android:textSize="28sp">
-    </TextView>
+        android:textColor="#D50000"
+        android:textSize="28sp"></TextView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="25dp"></LinearLayout>
+
     <TextView
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
+        android:layout_marginLeft="5dp"
         android:text="With your account you can get your task in any devices you log in"
-        android:textSize="28sp">
-    </TextView>
+        android:textColor="#000000"
+        android:textSize="28sp"></TextView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="25dp"></LinearLayout>
+
     <TextView
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#E91E63"
+        android:layout_marginLeft="5dp"
         android:text="If find any bug or if you have any suggestions please let us know"
-        android:textSize="28sp">
-    </TextView>
+        android:textColor="#E91E63"
+        android:textSize="28sp"></TextView>
 
 </LinearLayout>

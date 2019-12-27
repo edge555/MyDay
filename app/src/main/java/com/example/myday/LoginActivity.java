@@ -33,11 +33,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private Button regbut;
-    private EditText eu,ep;
+    private EditText eu, ep;
     private CheckBox logpasschk;
     FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthSt;
-    String u,p;
+    String u, p;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +49,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser FUser = mAuth.getCurrentUser();
-                if(FUser!=null){
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                if (FUser != null) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         };
         hidepass(); // Password hiding
 
-        regbut=findViewById(R.id.regbut);
+        regbut = findViewById(R.id.regbut);
         regbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,34 +66,29 @@ public class LoginActivity extends AppCompatActivity {
                 ep = findViewById(R.id.logpass);
                 u = eu.getText().toString();
                 p = ep.getText().toString();
-                if(u.isEmpty()){
+                if (u.isEmpty()) {
                     eu.setError("Enter an e-mail address");
                     eu.requestFocus();
-                }
-                else if(!Patterns.EMAIL_ADDRESS.matcher(u).matches()) {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(u).matches()) {
                     eu.setError("Enter a valid e-mail address");
                     eu.requestFocus();
-                }
-                else if(p.isEmpty()){
+                } else if (p.isEmpty()) {
                     ep.setError("Password field can't be empty");
                     ep.requestFocus();
-                }
-                else if(p.length()<6){
+                } else if (p.length() < 6) {
                     ep.setError("Password must be minimum of 6 characters");
                     ep.requestFocus();
-                }
-                else{
-                    mAuth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                } else {
+                    mAuth.signInWithEmailAndPassword(u, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 finish();
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"Sign In Failed",Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Sign In Failed", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -106,16 +102,17 @@ public class LoginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
                 ds.setUnderlineText(false);
             }
         };
-        ss.setSpan(clickableSpan1,11,19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 11, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         //
@@ -125,20 +122,22 @@ public class LoginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,TroubleActivity.class);
+                Intent intent = new Intent(LoginActivity.this, TroubleActivity.class);
                 startActivity(intent);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
                 ds.setUnderlineText(false);
             }
         };
-        ss2.setSpan(clickableSpan2,20,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss2.setSpan(clickableSpan2, 20, 25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView2.setText(ss2);
         textView2.setMovementMethod(LinkMovementMethod.getInstance());
         //
     }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
@@ -159,22 +158,23 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alertDialog = alert.create();
         alertDialog.show();
     }
-    public void hidepass(){
+
+    public void hidepass() {
         logpasschk = findViewById(R.id.logpasschk);
         logpasschk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 ep = findViewById(R.id.logpass);
                 p = ep.getText().toString();
-                if(b){
+                if (b) {
                     ep.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
+                } else {
                     ep.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();

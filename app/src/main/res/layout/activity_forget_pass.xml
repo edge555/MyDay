@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgetPassActivity"
-    android:gravity="center"
     android:background="@drawable/forgotpass"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ForgetPassActivity">
+
     <EditText
+        android:id="@+id/forpassmail"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:id="@+id/forpassmail"
-        android:hint="Email Address"/>
+        android:hint="Email Address" />
+
     <Button
+        android:id="@+id/forpassresetbut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:id="@+id/forpassresetbut"
         android:layout_marginBottom="5dp"
-        android:text="Reset Password"/>
+        android:text="Reset Password" />
 </LinearLayout>

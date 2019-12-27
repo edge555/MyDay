@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/actionsettings"
         android:orderInCategory="10"
@@ -10,14 +8,12 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/actionaboutapp"
-        android:title="About App"
         android:orderInCategory="20"
-        app:showAsAction="never"
-        />
+        android:title="About App"
+        app:showAsAction="never" />
     <item
         android:id="@+id/actionupdate"
-        android:title="Check for Updates"
-        app:showAsAction="never"
         android:orderInCategory="30"
-        />
+        android:title="Check for Updates"
+        app:showAsAction="never" />
 </menu>

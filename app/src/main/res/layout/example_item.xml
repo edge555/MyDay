@@ -1,100 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="15dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/title"></ImageView>
+
+            <TextView
+                android:id="@+id/reltitle"
+                android:layout_width="0dp"
                 android:layout_height="35dp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/title"></ImageView>
-                <TextView
-                    android:id="@+id/reltitle"
-                    android:layout_width="0dp"
-                    android:layout_weight="11"
-                    android:layout_height="35dp"
-                    android:paddingLeft="8dp"
-                    android:gravity="center_vertical"
-                    android:text="Title"
-                    android:textSize="20sp">
-                </TextView>
+                android:layout_weight="11"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="Title"
+                android:textSize="20sp"></TextView>
 
-            </LinearLayout>
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/time">
-                </ImageView>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:gravity="center_vertical"
-                    android:id="@+id/reltime"
-                    android:text="Time">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
 
-                </TextView>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/date">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/time"></ImageView>
 
-                </ImageView>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:gravity="center_vertical"
-                    android:id="@+id/reldate"
-                    android:text="Date">
-                </TextView>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/repeat">
+            <TextView
+                android:id="@+id/reltime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="Time">
 
-                </ImageView>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:paddingLeft="8dp"
-                    android:gravity="center_vertical"
-                    android:id="@+id/relrep"
-                    android:text="None">
-                </TextView>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="15dp"
-                    android:id="@+id/relmarker">
+            </TextView>
 
-                </ImageView>
-            </LinearLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/date">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/reldate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="Date"></TextView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/repeat">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/relrep"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="None"></TextView>
+
+            <ImageView
+                android:id="@+id/relmarker"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+            </ImageView>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,98 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".RegisterActivity"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/golla"/>
+        android:src="@drawable/golla" />
+
     <TextView
+        android:id="@+id/youarewelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="You are Welcome !"
         android:textAllCaps="true"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:textSize="30sp"
         android:textColor="#141172"
-        android:id="@+id/youarewelcome"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
 
-            android:hint="First Name"
-            android:gravity="center_horizontal"
-            android:textSize="22sp"
-            android:inputType="text"
-            android:id="@+id/regfn"
-            />
-        />
         <EditText
+            android:id="@+id/regfn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint=" Surname "
+
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textSize="22sp"
+            android:hint="First Name"
             android:inputType="text"
+            android:textSize="22sp" />
+        />
+
+        <EditText
             android:id="@+id/regsn"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:hint=" Surname "
+            android:inputType="text"
+            android:textSize="22sp" />
     </LinearLayout>
+
     <EditText
+        android:id="@+id/regemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="           Email  Address           "
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="22sp"
-        android:id="@+id/regemail"
-        />
+        android:hint="           Email  Address           "
+        android:textSize="22sp" />
+
     <EditText
+        android:id="@+id/regpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="               Password               "
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:textSize="22sp"
+        android:hint="               Password               "
         android:inputType="textPassword"
-        android:id="@+id/regpass"
-        />
+        android:textSize="22sp" />
+
     <CheckBox
+        android:id="@+id/regpasschk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Show Password"
-        android:id="@+id/regpasschk"/>
+        android:text="Show Password" />
+
     <Button
+        android:id="@+id/regbut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Sign Up"
-        android:id="@+id/regbut"/>
+        android:text="Sign Up" />
+
     <TextView
+        android:id="@+id/logtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already a user?  Sign In"
-        android:id="@+id/logtext"
         android:layout_gravity="center_horizontal"
-        android:textSize="15sp"
         android:paddingTop="10dp"
-        android:textStyle="bold"
+        android:text="Already a user?  Sign In"
         android:textAllCaps="true"
         android:textColor="#000000"
-        />
+        android:textSize="15sp"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -36,21 +36,22 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button profsout,profdel,profupgrade,profupdate;
+    Button profsout, profdel, profupgrade, profupdate;
     private TextView profmail;
-    private EditText profname,profprofession,profmobile;
+    private EditText profname, profprofession, profmobile;
     LinearLayout ll;
     FirebaseAuth mAuth;
     FirebaseUser curuser;
     DatabaseReference db;
-    static boolean nameEnable = false,professionEnabled = false;
+    static boolean nameEnable = false, professionEnabled = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setInfo();
         seteditextsfalse();
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         curuser = mAuth.getCurrentUser();
         setonclicklisteners();
     }
@@ -97,30 +98,30 @@ public class ProfileActivity extends AppCompatActivity {
         String mobile = profmobile.getText().toString();
         String mail = profmail.getText().toString();
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        if(curuser!=null) {
+        if (curuser != null) {
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
-            HashMap<String,String> info=new HashMap<>();
-            info.put("Name",name);
-            info.put("Email",mail);
-            info.put("Profession",profession);
-            info.put("Mobile",mobile);
+            HashMap<String, String> info = new HashMap<>();
+            info.put("Name", name);
+            info.put("Email", mail);
+            info.put("Profession", profession);
+            info.put("Mobile", mobile);
             db.setValue(info);
         }
     }
 
     private void seteditextsfalse() {
         profname = findViewById(R.id.profname);
-        toggleedit(false,profname);
+        toggleedit(false, profname);
         profprofession = findViewById(R.id.profprofession);
-        toggleedit(false,profprofession);
+        toggleedit(false, profprofession);
         profmobile = findViewById(R.id.profmobile);
-        toggleedit(false,profmobile);
+        toggleedit(false, profmobile);
     }
 
     private void toggleedit(boolean isEnabled, EditText editText) {
         editText.setFocusable(isEnabled);
-        editText.setFocusableInTouchMode(isEnabled) ;
+        editText.setFocusableInTouchMode(isEnabled);
         editText.setClickable(isEnabled);
         editText.setLongClickable(isEnabled);
         editText.setCursorVisible(isEnabled);
@@ -129,7 +130,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setInfo() {
         FirebaseUser curuser = FirebaseAuth.getInstance().getCurrentUser();
-        if(curuser!=null) {
+        if (curuser != null) {
             String uid = curuser.getUid();
             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Info");
             db.addValueEventListener(new ValueEventListener() {
@@ -141,20 +142,17 @@ public class ProfileActivity extends AppCompatActivity {
                                 profname = findViewById(R.id.profname);
                                 profname.setText((CharSequence) childsnap.getValue());
                             }
-                        }
-                        else if (childsnap.getKey().equals("Email")) {
+                        } else if (childsnap.getKey().equals("Email")) {
                             if (childsnap.getValue() != null) {
                                 profmail = findViewById(R.id.profmail);
                                 profmail.setText((CharSequence) childsnap.getValue());
                             }
-                        }
-                        else if (childsnap.getKey().equals("Profession")) {
+                        } else if (childsnap.getKey().equals("Profession")) {
                             if (childsnap.getValue() != null) {
                                 profprofession = findViewById(R.id.profprofession);
                                 profprofession.setText((CharSequence) childsnap.getValue());
                             }
-                        }
-                        else if (childsnap.getKey().equals("Mobile")) {
+                        } else if (childsnap.getKey().equals("Mobile")) {
                             if (childsnap.getValue() != null) {
                                 profmobile = findViewById(R.id.profmobile);
                                 profmobile.setText((CharSequence) childsnap.getValue());
@@ -162,6 +160,7 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -170,52 +169,53 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void signout(){
+    public void signout() {
         mAuth.getInstance().signOut();
         finish();
-        Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
-        startActivity(intent);
-    }
-    public void upgradetopremium(){
-        Intent intent = new Intent(ProfileActivity.this,UpPremiumActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void showsnackbar1(){
+    public void upgradetopremium() {
+        Intent intent = new Intent(ProfileActivity.this, UpPremiumActivity.class);
+        startActivity(intent);
+    }
+
+    public void showsnackbar1() {
         ll = findViewById(R.id.profile_layout);
-        Snackbar sb = Snackbar.make(ll,"Account deleted successfully",Snackbar.LENGTH_LONG);
+        Snackbar sb = Snackbar.make(ll, "Account deleted successfully", Snackbar.LENGTH_LONG);
         sb.show();
     }
-    public void showsnackbar2(){
+
+    public void showsnackbar2() {
         ll = findViewById(R.id.profile_layout);
-        Snackbar sb = Snackbar.make(ll,"Account not deleted",Snackbar.LENGTH_LONG);
+        Snackbar sb = Snackbar.make(ll, "Account not deleted", Snackbar.LENGTH_LONG);
         sb.show();
     }
 
     public void updatename(View view) {
         profname = findViewById(R.id.profname);
-        if(nameEnable){
-            toggleedit(false,profname);
+        if (nameEnable) {
+            toggleedit(false, profname);
             nameEnable = false;
-        }
-        else{
-            toggleedit(true,profname);
+        } else {
+            toggleedit(true, profname);
             nameEnable = true;
         }
     }
 
     public void updateprofession(View view) {
         profprofession = findViewById(R.id.profprofession);
-        if(professionEnabled){
-            toggleedit(false,profprofession);
+        if (professionEnabled) {
+            toggleedit(false, profprofession);
             professionEnabled = false;
-        }
-        else{
+        } else {
             toggleedit(true, profprofession);
             professionEnabled = true;
         }
     }
-    public void deleteprofile(){
+
+    public void deleteprofile() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(ProfileActivity.this);
         dialog.setTitle("Are you sure?");
         dialog.setMessage("This action can't be reversed");
@@ -225,15 +225,14 @@ public class ProfileActivity extends AppCompatActivity {
                 curuser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             String uid = curuser.getUid();
                             db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
                             db.setValue(null);
                             showsnackbar1();
-                            Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
+                            Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                             startActivity(intent);
-                        }
-                        else{
+                        } else {
                             showsnackbar2();
                         }
                     }
@@ -252,12 +251,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void updatemobile(View view) {
         profmobile = findViewById(R.id.profmobile);
-        if(nameEnable){
-            toggleedit(false,profmobile);
+        if (nameEnable) {
+            toggleedit(false, profmobile);
             nameEnable = false;
-        }
-        else{
-            toggleedit(true,profmobile);
+        } else {
+            toggleedit(true, profmobile);
             nameEnable = true;
         }
     }

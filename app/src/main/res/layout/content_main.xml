@@ -2,49 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e2eef2"
-    android:id="@+id/mainlayout"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp">
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/timetasktv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/timetasktv"
-            android:text="Time Task"
             android:gravity="center"
-            android:textSize="20dp"
-            android:onClick="onTimetask">
+            android:onClick="onTimetask"
+            android:text="Time Task"
+            android:textSize="20dp">
 
         </TextView>
+
         <TextView
+            android:id="@+id/remindertv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/remindertv"
-            android:text="Reminder"
+            android:gravity="center"
             android:onClick="onReminder"
-            android:textSize="20dp"
-            android:gravity="center">
+            android:text="Reminder"
+            android:textSize="20dp">
 
         </TextView>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/notask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/notask"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,28 +58,31 @@
             android:src="@drawable/notask">
 
         </ImageView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:textSize="20dp"
                 android:gravity="center_vertical"
-                android:text="Awesome! You have no tasks!!!">
+                android:text="Awesome! You have no tasks!!!"
+                android:textSize="20dp">
 
             </TextView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:textSize="20dp"
-                android:text="Want to add some ?">
+                android:text="Want to add some ?"
+                android:textSize="20dp">
 
             </TextView>
         </LinearLayout>
@@ -84,9 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="4dp"
-        android:scrollbars="vertical">
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>

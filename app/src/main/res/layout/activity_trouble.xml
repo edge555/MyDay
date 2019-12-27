@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TroubleActivity"
-    android:orientation="vertical"
+    android:background="#AF6DBB"
     android:gravity="center"
-    android:background="#AF6DBB">
+    android:orientation="vertical"
+    tools:context=".TroubleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,28 +15,33 @@
         android:layout_weight="1"
         android:background="@drawable/forgetpass"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center">
+
                 <Button
                     android:id="@+id/troubleforpass"
                     android:layout_width="wrap_content"
@@ -53,32 +58,36 @@
         android:layout_weight="1"
         android:background="@drawable/emailus"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center">
+
                 <Button
 
+                    android:id="@+id/troublesend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Send Email"
-                    android:id="@+id/troublesend"
-                    android:background="#8DD1EE"
                     android:layout_marginTop="10dp"
-                    />
+                    android:background="#8DD1EE"
+                    android:text="Send Email" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

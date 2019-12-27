@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeedbackActivity"
+    android:background="@drawable/feedback"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/feedback">
+    tools:context=".FeedbackActivity">
+
     <EditText
         android:id="@+id/feedbacktext"
         android:layout_width="match_parent"
@@ -15,15 +16,15 @@
         android:inputType="textCapSentences|textMultiLine"
         android:maxLength="2000"
         android:maxLines="10" />
+
     <Button
         android:id="@+id/feedbackbut"
-        android:text="Send Feedback"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
         android:layout_width="270dp"
         android:layout_height="60dp"
         android:background="@drawable/buttonshape"
-        />
+        android:text="Send Feedback"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
-    
+
 </LinearLayout>

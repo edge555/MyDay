@@ -28,11 +28,10 @@ public class OpeningActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Boolean isFirstRun = getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
-                if(isFirstRun){
-                    startActivity(new Intent(OpeningActivity.this,SlideActivity.class));
-                }
-                else {
+                Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+                if (isFirstRun) {
+                    startActivity(new Intent(OpeningActivity.this, SlideActivity.class));
+                } else {
                     dowork();
                     checkconnectivity();
                     startapp();
@@ -47,7 +46,7 @@ public class OpeningActivity extends AppCompatActivity {
     private void checkconnectivity() {
 
     }
-    
+
     private void dowork() {
         for (prg = 0; prg <= 100; prg += 25) {
             try {
@@ -58,8 +57,9 @@ public class OpeningActivity extends AppCompatActivity {
             }
         }
     }
-    private void startapp(){
-        Intent intent = new Intent(OpeningActivity.this,LoginActivity.class);
+
+    private void startapp() {
+        Intent intent = new Intent(OpeningActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
