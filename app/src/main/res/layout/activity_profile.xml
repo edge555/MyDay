@@ -64,7 +64,6 @@
                     android:textSize="25dp"></TextView>
 
                 <ImageView
-                    android:id="@+id/profnameimg"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"

@@ -38,10 +38,10 @@ public class ForgetPassActivity extends AppCompatActivity {
         forpassemail = findViewById(R.id.forpassmail);
         String email = forpassemail.getText().toString();
         if (email.isEmpty()) {
-            forpassemail.setError("Enter an e-mail address");
+            forpassemail.setError("Enter an email address");
             forpassemail.requestFocus();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            forpassemail.setError("Enter a valid e-mail address");
+            forpassemail.setError("Enter a valid email address");
             forpassemail.requestFocus();
         } else {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -77,19 +77,19 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
                 if (u.isEmpty()) {
-                    eu.setError("Enter an e-mail address");
+                    eu.setError("Enter an email address");
                     eu.requestFocus();
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(u).matches()) {
-                    eu.setError("Enter a valid e-mail address");
+                    eu.setError("Enter a valid email address");
                     eu.requestFocus();
                 } else if (p.isEmpty()) {
                     ep.setError("Enter a password");
                     ep.requestFocus();
                 } else if (p.length() < 6) {
-                    ep.setError("Password must be minumum of 6 characters");
+                    ep.setError("Password must be minimum of 6 characters");
                     ep.requestFocus();
                 } else if (!chk.pass(p)) {
-                    ep.setError("Password should not contain any spaces");
+                    ep.setError("Enter a valid password");
                     ep.requestFocus();
                 } else {
                     mAuth.createUserWithEmailAndPassword(u, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

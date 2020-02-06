@@ -21,7 +21,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -35,7 +34,6 @@
                 />
 
             <TextView
-                android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -56,7 +54,6 @@
 
             <TextView
 
-                android:id="@+id/preferences"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -154,7 +151,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/community"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
