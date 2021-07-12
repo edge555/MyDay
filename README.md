@@ -29,6 +29,9 @@ Minimum Android requirement 5.0 (API 21)
 10. Alert System : User will get notification, vibration and sound, so they don’t miss their tasks
 11. User’s Preference : User can control apps vibration, notification, sound
 
+## Download Link
+https://drive.google.com/drive/folders/1ilaHQnKz3qWv6yxMh-aX8YV4zVYgD-Cf?usp=sharing
+
 ## Authors
 
 * **Shoaib Ahmed** - [edge555](https://github.com/edge555)
