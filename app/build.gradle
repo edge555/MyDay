@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.example.myday"
         minSdkVersion 21
@@ -29,7 +30,7 @@ dependencies {
     implementation 'com.android.support:mediarouter-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
@@ -42,4 +43,3 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
